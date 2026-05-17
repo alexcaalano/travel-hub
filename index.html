@@ -1289,8 +1289,10 @@ function tickClock(){
   const hh=String(now.getHours()).padStart(2,'0');
   const mm=String(now.getMinutes()).padStart(2,'0');
   const ss=String(now.getSeconds()).padStart(2,'0');
+  // Extract short timezone name (e.g. AEST, CET, EEST)
+  const tz=now.toLocaleTimeString('en-AU',{timeZoneName:'short'}).split(' ').pop();
   const el=document.getElementById('livetime');
-  if(el) el.textContent=`${d} ${dd} ${mo} ${yr}, ${hh}:${mm}:${ss}`;
+  if(el) el.textContent=`${d} ${dd} ${mo} ${yr}, ${hh}:${mm}:${ss} ${tz}`;
 }
 function update(){upCD();markDays();buildUpcoming();}
 update();
