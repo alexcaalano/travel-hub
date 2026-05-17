@@ -289,7 +289,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <div class="hdr-status">
     <div class="hs-item"><span class="hs-dot live"></span><span>Live time: <strong id="livetime">–</strong></span></div>
     <div class="hs-item" style="opacity:.5">|</div>
-    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>18 May 2026, 12:30 AM AEST</strong></span></div>
+    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>18 May 2026, 1:30 AM AEST</strong></span></div>
   </div>
   <div class="route">
     <div class="rc">🇦🇺 SYD</div><span class="ra">›</span>
@@ -521,7 +521,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
     <div class="days">
 
       <!-- 1 Jun -->
-      <div class="day d-free" data-date="2026-06-01" onclick="openDay(this.dataset.date)">
+      <div class="day d-confirmed" data-date="2026-06-01" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">1</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -547,7 +547,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 3 Jun -->
-      <div class="day d-free" data-date="2026-06-03" onclick="openDay(this.dataset.date)">
+      <div class="day d-confirmed" data-date="2026-06-03" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">3</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -1010,7 +1010,13 @@ const EVENTS=[
   {dt:'2026-05-31T11:00',label:'🏨 Checkout Cocoon Suites Santorini (by 11AM)',type:'hotel'},
   {dt:'2026-05-31T14:30',label:'⛴️ SeaJets ferry → Milos departs [not booked]',type:'plan'},
   {dt:'2026-05-31T16:25',label:'🏨 Check in Boho Sapiens Marina Milos (arrive port ~4:25PM)',type:'hotel'},
+  {dt:'2026-05-31T18:00',label:'💒 Wedding Pre-Party — Sunset drinks at Utopia Caffe',type:'tour'},
   {dt:'2026-06-01T00:00',label:'🚨 Milos becomes 100% non-refundable today (A$2,011)',type:'urgent'},
+  {dt:'2026-06-01T08:30',label:'⛵ Hens & Bucks Sailing — Thalassitra Plaka (meet 8:30 AM)',type:'tour'},
+  {dt:'2026-06-01T18:00',label:'🍽️ Wedding Dinner — Medusa Restaurant, Mandrakia',type:'tour'},
+  {dt:'2026-06-03T13:00',label:'💒 Wedding Ceremony — Agios Nikolaos, Firopotamos (arrive 12:30!)',type:'urgent'},
+  {dt:'2026-06-03T18:00',label:'🥂 Wedding Reception — Kipos Restaurant, Kipos Beach',type:'tour'},
+  {dt:'2026-06-04T17:00',label:'🏊 Recovery Swim — Sarakiniko Beach (optional)',type:'plan'},
   {dt:'2026-06-04T09:00',label:'⚠️ TODAY: Last safe day to cancel Rome in a Day (8-day rule)',type:'urgent'},
   {dt:'2026-06-05T10:45',label:'⛴️ SuperJet Milos→Paros departs [not booked]',type:'plan'},
   {dt:'2026-06-05T11:00',label:'🏨 Checkout Boho Sapiens Marina Milos (by 11AM)',type:'hotel'},
@@ -1286,6 +1292,42 @@ const EV_DATA = {
     inclusions:['Skip-the-line Vatican Museums entry (including Sistine Chapel and Raphael Rooms)','Reserved Colosseum entry with all ticket and reservation fees','Forum Romanum and Palatine Hill visit','Trevi Fountain, Pantheon, and Piazza Navona stops','Round-trip transportation within Rome','Professional English-speaking guide','Audio headsets where applicable'],
     exclusions:['Lunch — free time provided mid-day','Water and snacks (bring your own!)','Gratuities','St. Peter\'s Basilica interior (confirm on the day with guide)'],
     tips:['🚨 DRESS CODE ENFORCED at Vatican: covered knees, covered shoulders, no exposed toes. Bring a scarf/shawl to cover up.','No hats inside the Vatican','Bring valid photo ID — name must match ticket','Pack light — large bags slow security checks significantly','Bring a refillable water bottle — this is a 10-hour day with lots of walking','Wear your most comfortable, well-worn walking shoes — NOT new shoes','Bring snacks — the lunch break is short and Vatican area food is pricey']},
+  // ── WEDDING: NELSON & DEMETRA ─────────────────────────────────────────────
+  '2026-05-31T18:00':{type:'tour',name:'Wedding Pre-Party — Sunset at Utopia Caffe',dur:120,
+    details:{loc:'Utopia Caffe, Milos',mapsQ:'Utopia+Caffe+Milos+Greece'},
+    travel:'🚶 Short walk or taxi from Boho Sapiens port. Line up from 5 PM — limited spots.',
+    tips:['Line up from 5:00 PM — fills up fast and spots are limited','Alternative overflow spot: Verina Cocktail Bar nearby','Dress: elevated island chill','Just arrived in Milos — great intro to the crew!']},
+
+  '2026-06-01T08:30':{type:'tour',name:'Hens & Bucks Sailing — Polyaigos Island',dur:390,
+    details:{loc:'Thalassitra Travel Office — meet here at 8:30 AM sharp!',mapsQ:'Thalassitra+Sailing+Travel+Agency+Plaka+Milos',
+      guide:'Thalassitra Sailing Travel Agency, Plaka'},
+    travel:'🚗 Taxi or hire car to Plaka — ~15 min from Adamas port. Allow extra time for parking.',
+    inclusions:['Complimentary sailing trip to Polyaigos island','Lunch served on deck','Open bar all day'],
+    exclusions:['Not suitable for children under 12','Not recommended for those prone to seasickness — open sea, can be rough even with travel sickness tablets'],
+    tips:['Theme: The White Lotus','Attire: Beachwear','Meet at Thalassitra Travel Office in Plaka at 8:30 AM SHARP','Bring sunscreen, a towel, hat, and water','Consider taking seasickness tablets the night before if prone','Returns approximately 3:00 PM']},
+
+  '2026-06-01T18:00':{type:'tour',name:'Wedding Dinner — Medusa Restaurant, Mandrakia',dur:120,
+    details:{loc:'Medusa Milos, Mandrakia village',mapsQ:'Medusa+Restaurant+Mandrakia+Milos'},
+    travel:'🚗 Taxi recommended — Mandrakia is a small fishing village ~15 min from Adamas.',
+    tips:['No booking needed — look for the tables of washed-up pirates!','Dress: island chiller chic','Popular spot — arrive on time to grab space near the group','Great setting in a traditional boathouse village']},
+
+  '2026-06-03T13:00':{type:'tour',name:'Wedding Ceremony — Agios Nikolaos Church, Firopotamos',dur:60,
+    details:{loc:'Ιερός Ναός Αγίου Νικολάου, Firopotamos, Milos',mapsQ:'Agios+Nikolaos+Church+Firopotamos+Milos',
+      guide:'Planner Fani: milosevent@gmail.com / +30 697 201 9211'},
+    travel:'🚗 Book a taxi or transfer — limited parking at church. Contact Milos Transfers or planner Fani.',
+    tips:['🚨 ARRIVE BY 12:30 PM — allow time for parking and walking down','Roads to Firopotamos are winding, tight, and single-lane — drive slowly','Carpooling strongly encouraged — limited parking','Once main lot is full, park on the main road and walk down','Do NOT park anyone in or block the road','Dress code: Modern Chic Pastels — taupe, sage, driftwood, olive, blue, yellow, purple, slate, pink','🚫 NO black, white, or ivory','MOH Irene: +61 423 253 599 | Best man Pat: +61 422 860 858']},
+
+  '2026-06-03T18:00':{type:'tour',name:'Wedding Reception — Kipos Restaurant, Kipos Beach',dur:300,
+    details:{loc:'Kipos Restaurant, Kipos Beach, Milos',mapsQ:'Kipos+Restaurant+Kipos+Beach+Milos'},
+    travel:'🚗 Drive in, share a ride back — roads to Kipos are narrow and can be dark at night. Fani can help book transfers: milosevent@gmail.com',
+    tips:['Have a late lunch before arriving — dinner is served on Mediterranean time','Sunset around 8:30 PM — wear SPF for cocktail hour','Dress code: same as ceremony — Modern Chic Pastels, no black/white/ivory','Stay hydrated during the day, pace yourself','Water and coffee served on the night','Contact Fani for transport help: milosevent@gmail.com / +30 697 201 9211']},
+
+  '2026-06-04T17:00':{type:'plan',name:'Recovery Swim — Sarakiniko Beach (optional)',dur:120,
+    details:{loc:'Sarakiniko Beach, Milos',mapsQ:'Sarakiniko+Beach+Milos'},
+    travel:'🚗 ~10 min drive from Adamas. Hire car or taxi.',
+    tips:['Tentative post-wedding plan — no pressure at all','Sarakiniko is the famous moonscape beach — unmissable if you have not been!','Bring swimwear, towel, sunglasses, and snacks','Flat white rock surface gets very hot — wear thongs/slides']},
+
+
 };
 
 // ── City activity suggestions (shown on free days) ─────────────────────────
