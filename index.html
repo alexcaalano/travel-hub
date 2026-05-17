@@ -15,6 +15,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .hdr-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px}
 .hdr-title{font-size:18px;font-weight:800}
 .hdr-sub{font-size:11px;opacity:.75;margin-top:3px}
+.hdr-status{display:flex;align-items:center;gap:10px;margin-top:10px;background:rgba(0,0,0,.18);border-radius:8px;padding:5px 11px;flex-wrap:wrap}
+.hs-item{display:flex;align-items:center;gap:5px;font-size:10px;opacity:.9}
+.hs-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.hs-dot.live{background:#68d391;animation:pulse 2s ease-in-out infinite}
+.hs-dot.built{background:#90cdf4}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 .cdbox{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:7px 14px;text-align:center}
 .cdn{font-size:28px;font-weight:900;color:#ffd700;line-height:1}
 .cdl{font-size:9px;opacity:.8;text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
@@ -222,6 +228,11 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <div class="hdr-top">
     <div><div class="hdr-title">🍾 Alex &amp; Demetra · Honeymoon 2026</div><div class="hdr-sub">Spain · Greece · Italy · France · UAE · 42 days</div></div>
     <div class="cdbox"><div class="cdn" id="cd">–</div><div class="cdl" id="cdl">days to takeoff</div></div>
+  </div>
+  <div class="hdr-status">
+    <div class="hs-item"><span class="hs-dot live"></span><span>Live time: <strong id="livetime">–</strong></span></div>
+    <div class="hs-item" style="opacity:.5">|</div>
+    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>17 May 2026, 11:58 PM AEST</strong></span></div>
   </div>
   <div class="route">
     <div class="rc">🇦🇺 SYD</div><span class="ra">›</span>
@@ -1267,8 +1278,24 @@ function buildUpcoming(){
   c.innerHTML=h;
 }
 
+function tickClock(){
+  const now=new Date();
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const d=days[now.getDay()];
+  const dd=now.getDate();
+  const mo=months[now.getMonth()];
+  const yr=now.getFullYear();
+  const hh=String(now.getHours()).padStart(2,'0');
+  const mm=String(now.getMinutes()).padStart(2,'0');
+  const ss=String(now.getSeconds()).padStart(2,'0');
+  const el=document.getElementById('livetime');
+  if(el) el.textContent=`${d} ${dd} ${mo} ${yr}, ${hh}:${mm}:${ss}`;
+}
 function update(){upCD();markDays();buildUpcoming();}
 update();
+tickClock();
+setInterval(tickClock,1000);
 setInterval(update,60000);
 
 // View toggle
