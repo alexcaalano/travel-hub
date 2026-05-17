@@ -270,7 +270,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 .ev-d-cancel-t{font-size:11px;font-weight:800;color:#9b2c2c;margin-bottom:3px}
 .ev-d-cancel-s{font-size:10px;color:#c53030}
 .ev-d-travel{background:#ebf8ff;border:1px solid #bee3f8;border-radius:9px;padding:10px 12px}
-.ev-d-travel-t{font-size:11px;font-weight:700;color:#2c5282;display:flex;align-items:center;gap:5px}
+.ev-d-travel-t{font-size:11px;font-weight:700;color:#2c5282;display:flex;align-items:center;gap:5px}.ev-d-list{margin:4px 0 0;padding:0;list-style:none}.ev-d-list li{display:flex;align-items:flex-start;gap:6px;padding:4px 0;font-size:11px;color:#2d3748;border-bottom:1px solid #f7fafc;line-height:1.5}.ev-d-list li:last-child{border-bottom:none}
 
 /* Tap hint on day rows */
 .tap-hint{font-size:9px;color:#cbd5e0;font-style:italic;margin-top:3px}
@@ -289,7 +289,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <div class="hdr-status">
     <div class="hs-item"><span class="hs-dot live"></span><span>Live time: <strong id="livetime">–</strong></span></div>
     <div class="hs-item" style="opacity:.5">|</div>
-    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>17 May 2026, 11:58 PM AEST</strong></span></div>
+    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>18 May 2026, 12:30 AM AEST</strong></span></div>
   </div>
   <div class="route">
     <div class="rc">🇦🇺 SYD</div><span class="ra">›</span>
@@ -1113,125 +1113,179 @@ setInterval(update,60000);
 
 // ═══ FULL EVENT DATA ═══
 const EV_DATA = {
-  // FLIGHTS
+  // ── FLIGHTS ──────────────────────────────────────────────────────────────
   '2026-05-19T15:40':{type:'flight',name:'EY451 — Sydney to Abu Dhabi',dur:1410,
     details:{ref:'84EI7Q',class:'Business Comfort',seat:'14J',airline:'Etihad',
     from:'Sydney Kingsford Smith (SYD)',to:'Abu Dhabi International (AUH)',note:'Overnight flight — arrives AUH ~05:10+1'},
-    travel:'🚗 Allow 1h to airport from home. Check-in closes 75 min before departure.'},
+    travel:'🚗 Allow 1h from home to SYD airport. Online check-in opens 18 May 15:40. Check-in desk closes 75 min before departure.',
+    inclusions:['Business Comfort cabin','Lie-flat seat 14J','In-flight meals & drinks included','Lounge access at SYD'],
+    tips:['Pack a neck pillow — overnight flight','Lounge is in T1 International — check Etihad lounge access','Arrive airport by 13:00 for a comfortable pre-departure experience']},
+
   '2026-05-20T08:10':{type:'flight',name:'EY101 — Abu Dhabi to Madrid',dur:420,
     details:{ref:'84EI7Q',class:'Business Comfort',airline:'Etihad',
-    from:'Abu Dhabi International (AUH)',to:'Madrid Barajas (MAD T4)',note:'Connection from EY451'},
-    travel:'🚇 Airport to hotel: Metro Line 8 (Barajas → Nuevos Ministerios) then Line 10, ~45 min. Or taxi ~€35.'},
-  '2026-06-23T10:40':{type:'flight',name:'EY32 — Paris to Abu Dhabi',dur:375,
+    from:'Abu Dhabi International (AUH)',to:'Madrid Barajas T4 (MAD)',note:'Connection flight from EY451'},
+    travel:'🚇 Madrid Airport to hotel: Metro Line 8 (Aeropuerto T4 → Nuevos Ministerios) then Line 10 → Gran Vía, ~45 min. Or taxi ~€35.',
+    tips:['Terminal 4 at MAD — follow signs for Metro Line 8','Buy a 10-trip metro card (€12.20) — better value than singles','Room Mate Oscar: Gran Vía metro (Line 1 & 5), 4-min walk']},
+
+  '2026-06-23T10:40':{type:'flight',name:'EY32 — Paris CDG to Abu Dhabi',dur:375,
     details:{ref:'7GNA4O',class:'First Comfort',seat:'2H',airline:'Etihad',
-    from:'Paris Charles de Gaulle (CDG T2)',to:'Abu Dhabi International (AUH)',note:'⚠️ Leave hotel by 08:00. CDG from central Paris = 45–60 min.'},
-    travel:'🚆 RER B from Gare du Nord to CDG ~35 min. Or taxi €55–70. Leave hotel NO LATER than 08:00.'},
+    from:'Paris Charles de Gaulle T2 (CDG)',to:'Abu Dhabi International (AUH)',note:'⚠️ Very early departure — leave hotel 08:00 LATEST'},
+    travel:'🚆 RER B from Gare du Nord to CDG T2 takes ~35 min. First RER B departs ~04:55. Or taxi €55–70 (book night before). Leave hotel NO LATER than 08:00.',
+    inclusions:['First Comfort cabin','Seat 2H (confirmed)','Fine dining & premium drinks','Lounge access at CDG'],
+    tips:['Leave hotel by 08:00 absolute latest — ideally 07:30','Pre-book taxi the night before — surge pricing at peak morning hour','CDG is large — allow extra time to reach gate from check-in']},
+
   '2026-06-29T10:25':{type:'flight',name:'EY450 — Abu Dhabi to Sydney',dur:840,
     details:{ref:'9UQF5C',class:'Business',seat:'8G',airline:'Etihad',
-    from:'Abu Dhabi International (AUH)',to:'Sydney Kingsford Smith (SYD)',note:'Arrives SYD 06:10 Tue 30 Jun 🏠'},
-    travel:'🚗 Dubai to AUH: ~1h 15 min private transfer (not booked). Leave Dubai by 07:30 latest.'},
+    from:'Abu Dhabi International (AUH)',to:'Sydney Kingsford Smith (SYD)',note:'🏠 Arrives SYD 06:10 Tue 30 Jun'},
+    travel:'🚗 Dubai to AUH is ~1h 15 min (not booked). Leave Dubai hotel by 07:30 latest. Online check-in opens 28 Jun.',
+    inclusions:['Business class cabin','Seat 8G (confirmed)','Full dining & bar service','Etihad Lounge AUH access']},
 
-  // HOTELS
-  '2026-05-20T15:00':{type:'hotel',name:'Check in — Room Mate Oscar',dur:60,
-    details:{hotel:'Room Mate Oscar',addr:'Calle Pérez Galdós 3, Chueca, Madrid',ref:'EXP-2455088058',
-    checkIn:'From 3:00 PM',checkOut:'12:00 PM on 24 May',mapsQ:'Room+Mate+Oscar+Calle+Perez+Galdos+3+Madrid'},
-    travel:'📍 5 min walk from Gran Vía metro (Lines 1 & 5). Central Chueca location.'},
+  // ── HOTELS ───────────────────────────────────────────────────────────────
+  '2026-05-20T15:00':{type:'hotel',name:'Check in — Room Mate Oscar, Madrid',dur:60,
+    details:{hotel:'Room Mate Oscar',addr:'Plaza de Pedro Zerolo, Chueca, Madrid',ref:'EXP-2455088058',
+    checkIn:'From 2:00 PM',checkOut:'12:00 PM on 24 May',mapsQ:'Room+Mate+Oscar+Plaza+Pedro+Zerolo+Madrid'},
+    travel:'📍 Gran Vía metro (Lines 1 & 5) is 4 min walk. Central Chueca — surrounded by bars, restaurants, boutiques.',
+    inclusions:['Rooftop bar with city views (public access, open late)','Rooftop pool seasonal Jun–Sep (€10 surcharge for hotel guests)','Lobby bar','Free Wi-Fi throughout','Flat-screen TV, minibar, safe, AC, rainfall shower'],
+    tips:['Pool is small — book access with reception if you want a slot','Rooftop can be noisy late — request interior or high-floor room if light sleeper','Breakfast buffet available but not included in rate — worth it','No parking on-site — 15% off nearby underground car park','Chueca is vibrant and social — the hotel has that vibe']},
+
   '2026-05-24T12:00':{type:'hotel',name:'Checkout — Room Mate Oscar',dur:30,
-    details:{hotel:'Room Mate Oscar',addr:'Calle Pérez Galdós 3, Chueca, Madrid',ref:'EXP-2455088058',
-    checkOut:'By 12:00 PM',mapsQ:'Room+Mate+Oscar+Calle+Perez+Galdos+3+Madrid'}},
-  '2026-05-28T15:00':{type:'hotel',name:'Check in — Cocoon Suites',dur:60,
+    details:{hotel:'Room Mate Oscar',addr:'Plaza de Pedro Zerolo, Chueca, Madrid',ref:'EXP-2455088058',
+    checkOut:'By 12:00 PM',mapsQ:'Room+Mate+Oscar+Plaza+Pedro+Zerolo+Madrid'},
+    tips:['Request luggage storage at reception if your AVE train departs later','Reception can arrange a taxi to Atocha if needed (~25 min)']},
+
+  '2026-05-28T15:00':{type:'hotel',name:'Check in — Cocoon Suites, Santorini',dur:60,
     details:{hotel:'Cocoon Suites Imerovigli',addr:'Imerovigli, Santorini 847 00, Greece',ref:'BN: 6585436684',
     checkIn:'From 3:00 PM',checkOut:'By 11:00 AM on 31 May',mapsQ:'Cocoon+Suites+Imerovigli+Santorini',
-    note:'🚫 Non-refundable'},
-    travel:'🚌 From Santorini Airport or port: taxi ~€15–20 to Imerovigli. 15–20 min.'},
-  '2026-05-31T11:00':{type:'hotel',name:'Checkout — Cocoon Suites',dur:30,
-    details:{hotel:'Cocoon Suites Imerovigli',addr:'Imerovigli, Santorini',ref:'BN: 6585436684',
-    checkOut:'By 11:00 AM',mapsQ:'Cocoon+Suites+Imerovigli+Santorini'}},
-  '2026-05-31T16:25':{type:'hotel',name:'Check in — Boho Sapiens Marina',dur:60,
-    details:{hotel:'Boho Sapiens Marina — Royal Suite',addr:'Adamantas Port, Milos 848 00, Greece',ref:'BN: 6124402611',
-    checkIn:'On arrival from port',checkOut:'By 11:00 AM on 5 Jun',mapsQ:'Adamantas+Milos+Greece',
-    note:'🚨 100% non-refundable from 1 June. Contact: +30 697 723 3878'},
-    travel:'🚢 SeaJets from Santorini arrive Adamas port. Hotel is 2 min walk from the port.'},
-  '2026-06-05T11:00':{type:'hotel',name:'Checkout — Boho Sapiens Marina',dur:30,
-    details:{hotel:'Boho Sapiens Marina',addr:'Adamantas Port, Milos',ref:'BN: 6124402611',
-    checkOut:'By 11:00 AM (early checkout arranged)'}},
+    note:'🚫 Non-refundable — confirm arrival time with property'},
+    travel:'🚌 Santorini Airport (JTR) to Imerovigli: taxi ~€20–25, about 20 min. Or bus to Fira then local bus to Imerovigli.',
+    inclusions:['Private hot tub or plunge pool in every suite — caldera views','Complimentary organic breakfast daily (served on your private balcony!)','On-site wine restaurant (Koukouli Greek Wine Restaurant)','Concierge, room service, laundry','Spa bathtub, walk-in shower, mini-fridge, AC, Wi-Fi'],
+    tips:['Adults only — no guests under 18','NO lift — property only accessible via stairs on the cliff. Leave heavy bags at port if possible.','Notify property of your arrival time in advance (+30 ...)','Breakfast served on your private balcony is a highlight — do not skip it','Best caldera views on the island — watch the sunset from your hot tub']},
 
-  // TOURS (Madrid)
+  '2026-05-31T11:00':{type:'hotel',name:'Checkout — Cocoon Suites',dur:30,
+    details:{hotel:'Cocoon Suites Imerovigli',ref:'BN: 6585436684',checkOut:'By 11:00 AM',mapsQ:'Cocoon+Suites+Imerovigli+Santorini'},
+    tips:['Taxi to Athinios Port ~15 min, ~€15 — book night before','SeaJets ferry check-in is at the port — arrive 30 min early']},
+
+  '2026-05-31T16:25':{type:'hotel',name:'Check in — Boho Sapiens Marina, Milos',dur:60,
+    details:{hotel:'Boho Sapiens Marina — Royal Suite',addr:'Port of Adamantas, Milos 848 00, Greece',ref:'BN: 6124402611',
+    checkIn:'On arrival from port ferry',checkOut:'By 11:00 AM on 5 Jun',mapsQ:'Boho+Sapiens+Marina+Adamantas+Milos',
+    note:'🚨 100% non-refundable from 1 June. Contact: +30 697 723 3878'},
+    travel:'🚢 Hotel is 2 min walk from the Adamas ferry port — you can basically see it when you dock.',
+    inclusions:['Royal Suite — 45m² sea-view apartment','Private outdoor Jacuzzi on the balcony overlooking the port','Fully equipped kitchenette (fridge, espresso machine, kitchen gear)','AC, free Wi-Fi, flat-screen TV','Balcony sofa set with direct port and sea views','Bathroom with shower, hairdryer, bath sheets'],
+    tips:['Let them know your arrival time so someone is there to check you in (+30 697 723 3878)','Port is the main hub — supermarkets, restaurants, ATMs, boat tour operators all steps away','Rent a car or scooter here — best way to reach Milos beaches','Quiet hours 11 PM – 7 AM — property is small and intimate','Jacuzzi on the balcony watching the port: do it at sunset']},
+
+  '2026-06-05T11:00':{type:'hotel',name:'Checkout — Boho Sapiens Marina',dur:30,
+    details:{hotel:'Boho Sapiens Marina',ref:'BN: 6124402611',checkOut:'By 11:00 AM (early checkout arranged)',mapsQ:'Boho+Sapiens+Marina+Adamantas+Milos'},
+    tips:['Early checkout arranged — ask about luggage storage if ferry is later','SuperJet to Paros departs Adamas port at 10:45 — hotel is 2 min from port']},
+
+  // ── MADRID TOURS ─────────────────────────────────────────────────────────
   '2026-05-20T12:30':{type:'tour',name:'Tapas & Wine Walking Tour',dur:210,
     details:{loc:'Plaza de Santa Ana — Lorca statue, Madrid',mapsQ:'Plaza+de+Santa+Ana+Madrid',
-    cancelBy:'19 May 12:30 PM',cost:'A$280.88',viatorRef:'Viator booking',guide:'Meet at Lorca statue'},
-    travel:'🚶 ~12 min walk from Room Mate Oscar. Head south via C/ Fuencarral toward Puerta del Sol.'},
+    cancelBy:'19 May 12:30 PM',cost:'A$280.88',guide:'Bronze statue of Lorca in front of the theatre'},
+    travel:'🚶 ~12 min walk from Room Mate Oscar. Head south via C/ Fuencarral → Puerta del Sol → Plaza Santa Ana.',
+    inclusions:['12+ tapas dishes across 4 authentic local bars','1 drink per bar (wine, beer, vermouth, or soft drink)','English-speaking local guide','Small group max 12 people','This is effectively a full dinner — very generous portions'],
+    exclusions:['Extra drinks beyond one per bar','Gratuities (tips appreciated)'],
+    tips:['Come very hungry — portions are substantial, no need to eat beforehand','Wear comfortable walking shoes','Arrive a few minutes early at the Lorca statue — the guide will be there','Tour ends around 4:00 PM — time to check into Room Mate Oscar after']},
+
   '2026-05-21T10:30':{type:'tour',name:'Madrid Highlights Bike Tour',dur:180,
     details:{loc:'Rent&Roll, Calle Felipe IV 10, Madrid',mapsQ:'Rent+and+Roll+Calle+Felipe+IV+10+Madrid',
-    cancelBy:'20 May 10:30 AM',cost:'A$115.66',guide:'Collect bike at shop'},
-    travel:'🚶 ~22 min walk from hotel. Head south via Paseo del Prado. Or 10 min on Metro Line 2 to Banco de España.'},
+    cancelBy:'20 May 10:30 AM',cost:'A$115.66',guide:'Collect bike and helmet at shop'},
+    travel:'🚶 ~22 min walk from hotel heading south via Paseo del Prado. Or Metro Line 2 to Banco de España (10 min, 3 stops).',
+    inclusions:['Bike rental','Helmet','Lock','Phone holder for navigation','English-speaking guide','Route covers Royal Palace, Plaza Mayor, Retiro Park, key landmarks'],
+    exclusions:['Water & snacks (bring your own)','Gratuities','Personal travel insurance'],
+    tips:['Arrive 10–15 min early to get fitted and briefed','Bring water — 3 hours cycling in the Madrid sun','Wear breathable clothing and closed-toe shoes','Moderate fitness expected','Sunscreen and sunglasses essential']},
+
   '2026-05-21T17:30':{type:'tour',name:'Paella, Tapas & Sangria Cooking',dur:180,
     details:{loc:'Cooking Point, Calle Moratín 11, Madrid',mapsQ:'Cooking+Point+Calle+Moratin+11+Madrid',
     cancelBy:'20 May 5:30 PM',cost:'A$252.80'},
-    travel:'🚶 ~18 min walk from hotel, or 8 min on Metro to Antón Martín station.'},
-  '2026-05-23T11:30':{type:'tour',name:'Churros & Chocolate Cooking Class',dur:120,
-    details:{loc:'Plaza de Chueca — metro stairs exit, Madrid',mapsQ:'Plaza+de+Chueca+Madrid',
-    cancelBy:'Non-refundable (paid 16 May — A$214.80)',cost:'A$214.80 ✓ paid',note:'🚫 Non-refundable'},
-    travel:'🚶 ~3 min walk from Room Mate Oscar. Plaza de Chueca is your neighbourhood!'},
+    travel:'🚶 ~18 min walk from hotel. Head south to Antón Martín. Or Metro Line 1 to Antón Martín (8 min).',
+    inclusions:['All fresh ingredients provided','Professional English-speaking chef instruction','Make: traditional paella, 2–3 tapas dishes, and sangria from scratch','Shared sit-down meal of everything you cooked','Printed recipe booklet to take home','Welcome gift (premium Spanish product)'],
+    exclusions:['Drinks beyond the sangria made in class','Transportation','Gratuities'],
+    tips:['Advise dietary requirements at booking if not already done','No cooking experience needed — you work in pairs','Minimum drinking age 18 for sangria','Ends ~8:30 PM — you\'ll be well-fed for the evening!']},
 
-  // TOURS (Barcelona)
+  '2026-05-23T11:30':{type:'tour',name:'Churros & Chocolate Cooking Class',dur:120,
+    details:{loc:'Plaza de Chueca — top of Metro station stairs, Madrid',mapsQ:'Plaza+de+Chueca+Madrid',
+    cancelBy:'Non-refundable — A$214.80 already paid 16 May',cost:'A$214.80 ✓ paid',note:'🚫 Non-refundable — no cancellation possible'},
+    travel:'🚶 3 min walk from Room Mate Oscar — Plaza de Chueca is your neighbourhood! Just head out the door.',
+    inclusions:['Hands-on churros & thick Spanish hot chocolate class in a private home','Coffee and tea','Wine or beer (18+)','All ingredients','Printed recipe card to take home'],
+    exclusions:['Additional food or drinks beyond what is served','Transportation (none needed — walk from hotel)','Gratuities'],
+    tips:['Class held in a private home — not suitable for guests with cat allergies','Wear casual clothes — you\'ll be deep-frying!','Small and intimate experience — great for couples','Ends 1:30 PM — plenty of time for afternoon sightseeing','Minimum age 18 for alcohol']},
+
+  // ── BARCELONA TOURS ───────────────────────────────────────────────────────
   '2026-05-25T09:00':{type:'tour',name:'BCN in 1 Day — Full Day Tour',dur:480,
-    details:{loc:'Hotel pickup — update your hotel address in the Viator booking!',mapsQ:'',
+    details:{loc:'Hotel pickup (⚠️ update hotel address in Viator booking!)',mapsQ:'',
     cancelBy:'24 May (24h policy)',cost:'A$328.70',viatorRef:'Ref #1398078665',
-    note:'⚠️ Must add hotel address to pickup field in booking before tour'},
-    travel:'🏨 Hotel pickup — no travel needed once address is added to booking.'},
+    note:'⚠️ MUST add hotel address to booking pickup field before the tour'},
+    travel:'🏨 Hotel pickup — guide comes to you. Be in your hotel lobby, ready to go, by your assigned pickup time (between 8:00–9:00 AM).',
+    inclusions:['Hotel pickup and drop-off in air-conditioned vehicle','English-speaking guide all day','Skip-the-line access to Sagrada Família','Skip-the-line access to Park Güell','Guided Old Town walking tour','Passeig de Gràcia, Montjuïc, Las Ramblas visit'],
+    exclusions:['Sagrada Família + Park Güell entrance fees — bring €44 cash per person, paid to guide on the day','Lunch (free time provided — guide recommends spots)','Water and snacks'],
+    tips:['⚠️ Update your hotel pickup address in the Viator booking as soon as hotel is confirmed','Bring €44 cash per person for entrance fees — no card payments accepted','Wear VERY comfortable walking shoes — substantial walking all day','Pack sunscreen, sunglasses, water, and snacks','Tour runs ~8 hours; typically returns ~5:00 PM']},
+
   '2026-05-26T11:00':{type:'tour',name:'Barcelona Bike Tour — Hidden Gems',dur:180,
-    details:{loc:'Plaça Reial — look for the 🔴 red umbrella guide, Barcelona',mapsQ:'Placa+Reial+Barcelona',
-    cancelBy:'25 May (24h policy)',cost:'A$161.92',guide:'🔴 Red umbrella at the Plaça Reial fountain'},
-    travel:'🚶 Plaça Reial is in the Gothic Quarter. ~10–20 min walk from most central hotels.'},
+    details:{loc:'Plaça Reial fountain, Barcelona — 🔴 red umbrella guide',mapsQ:'Placa+Reial+Barcelona',
+    cancelBy:'25 May (24h policy)',cost:'A$161.92',guide:'🔴 Red umbrella at the Plaça Reial fountain. Metro: Liceu L3 or Jaume I L4.'},
+    travel:'🚶 Plaça Reial is in the Gothic Quarter. ~10–20 min walk from most central Barcelona hotels. Metro Liceu (L3) is closest.',
+    inclusions:['Bike rental for 3 hours','Helmet','Rain poncho if wet weather','Guide commentary throughout','Route: Gothic Quarter, Plaça Reial, Barcelona Cathedral, waterfront, Sagrada Família — on bike paths and low-traffic streets'],
+    exclusions:['Food and drinks','Gratuities','Personal insurance'],
+    tips:['Arrive 15 minutes early — look for the red umbrella at the fountain','Wear closed-toe shoes and comfortable clothing','Bring a small backpack with water','Sunscreen & sunglasses in summer; light layer in cooler months','Tour runs rain or shine — ponchos provided if wet']},
+
   '2026-05-26T16:00':{type:'tour',name:'Ramblas, Gothic & Gaudí Walk',dur:120,
     details:{loc:'Foot Locker, Plaça de Catalunya — 🤍 white umbrella guide, Barcelona',mapsQ:'Placa+de+Catalunya+Barcelona',
-    cancelBy:'25 May (24h policy)',cost:'A$110.78',guide:'🤍 White umbrella at Foot Locker, Plaça Catalunya'},
-    travel:'🚶 Plaça de Catalunya is Barcelona\'s central square — walkable from almost anywhere.'},
+    cancelBy:'25 May (24h policy)',cost:'A$110.78',guide:'🤍 White umbrella at Foot Locker on Plaça de Catalunya'},
+    travel:'🚶 Plaça de Catalunya is central Barcelona — walkable from almost any hotel in the city. Metro: Catalunya (L1, L3).',
+    inclusions:['English-speaking guide','2-hour walking tour covering: Las Ramblas, Gothic Quarter alleyways, Barcelona Cathedral, Plaça Sant Jaume, Plaça Reial, Passeig de Gràcia with Casa Milà & Casa Batlló'],
+    exclusions:['Building or church interior entries (exterior photo stops only)','Public transport if needed (~€2, guide can help)','Gratuities'],
+    tips:['Great orientation tour — ideal to do early in your Barcelona stay','Wear comfortable walking shoes and bring water','Ends ~6:00 PM — good timing for Las Ramblas evening atmosphere','No entries into buildings — outdoor walking only']},
 
-  // TRANSPORT (planned)
+  // ── TRANSPORT ────────────────────────────────────────────────────────────
   '2026-05-24T12:27':{type:'plan',name:'AVE Train: Madrid → Barcelona',dur:197,
-    details:{from:'Madrid Atocha (AVE platform)',to:'Barcelona Sants',note:'[Not booked] Approx 2h 30m journey. Book via Renfe.es',mapsQ:'Madrid+Atocha+train+station'},
-    travel:'🚖 Room Mate Oscar to Atocha: ~25 min walk or Metro Line 1 (4 stops). Allow 30 min before departure.'},
+    details:{from:'Madrid Atocha (AVE platform)',to:'Barcelona Sants',note:'[Not booked] Approx 2h 30m. Book at Renfe.es or Ouigo.com',mapsQ:'Madrid+Atocha+train+station'},
+    travel:'🚖 Room Mate Oscar → Atocha: ~25 min walk or Metro Line 1 (Banco de España → Atocha, 4 stops). Allow 30 min before departure.',
+    tips:['Book at renfe.es — select AVE (high speed). Cheaper booked early.','Ouigo.com runs budget AVE from €9 — check availability','Departs Atocha (not Chamartín) for Barcelona Sants','Arrive Sants, then taxi or metro to your Barcelona hotel']},
+
   '2026-05-28T12:15':{type:'plan',name:'Aegean: Barcelona → Santorini',dur:180,
-    details:{from:'Barcelona El Prat (BCN)',to:'Santorini (JTR) via Athens (ATH)',note:'[Not booked] Book via Aegean Air or Skyscanner'}},
-  '2026-05-31T14:30':{type:'plan',name:'SeaJets Ferry: Santorini → Milos',dur:115,
-    details:{from:'Santorini (Athinios Port)',to:'Adamas, Milos',note:'[Not booked] SeaJets SuperCat — book at seajets.gr',mapsQ:'Athinios+Port+Santorini'},
-    travel:'🚌 Cocoon Suites to Athinios Port: ~15 min taxi (~€15). Book taxi in advance.'},
-  '2026-06-05T10:45':{type:'plan',name:'SuperJet Ferry: Milos → Paros',dur:90,
-    details:{from:'Adamas Port, Milos',to:'Paros New Port',note:'[Not booked] SeaJets — book at seajets.gr'}},
+    details:{from:'Barcelona El Prat (BCN)',to:'Santorini (JTR) via Athens (ATH)',note:'[Not booked] Book at aegeanair.com or Skyscanner'},
+    tips:['Check Aegean Air and Sky Express for Athens connection','Direct flights BCN → JTR don\'t exist — Athens is always the connection','Book ASAP — summer flights to Santorini fill fast']},
+
+  '2026-05-31T14:30':{type:'plan',name:'SeaJets: Santorini → Milos',dur:115,
+    details:{from:'Santorini — Athinios Port (main port)',to:'Adamas Port, Milos',note:'[Not booked] Book at seajets.gr',mapsQ:'Athinios+Port+Santorini'},
+    travel:'🚌 Cocoon Suites → Athinios Port: ~15 min taxi (~€15–20). Book taxi the night before. Port can be busy — allow 30 min before departure.',
+    tips:['Book at seajets.gr — SuperCat or WorldChampion Jet','Athinios is the main Santorini port — not Fira (old port)','Ferry takes ~1h 55m Santorini → Milos','Bring a light layer — open sea ferry can be windy']},
+
+  '2026-06-05T10:45':{type:'plan',name:'SuperJet: Milos → Paros',dur:90,
+    details:{from:'Adamas Port, Milos',to:'Paros New Port',note:'[Not booked] Book at seajets.gr'},
+    travel:'🚶 Boho Sapiens Marina is 2 min walk from the port. Early checkout arranged.'},
+
   '2026-06-09T10:45':{type:'plan',name:'Ferry: Paros → Athens',dur:185,
-    details:{from:'Paros New Port',to:'Piraeus, Athens',note:'[Not booked]'}},
+    details:{from:'Paros New Port',to:'Piraeus, Athens',note:'[Not booked] Book at seajets.gr or ferryhopper.com'}},
+
   '2026-06-09T16:25':{type:'plan',name:'Aegean A3654: Athens → Rome',dur:65,
-    details:{from:'Athens International (ATH)',to:'Rome Fiumicino (FCO)',note:'[Not booked]'}},
+    details:{from:'Athens International (ATH)',to:'Rome Fiumicino (FCO)',note:'[Not booked] Book at aegeanair.com'}},
+
   '2026-06-19T15:30':{type:'plan',name:'EasyJet: Naples → Paris CDG',dur:140,
-    details:{from:'Naples Capodichino (NAP)',to:'Paris CDG',note:'[Not booked]'},
-    travel:'🚌 Naples Airport: ~30 min from Amalfi area. Allow 2h before departure.'},
+    details:{from:'Naples Capodichino (NAP)',to:'Paris Charles de Gaulle (CDG)',note:'[Not booked] Book at easyjet.com'},
+    travel:'🚌 Naples Airport is ~30 min from Amalfi Coast area. Allow 2h before departure for check-in and security.',
+    tips:['Naples Capodichino is a small airport — security can be slow, arrive 2h early','EasyJet cabin bag only — check baggage allowance before booking']},
+
   '2026-06-26T09:00':{type:'plan',name:'Transfer: Abu Dhabi → Dubai',dur:75,
-    details:{from:'Abu Dhabi',to:'Dubai',note:'[Not booked] ~1h 15m private transfer via E11 highway'}},
+    details:{from:'Abu Dhabi',to:'Dubai',note:'[Not booked] ~1h 15m private transfer via E11 highway'},
+    tips:['Book a private transfer or use a taxi app (Careem/Uber) — no direct public transport','Agree price upfront if using taxi — AED 250–350 typical rate']},
 
-  // ROME TOURS
+  // ── ROME TOURS ───────────────────────────────────────────────────────────
   '2026-06-10T15:00':{type:'tour',name:'Pasta & Tiramisu Cooking Class',dur:150,
-    details:{loc:'Via Zanardelli 14 — Gusto al Passeto restaurant, Rome',mapsQ:'Via+Zanardelli+14+Rome',
+    details:{loc:'Via Giuseppe Zanardelli 14, Rome — Gusto al Passeto restaurant',mapsQ:'Via+Giuseppe+Zanardelli+14+Rome',
     cancelBy:'9 June (24h policy)',cost:'A$171.84'},
-    travel:'🚶 Near Piazza Navona. ~15–30 min from most central Rome hotels. Tram or taxi.'},
-  '2026-06-11T09:30':{type:'tour',name:'Rome in a Day: Vatican & Colosseum',dur:600,
-    details:{loc:'Via delle Terme di Tito 72 — look for 🟢 green sign, Rome',mapsQ:'Via+delle+Terme+di+Tito+72+Rome',
-    cancelBy:'⚠️ 4 JUNE — 8-day policy, NOT 24h!',cost:'A$740.22 ✓ paid',note:'Non-standard 8-day cancellation policy'},
-    travel:'🚇 Metro Line B to Colosseo stop. Via Terme di Tito is 2 min walk from Colosseum. Allow 20–30 min from centre.'},
-};
+    travel:'🚶 Near Piazza Navona (steps away). ~15–30 min from most central Rome hotels by taxi (~€10) or tram.',
+    inclusions:['All fresh ingredients','Professional chef instruction (English)','Make two fresh pasta types from scratch: fettuccine and ravioli','Make classic tiramisu','Sit-down meal of everything you cooked','Wine, limoncello, and coffee included with the meal'],
+    exclusions:['Transportation to/from venue','Additional drinks beyond what is served','Gratuities'],
+    tips:['No cooking experience needed — all levels welcome','Arrive 10 minutes early','Near Piazza Navona — combine with sightseeing before or after class','Ends ~5:30 PM — good timing for evening in Rome']},
 
-const CITY_SUGG = {
-  'Madrid':['🖼️ El Prado Museum — book online to skip queues','🌳 Retiro Park and the crystal palace','🛍️ Gran Vía and Fuencarral street market','🍷 Vermouth at a taberna in La Latina','🌃 Rooftop at Círculo de Bellas Artes'],
-  'Barcelona':['🏖️ Barceloneta beach','🏛️ Sagrada Família (book ahead!)','🎨 Casa Batlló or La Pedrera','🌄 Tibidabo for city views','🏔️ Montserrat day trip — 1h by train'],
-  'Santorini':['🌅 Sunset from Oia (arrive 1h early)','⛵ Catamaran caldera cruise','🍷 Santo Wines tasting','🏛️ Ancient Akrotiri ruins','🏊 Red Beach swimming'],
-  'Milos':['⛵ Kleftiko sea caves boat trip','🏖️ Sarakiniko lunar beach','🌆 Plaka village sunset','🐟 Fresh seafood at Adamas port','🏛️ Catacombs of Milos'],
-  'Paros':['🚢 Boat to Antiparos island','🍦 Naoussa fishing village stroll','🏄 Windsurfing at Pounta','🏛️ Panagia Ekatontapiliani church','🏖️ Kolymbithres beach rock formations'],
-  'Rome':['🏛️ Roman Forum & Palatine Hill','⛪ Pantheon (arrive before 10 AM)','🍕 Pizza in Trastevere','🛒 Campo de\'Fiori morning market','🌳 Borghese Gallery (book ahead)'],
-  'Amalfi Coast':['🚢 Boat Amalfi → Positano','🏛️ Pompeii ruins (1h by train)','🍋 Limoncello farm tour','🏊 Hidden coves by water taxi','🌅 Ravello clifftop dinner'],
-  'Paris':['🗼 Eiffel Tower (book sunset slot!)','☕ Brasserie breakfast','🖼️ Musée d\'Orsay','🛍️ Le Marais boutiques','🚢 Evening Seine cruise'],
-  'Abu Dhabi':['🕌 Sheikh Zayed Grand Mosque (free!)','🎨 Louvre Abu Dhabi','🏎️ Ferrari World — Yas Island','🏖️ Saadiyat Beach Club','🍽️ Emirates Palace drinks'],
-  'Dubai':['🌃 Burj Khalifa At the Top (sunset!)','💦 Dubai Mall fountain show (free, 30 min)','🏝️ Palm Jumeirah monorail','🐪 Desert safari + BBQ dinner','🛶 Old Dubai creek abra ride (2 AED)'],
+  '2026-06-11T09:30':{type:'tour',name:'Rome in a Day: Vatican & Colosseum',dur:600,
+    details:{loc:'Corner of Via di Terme di Tito & Via Nicola Salvi, near Oppio Caffè, Rome',mapsQ:'Via+delle+Terme+di+Tito+72+Rome',
+    cancelBy:'⚠️ 4 JUNE — 8-day policy, NOT 24h!',cost:'A$740.22 ✓ paid',note:'Non-standard 8-day cancellation policy — past cancel window'},
+    travel:'🚇 Metro Line B to Colosseo stop — 2 min walk to meeting point. Allow 20–30 min from city centre. Arrive 15 min early.',
+    inclusions:['Skip-the-line Vatican Museums entry (including Sistine Chapel and Raphael Rooms)','Reserved Colosseum entry with all ticket and reservation fees','Forum Romanum and Palatine Hill visit','Trevi Fountain, Pantheon, and Piazza Navona stops','Round-trip transportation within Rome','Professional English-speaking guide','Audio headsets where applicable'],
+    exclusions:['Lunch — free time provided mid-day','Water and snacks (bring your own!)','Gratuities','St. Peter\'s Basilica interior (confirm on the day with guide)'],
+    tips:['🚨 DRESS CODE ENFORCED at Vatican: covered knees, covered shoulders, no exposed toes. Bring a scarf/shawl to cover up.','No hats inside the Vatican','Bring valid photo ID — name must match ticket','Pack light — large bags slow security checks significantly','Bring a refillable water bottle — this is a 10-hour day with lots of walking','Wear your most comfortable, well-worn walking shoes — NOT new shoes','Bring snacks — the lunch break is short and Vatican area food is pricey']},
 };
 
 // ── Calendar maths ─────────────────────────────────────────────────────────
@@ -1431,6 +1485,27 @@ function openEvDetail(dtKey, e){
   // Note
   if(d.note){
     html+='<div style="background:#fffbeb;border:1px solid #f6e05e;border-radius:9px;padding:10px 12px;font-size:11px;color:#744210;line-height:1.5">ℹ️ '+d.note+'</div>';
+  }
+
+  // Inclusions
+  if(ev.inclusions&&ev.inclusions.length){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">✅ What\'s Included</div><ul class="ev-d-list">';
+    ev.inclusions.forEach(function(item){ html+='<li><span style="color:#276749;flex-shrink:0;font-weight:700">✓</span><span>'+item+'</span></li>'; });
+    html+='</ul></div>';
+  }
+
+  // Exclusions
+  if(ev.exclusions&&ev.exclusions.length){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">🚫 Not Included</div><ul class="ev-d-list">';
+    ev.exclusions.forEach(function(item){ html+='<li><span style="color:#c53030;flex-shrink:0;font-weight:700">✗</span><span>'+item+'</span></li>'; });
+    html+='</ul></div>';
+  }
+
+  // Tips
+  if(ev.tips&&ev.tips.length){
+    html+='<div style="background:#fffbeb;border:1px solid #f6e05e;border-radius:12px;padding:12px 14px"><div class="ev-d-sec-title" style="color:#744210;margin-bottom:6px">💡 Tips & Reminders</div><ul class="ev-d-list">';
+    ev.tips.forEach(function(item){ html+='<li><span style="color:#b7791f;flex-shrink:0">→</span><span style="color:#744210">'+item+'</span></li>'; });
+    html+='</ul></div>';
   }
 
   html+='</div>';
