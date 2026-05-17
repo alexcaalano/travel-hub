@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex's Travel Hub</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    min-height: 100vh;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 55%, #2c7a7b 100%);
+    color: white;
+    padding: 28px 28px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '✈';
+    position: absolute;
+    right: 24px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 120px;
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .trip-title { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; }
+  .trip-subtitle { font-size: 13px; opacity: 0.75; margin-top: 4px; }
+
+  .countdown-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 14px;
+    padding: 10px 20px;
+    text-align: center;
+  }
+  .countdown-number { font-size: 34px; font-weight: 900; color: #ffd700; line-height: 1; }
+  .countdown-label { font-size: 11px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 3px; }
+
+  .route-banner {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+  }
+  .route-city {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .route-city .flag { font-size: 16px; }
+  .route-arrow { opacity: 0.5; font-size: 14px; }
+
+  .alerts { padding: 14px 20px 0; }
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    border-left: 4px solid;
+  }
+  .alert-urgent { background: #fff5f5; border-color: #fc8181; color: #742a2a; }
+  .alert-warning { background: #fffbeb; border-color: #f6ad55; color: #744210; }
+  .alert-info { background: #ebf8ff; border-color: #63b3ed; color: #2c5282; }
+  .alert-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+  .alert strong { display: block; margin-bottom: 2px; font-size: 13px; }
+
+  .main { padding: 20px; max-width: 900px; margin: 0 auto; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 24px 0 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #718096;
+  }
+  .section-header::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+  .overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .overview-card {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .overview-icon { font-size: 22px; margin-bottom: 5px; }
+  .overview-number { font-size: 26px; font-weight: 900; color: #1a202c; line-height: 1; }
+  .overview-label { font-size: 11px; color: #718096; margin-top: 3px; }
+
+  .filter-tabs { display: flex; gap: 7px; margin-bottom: 16px; flex-wrap: wrap; }
+  .filter-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid #e2e8f0;
+    background: white;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #4a5568;
+    transition: all 0.15s;
+  }
+  .filter-btn:hover { border-color: #3182ce; color: #3182ce; }
+  .filter-btn.active { background: #2b6cb0; border-color: #2b6cb0; color: white; }
+
+  .timeline { position: relative; padding-left: 34px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 12px; top: 12px; bottom: 12px;
+    width: 2px;
+    background: linear-gradient(to bottom, #3182ce 40%, #e2e8f0 100%);
+  }
+  .timeline-card { position: relative; margin-bottom: 14px; }
+  .timeline-dot {
+    position: absolute;
+    left: -34px; top: 16px;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #cbd5e0;
+    z-index: 1;
+    color: white;
+    font-weight: 700;
+  }
+  .dot-flight { background: #2b6cb0; box-shadow: 0 0 0 2px #bee3f8; }
+  .dot-hotel { background: #276749; box-shadow: 0 0 0 2px #c6f6d5; }
+  .dot-tour { background: #b7791f; box-shadow: 0 0 0 2px #fefcbf; }
+  .dot-missing { background: #c05621; box-shadow: 0 0 0 2px #feebc8; }
+
+  .dest-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 14px -34px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #2d3748;
+  }
+  .dest-divider::after { content: ''; flex: 1; height: 2px; background: #e2e8f0; }
+  .dest-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .pill-madrid { background: #feebc8; color: #744210; }
+  .pill-barcelona { background: #ebf8ff; color: #2b6cb0; }
+  .pill-rome { background: #fff5f5; color: #9b2c2c; }
+  .pill-paris { background: #f0fff4; color: #276749; }
+  .pill-flight { background: #e9d8fd; color: #553c9a; }
+
+  .card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07), 0 0 0 1px rgba(0,0,0,0.04);
+    transition: box-shadow 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.04); }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .card-type {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+  .type-flight { background: #ebf8ff; color: #2b6cb0; }
+  .type-hotel { background: #f0fff4; color: #276749; }
+  .type-tour { background: #fefcbf; color: #744210; }
+
+  .badges { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .badge-confirmed { background: #c6f6d5; color: #22543d; }
+  .badge-pending { background: #feebc8; color: #744210; }
+  .badge-nonrefund { background: #fed7d7; color: #9b2c2c; }
+
+  .date-chip {
+    font-size: 11px;
+    font-weight: 700;
+    color: #4a5568;
+    background: #f7fafc;
+    border-radius: 6px;
+    padding: 3px 8px;
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .action-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff5f5;
+    color: #c53030;
+    border: 1px solid #feb2b2;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.6} }
+
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 8px 0;
+  }
+  .airport { text-align: center; min-width: 54px; }
+  .airport-code { font-size: 24px; font-weight: 900; color: #1a202c; letter-spacing: -1px; line-height: 1; }
+  .airport-time { font-size: 12px; font-weight: 700; color: #2b6cb0; margin-top: 3px; }
+  .airport-city { font-size: 10px; color: #a0aec0; margin-top: 2px; }
+  .flight-mid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .flight-line-vis {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
+  }
+  .fl { flex: 1; height: 1.5px; background: linear-gradient(to right, #bee3f8, #2b6cb0); }
+  .fl2 { flex: 1; height: 1.5px; background: linear-gradient(to right, #2b6cb0, #bee3f8); }
+  .via-label { font-size: 10px; color: #a0aec0; font-style: italic; }
+
+  .stay-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fff4;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .stay-block { text-align: center; flex: 1; min-width: 80px; }
+  .stay-label { font-size: 10px; color: #48bb78; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .stay-val { font-size: 14px; font-weight: 800; color: #276749; margin-top: 2px; }
+  .stay-nights {
+    background: #276749;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .tour-detail-box {
+    background: #f7fafc;
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin: 8px 0;
+    font-size: 12px;
+    color: #4a5568;
+    line-height: 1.9;
+  }
+  .tour-detail-box a { color: #3182ce; font-weight: 600; text-decoration: none; }
+  .tour-detail-box.pending { background: #fffbeb; color: #744210; }
+  .tour-detail-box.confirmed { background: #f0fff4; color: #276749; }
+  .tour-detail-box.danger { background: #fff5f5; color: #742a2a; }
+
+  .card-footer {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f7fafc;
+    align-items: center;
+  }
+  .detail { font-size: 12px; color: #718096; display: flex; align-items: center; gap: 4px; }
+  .detail strong { color: #4a5568; font-weight: 600; }
+  .cta-link {
+    margin-left: auto;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: background 0.15s;
+  }
+  .cta-flight { color: #2b6cb0; background: #ebf8ff; }
+  .cta-flight:hover { background: #bee3f8; }
+  .cta-tour { color: #b7791f; background: #fefcbf; }
+  .cta-tour:hover { background: #faf089; }
+  .cta-hotel { color: #276749; background: #f0fff4; }
+  .cta-hotel:hover { background: #c6f6d5; }
+
+  .missing-card {
+    background: #fffbeb;
+    border: 1.5px dashed #f6ad55;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .missing-ico { font-size: 22px; flex-shrink: 0; }
+  .missing-title { font-size: 13px; font-weight: 700; color: #744210; margin-bottom: 3px; }
+  .missing-desc { font-size: 12px; color: #975a16; line-height: 1.5; }
+
+  /* Payment summary table */
+  .pay-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+  .pay-table th { text-align: left; color: #718096; font-weight: 700; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 8px; border-bottom: 1px solid #e2e8f0; }
+  .pay-table td { padding: 5px 8px; border-bottom: 1px solid #f7fafc; }
+  .pay-table tr:last-child td { border-bottom: none; }
+  .pay-table .urgent { color: #c53030; font-weight: 700; }
+  .pay-table .paid { color: #276749; font-weight: 700; }
+  .pay-total { font-weight: 800; color: #1a202c; }
+
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .ref-card {
+    background: white;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .ref-title {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #718096;
+    margin-bottom: 10px;
+  }
+  .ref-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    padding: 5px 0;
+    border-bottom: 1px solid #f7fafc;
+  }
+  .ref-row:last-child { border-bottom: none; }
+  .ref-code { font-family: monospace; font-weight: 700; font-size: 13px; color: #2d3748; }
+
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid #f7fafc;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type=checkbox] { width: 16px; height: 16px; accent-color: #2b6cb0; cursor: pointer; flex-shrink: 0; }
+  .checklist-item.done label { text-decoration: line-through; color: #a0aec0; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    color: #a0aec0;
+    padding: 0 20px 28px;
+  }
+
+  /* ===== MOBILE STYLES ===== */
+  @media (max-width: 640px) {
+    .header { padding: 18px 16px 16px; }
+    .trip-title { font-size: 18px; }
+    .countdown-number { font-size: 26px; }
+    .countdown-box { padding: 8px 14px; }
+    .route-banner { gap: 4px; }
+    .route-city { padding: 4px 8px; font-size: 11px; }
+    .route-city .flag { font-size: 13px; }
+
+    .alerts { padding: 10px 12px 0; }
+    .alert { padding: 10px 12px; font-size: 12px; }
+
+    .main { padding: 12px; }
+    .overview-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .overview-number { font-size: 20px; }
+
+    .filter-tabs { gap: 5px; }
+    .filter-btn { padding: 5px 10px; font-size: 11px; }
+
+    .timeline { padding-left: 28px; }
+    .timeline-dot { left: -28px; width: 20px; height: 20px; font-size: 9px; }
+
+    .card { padding: 13px 14px; }
+    .card-top { gap: 6px; }
+    .airport-code { font-size: 20px; }
+    .flight-route { padding: 10px 12px; }
+
+    .stay-bar { gap: 4px; }
+    .stay-nights { font-size: 11px; padding: 4px 10px; }
+
+    .card-footer { gap: 8px; }
+    .detail { font-size: 11px; }
+    .cta-link { font-size: 11px; padding: 4px 10px; }
+
+    /* Make tables scroll horizontally on mobile */
+    .pay-table { font-size: 11px; }
+    .pay-table th, .pay-table td { padding: 4px 6px; }
+
+    /* Stack the financials 2-col grid */
+    .ref-card > div[style*="grid-template-columns:1fr 1fr"] {
+      display: block !important;
+    }
+
+    .ref-grid { grid-template-columns: 1fr; }
+
+    .missing-card { padding: 12px 14px; gap: 8px; }
+    .missing-ico { font-size: 18px; }
+    .missing-title { font-size: 12px; }
+    .missing-desc { font-size: 11px; }
+
+    .section-header { font-size: 10px; margin: 18px 0 10px; }
+
+    /* Overflow scroll for wide tables */
+    .ref-card { overflow-x: auto; }
+    table { min-width: 320px; }
+  }
+
+  @media (max-width: 400px) {
+    .route-banner { display: none; } /* Too cramped on very small screens */
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="trip-title">✈️ Alex's Travel Hub</div>
+      <div class="trip-subtitle">Spain · Greece · Italy · France · UAE · May – June 2026</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-number" id="countdown-num">–</div>
+      <div class="countdown-label">days to takeoff</div>
+    </div>
+  </div>
+  <div class="route-banner">
+    <div class="route-city"><span class="flag">🇦🇺</span> Sydney</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇦🇪</span> Abu Dhabi</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇪🇸</span> Madrid</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇪🇸</span> Barcelona</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇬🇷</span> Milos</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇬🇷</span> Santorini</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇮🇹</span> Rome</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇫🇷</span> Paris</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇦🇪</span> Abu Dhabi</div>
+    <span class="route-arrow">›</span>
+    <div class="route-city"><span class="flag">🇦🇺</span> Home</div>
+  </div>
+</div>
+
+<!-- ALERTS -->
+<div class="alerts">
+  <div class="alert alert-urgent">
+    <span class="alert-icon">✈️</span>
+    <div>
+      <strong>ACTION REQUIRED: Your SYD→MAD flight has been rebooked — review &amp; confirm!</strong>
+      Etihad changed your flight (ref 84EI7Q). You must accept the new booking or request alternatives. <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page?#encryptedParameters=6396DC7CCCB23F63kWpn0AMpRuU01I2QrM/PnLSZswDe3CI3wMGmJNWF1JeGaiHcc2QSBSNTM9DQjWLnLU+JP3F2Y+MIRb3d7sTRQGUUHxGcXHq5k1BqyR0QEfY=" target="_blank" style="color:#9b2c2c;font-weight:700">Review on Etihad →</a>
+    </div>
+  </div>
+  <div class="alert alert-urgent">
+    <span class="alert-icon">✈️</span>
+    <div>
+      <strong>ACTION REQUIRED: Your CDG→AUH flight has been rebooked — review &amp; confirm!</strong>
+      Etihad changed your return flight (ref 7GNA4O). Review and confirm. <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page.noheaderfooterma?mobileApp=true&NO_FOOTER=true&creationDateTime=2025-12-17T13:37:00.000Z&servicingPointOfSaleId=FNIEY08WM&isMobileApp=true#encryptedParameters=6396DC7CCCB23F63r3vQiWIlkRP9bcpSxFz3tUd98dLBn7p0MbrSKuBH793dR0rMlh2f06rPTfzNyT9WCPMrW4ZMZpyFzJX2lyyceIVA0i/1X2DO8ZOAu2xgiPU=" target="_blank" style="color:#9b2c2c;font-weight:700">Review on Etihad →</a>
+    </div>
+  </div>
+  <div class="alert alert-urgent">
+    <span class="alert-icon">🚨</span>
+    <div>
+      <strong>Decide on Madrid Tapas Tour NOW — cancellation deadline is 19 May 12:30 PM (when you're at the airport!)</strong>
+      You'll be boarding your flight when the window closes. If you want to cancel, do it today or tomorrow morning. A$280.88 charged on 19 May. <a href="https://www.viator.com/account/booking/detail/1398073767/cancellationPolicy" target="_blank" style="color:#9b2c2c;font-weight:700">Cancel on Viator →</a>
+    </div>
+  </div>
+  <div class="alert alert-urgent">
+    <span class="alert-icon">🏨</span>
+    <div>
+      <strong>Add your Barcelona hotel address to the Day Tour pickup — before 23 May</strong>
+      Booking BR-1398078665 (Barcelona in 1 Day, 25 May) needs your accommodation address. The operator sends your exact pickup time the day before. <a href="https://www.viator.com/account/booking/detail/1398078665/meetingAndPickup" target="_blank" style="color:#9b2c2c;font-weight:700">Add address on Viator →</a>
+    </div>
+  </div>
+  <div class="alert alert-warning">
+    <span class="alert-icon">✈️</span>
+    <div>
+      <strong>Tomorrow (18 May) at 15:40: Etihad online check-in opens — do it as soon as it's available</strong>
+      Ref 84EI7Q · Departs Sydney 19 May 15:40. Check-in opens 24 hours before. <a href="https://www.etihad.com/en-au/manage/check-in" target="_blank" style="color:#744210;font-weight:700">Check in at etihad.com →</a>
+    </div>
+  </div>
+  <div class="alert alert-warning">
+    <span class="alert-icon">💳</span>
+    <div>
+      <strong>In 2 days (19 May): A$280.88 charged · In 3 days (20 May): A$368.46 charged</strong>
+      20 May charges: Bike Tour A$115.66 + Cooking Class A$252.80. Cancel by 20 May for full refunds on those two.
+    </div>
+  </div>
+  <div class="alert alert-urgent">
+    <span class="alert-icon">🚫</span>
+    <div>
+      <strong>Santorini (Cocoon Suites) is fully non-refundable — AUD 3,958.51 at risk</strong>
+      Any cancellation, modification or no-show results in 100% charge. No exceptions. Booked under Demetra Alexandrou.
+    </div>
+  </div>
+  <div class="alert alert-warning">
+    <span class="alert-icon">🏝️</span>
+    <div>
+      <strong>Milos becomes 100% non-refundable from 1 June (AUD 2,011.12) — dates cannot be changed</strong>
+      Currently 50% penalty applies (AUD 1,005.56). If anything changes, act before 1 June. Booked under Demetra Alexandrou (travel agent).
+    </div>
+  </div>
+  <div class="alert alert-warning">
+    <span class="alert-icon">⚠️</span>
+    <div>
+      <strong>Rome in a Day has an 8-day cancellation policy — cancel by 4 June if needed</strong>
+      Unlike every other tour (24h), this one requires 8 days notice. You've already paid A$740.22.
+    </div>
+  </div>
+  <div class="alert alert-info">
+    <span class="alert-icon">🏨</span>
+    <div>
+      <strong>Barcelona, Rome &amp; Paris accommodation still needed</strong>
+      Milos ✓ and Santorini ✓ are confirmed. Still need: Barcelona (~25–26 May), Rome (~9–11 Jun), Paris (~11–23 Jun). Check your Expedia account.
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="section-header">📊 Trip Overview</div>
+  <div class="overview-grid">
+    <div class="overview-card">
+      <div class="overview-icon">✈️</div>
+      <div class="overview-number">3</div>
+      <div class="overview-label">Etihad Flights</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🏨</div>
+      <div class="overview-number">3</div>
+      <div class="overview-label">Confirmed Hotels<br><small style="color:#e53e3e">+ 3 more TBC</small></div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">🎭</div>
+      <div class="overview-number">9</div>
+      <div class="overview-label">Viator Tours<br><small style="color:#718096">MAD · BCN · ROM</small></div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">💰</div>
+      <div class="overview-number">A$2,378</div>
+      <div class="overview-label">Total Viator Spend</div>
+    </div>
+    <div class="overview-card">
+      <div class="overview-icon">📅</div>
+      <div class="overview-number" id="trip-length">–</div>
+      <div class="overview-label">Days Abroad</div>
+    </div>
+  </div>
+
+  <!-- PAYMENT SCHEDULE -->
+  <div class="section-header">💳 Payment Schedule</div>
+  <div class="ref-card" style="margin-bottom:4px">
+    <table class="pay-table">
+      <tr><th>Tour Date</th><th>Tour</th><th>Amount</th><th>Free Cancel By</th><th>Charge Date</th></tr>
+      <tr>
+        <td>20 May · 12:30 PM</td>
+        <td>Madrid Tapas &amp; Wine Walking Tour</td>
+        <td class="urgent">A$280.88</td>
+        <td><span style="background:#fed7d7;color:#9b2c2c;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">19 May 12:30 PM ⚠️</span></td>
+        <td class="urgent">19 May</td>
+      </tr>
+      <tr>
+        <td>21 May · 10:30 AM</td>
+        <td>Madrid Highlights Bike Tour</td>
+        <td>A$115.66</td>
+        <td><span style="background:#feebc8;color:#744210;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">20 May 10:30 AM</span></td>
+        <td>20 May</td>
+      </tr>
+      <tr>
+        <td>21 May · 5:30 PM</td>
+        <td>Spanish Cooking Class (Paella &amp; Tapas)</td>
+        <td>A$252.80</td>
+        <td><span style="background:#feebc8;color:#744210;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">20 May 5:30 PM</span></td>
+        <td>20 May</td>
+      </tr>
+      <tr>
+        <td>23 May · 11:30 AM</td>
+        <td>Chocolate &amp; Churros Cooking Class</td>
+        <td class="paid">A$214.80</td>
+        <td><span style="background:#fed7d7;color:#9b2c2c;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">Non-refundable 🚫</span></td>
+        <td class="paid">Paid 16 May</td>
+      </tr>
+      <tr>
+        <td>25 May · 9:00 AM</td>
+        <td>Barcelona in 1 Day (Sagrada Família)</td>
+        <td>A$328.70</td>
+        <td><span style="background:#feebc8;color:#744210;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">24 May 9:00 AM</span></td>
+        <td>23 May</td>
+      </tr>
+      <tr>
+        <td>26 May · 11:00 AM</td>
+        <td>Barcelona 3-Hour Bike Tour</td>
+        <td>A$161.92</td>
+        <td><span style="background:#feebc8;color:#744210;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">25 May 11:00 AM</span></td>
+        <td>25 May</td>
+      </tr>
+      <tr>
+        <td>26 May · 4:00 PM</td>
+        <td>Ramblas, Gothic &amp; Gaudí Walking Tour</td>
+        <td>A$110.78</td>
+        <td><span style="background:#feebc8;color:#744210;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">25 May 4:00 PM</span></td>
+        <td>25 May</td>
+      </tr>
+      <tr>
+        <td>10 Jun · 3:00 PM</td>
+        <td>Rome Cooking Class (Pasta &amp; Tiramisu)</td>
+        <td>A$171.84</td>
+        <td><span style="background:#e9d8fd;color:#553c9a;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">9 Jun 3:00 PM</span></td>
+        <td>9 Jun</td>
+      </tr>
+      <tr>
+        <td>11 Jun · 9:30 AM</td>
+        <td>Rome in a Day (Vatican &amp; Colosseum)</td>
+        <td class="paid">A$740.22</td>
+        <td><span style="background:#fed7d7;color:#9b2c2c;font-size:11px;padding:2px 8px;border-radius:8px;font-weight:700">4 Jun ⚠️ 8-day rule</span></td>
+        <td class="paid">Paid 16 May</td>
+      </tr>
+      <tr style="background:#f7fafc">
+        <td colspan="2" style="font-weight:800;color:#1a202c;padding:6px 8px">Total</td>
+        <td style="font-weight:800;color:#1a202c;padding:6px 8px">A$2,377.60</td>
+        <td colspan="2" style="font-size:11px;color:#718096;padding:6px 8px">Times based on tour's local time zone</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-header">💰 Trip Financials</div>
+  <div class="ref-card" style="margin-bottom:16px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex-wrap:wrap">
+
+      <!-- ACCOMMODATION -->
+      <div>
+        <div class="ref-title" style="margin-bottom:8px">🏨 Accommodation</div>
+        <table class="pay-table" style="width:100%">
+          <tr><th>Property</th><th>Dates</th><th style="text-align:right">Cost</th></tr>
+          <tr><td>Room Mate Oscar, Madrid</td><td style="color:#718096;font-size:11px">20–24 May</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>Barcelona hotel</td><td style="color:#718096;font-size:11px">25–27 May</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>Cocoon Suites, Santorini</td><td style="color:#718096;font-size:11px">28–31 May</td><td style="text-align:right;font-weight:700">AUD 3,958.51</td></tr>
+          <tr><td>Boho Sapiens Marina, Milos</td><td style="color:#718096;font-size:11px">31 May–5 Jun</td><td style="text-align:right;font-weight:700">AUD 2,027.80</td></tr>
+          <tr><td>Rome hotel</td><td style="color:#718096;font-size:11px">~9–11 Jun</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>Paris hotel</td><td style="color:#718096;font-size:11px">~11–23 Jun</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>Abu Dhabi stopover</td><td style="color:#718096;font-size:11px">23–29 Jun</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr style="background:#f7fafc"><td style="font-weight:700">Accommodation subtotal</td><td></td><td style="text-align:right;font-weight:800">AUD 5,986.31 +</td></tr>
+        </table>
+      </div>
+
+      <!-- FLIGHTS -->
+      <div>
+        <div class="ref-title" style="margin-bottom:8px">✈️ Flights (Etihad)</div>
+        <table class="pay-table" style="width:100%">
+          <tr><th>Flight</th><th>Route</th><th style="text-align:right">Cost</th></tr>
+          <tr><td>84EI7Q · Biz Comfort</td><td style="color:#718096;font-size:11px">SYD→MAD 19 May</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>7GNA4O · First Comfort</td><td style="color:#718096;font-size:11px">CDG→AUH 23 Jun</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr><td>9UQF5C · Biz Comfort</td><td style="color:#718096;font-size:11px">AUH→SYD 29 Jun</td><td style="text-align:right;color:#a0aec0;font-style:italic">Unknown</td></tr>
+          <tr style="background:#f7fafc"><td style="font-weight:700">Flights subtotal</td><td></td><td style="text-align:right;font-weight:800;color:#a0aec0">TBC</td></tr>
+        </table>
+
+        <div class="ref-title" style="margin-bottom:8px;margin-top:16px">🎭 Viator Tours</div>
+        <table class="pay-table" style="width:100%">
+          <tr><th>Category</th><th></th><th style="text-align:right">Cost</th></tr>
+          <tr><td>Madrid (4 tours)</td><td></td><td style="text-align:right;font-weight:700">AUD 864.14</td></tr>
+          <tr><td>Barcelona (3 tours)</td><td></td><td style="text-align:right;font-weight:700">AUD 601.40</td></tr>
+          <tr><td>Rome (2 tours)</td><td></td><td style="text-align:right;font-weight:700">AUD 912.06</td></tr>
+          <tr style="background:#f7fafc"><td style="font-weight:700">Tours subtotal</td><td></td><td style="text-align:right;font-weight:800">AUD 2,377.60</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- GRAND TOTAL -->
+    <div style="margin-top:14px;padding-top:12px;border-top:2px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:#718096;margin-bottom:4px">Total Confirmed Spend (so far)</div>
+        <div style="font-size:26px;font-weight:900;color:#1a202c">AUD 8,363.91</div>
+        <div style="font-size:11px;color:#a0aec0;margin-top:2px">+ flights + Madrid hotel + Barcelona + Rome + Paris + Abu Dhabi (all unknown)</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:#718096;margin-bottom:6px">Viator Rewards earned</div>
+        <div style="font-size:18px;font-weight:800;color:#276749">AUD 107.06</div>
+        <div style="font-size:11px;color:#a0aec0">Available in your Viator account</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;padding:8px 12px;background:#fffbeb;border-radius:8px;font-size:11px;color:#744210">
+      💡 <strong>Tip:</strong> Add your flight costs, Madrid hotel, and remaining bookings here by sharing the confirmation PDFs or links — this total will keep growing as we find them.
+    </div>
+  </div>
+
+  <div class="section-header">🗓️ Full Itinerary</div>
+  <div class="filter-tabs">
+    <button class="filter-btn active" onclick="filter('all',this)">All</button>
+    <button class="filter-btn" onclick="filter('flight',this)">✈️ Flights</button>
+    <button class="filter-btn" onclick="filter('hotel',this)">🏨 Hotels</button>
+    <button class="filter-btn" onclick="filter('madrid',this)">🇪🇸 Madrid</button>
+    <button class="filter-btn" onclick="filter('barcelona',this)">🏖️ Barcelona</button>
+    <button class="filter-btn" onclick="filter('greece',this)">🇬🇷 Greece</button>
+    <button class="filter-btn" onclick="filter('rome',this)">🏛️ Rome</button>
+    <button class="filter-btn" onclick="filter('paris',this)">🗼 Paris</button>
+  </div>
+
+  <div class="timeline">
+
+    <!-- ===== FLIGHT 1: SYD → MAD ===== -->
+    <div class="timeline-card" data-type="flight">
+      <div class="timeline-dot dot-flight">✈</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-flight">✈️ Etihad Airways · Business Comfort</span>
+          <div class="badges">
+            <span class="action-tag">⚡ Rebooking Unconfirmed</span>
+            <span class="badge badge-confirmed">✓ Ticketed</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Tuesday, 19 May 2026 · 24h 30m total · 1 stop</div>
+        <div class="flight-route">
+          <div class="airport">
+            <div class="airport-code">SYD</div>
+            <div class="airport-time">15:40</div>
+            <div class="airport-city">Sydney T1</div>
+          </div>
+          <div class="flight-mid">
+            <div class="flight-line-vis"><div class="fl"></div><span style="font-size:18px">✈️</span><div class="fl2"></div></div>
+            <div class="via-label">EY 451 → Abu Dhabi → EY 101 → Madrid</div>
+          </div>
+          <div class="airport">
+            <div class="airport-code">MAD</div>
+            <div class="airport-time">08:10</div>
+            <div class="airport-city">Madrid T4 · Wed 20 May</div>
+          </div>
+        </div>
+        <div style="background:#fff5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#742a2a;margin:4px 0 8px">
+          ⚠️ <strong>Flight rebooked by Etihad — you must review and confirm</strong> · <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page?#encryptedParameters=6396DC7CCCB23F63kWpn0AMpRuU01I2QrM/PnLSZswDe3CI3wMGmJNWF1JeGaiHcc2QSBSNTM9DQjWLnLU+JP3F2Y+MIRb3d7sTRQGUUHxGcXHq5k1BqyR0QEfY=" target="_blank" style="color:#9b2c2c;font-weight:700">Confirm now →</a>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>84EI7Q</strong></div>
+          <div class="detail">💺 Seats: <strong>6G</strong> (SYD-AUH) · <strong>5F</strong> (AUH-MAD)</div>
+          <div class="detail">🧳 <strong>40kg</strong> checked · 12kg cabin</div>
+          <a href="https://www.etihad.com/en-au/manage/check-in" target="_blank" class="cta-link cta-flight">Check In (opens 18 May 15:40) →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID DEST -->
+    <div class="timeline-card" data-type="madrid">
+      <div class="timeline-dot dot-hotel">🏨</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-hotel">🏨 Expedia · Madrid</span>
+          <span class="badge badge-confirmed">✓ Confirmed</span>
+        </div>
+        <div class="date-chip">📅 Wednesday, 20 May – Sunday, 24 May 2026 · 4 nights</div>
+        <div style="font-size:18px;font-weight:800;color:#276749;margin-bottom:2px">Room Mate Oscar</div>
+        <div style="font-size:13px;color:#718096;margin-bottom:10px">
+          📍 <a href="https://maps.google.com/?q=Plaza+Pedro+Zerolo+12+Madrid" target="_blank" style="color:#3182ce;font-weight:600;text-decoration:none">Plaza Pedro Zerolo, 12, Madrid 28004</a> · Chueca / Gran Vía
+        </div>
+        <div class="stay-bar">
+          <div class="stay-block">
+            <div class="stay-label">Check-in</div>
+            <div class="stay-val">20 May</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">from 3:00 PM</div>
+          </div>
+          <div style="font-size:20px;opacity:0.3">→</div>
+          <div class="stay-block">
+            <div class="stay-label">Check-out</div>
+            <div class="stay-val">24 May</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">by 12:00 PM</div>
+          </div>
+          <div class="stay-nights">4 nights · 2 adults</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Conf: <strong>EXP-2455088058</strong></div>
+          <div class="detail">📋 Itinerary: <strong>73443774632485</strong></div>
+          <a href="https://www.expedia.com/trips" target="_blank" class="cta-link cta-hotel">View on Expedia →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID TOUR 1 -->
+    <div class="timeline-card" data-type="madrid">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Madrid</span>
+          <div class="badges">
+            <span class="action-tag">⚡ Charged Tomorrow</span>
+            <span class="badge badge-pending">⏳ Pay Later</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Wednesday, 20 May 2026 · 12:30 PM · 3 hours</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Madrid Tapas &amp; Wine Tasting Walking Tour</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Bronze statue of Federico García Lorca, <a href="https://maps.google.com/?q=Plaza+de+Santa+Ana+Madrid" target="_blank">Plaza de Santa Ana</a> — in front of the theatre</div>
+          <div>🏁 <strong>End:</strong> Plaza Mayor (historic heart of Madrid)</div>
+          <div>🍷 <strong>Includes:</strong> 4 local tapas bars · 12 tapas · Wine · Small group · English</div>
+          <div>🚫 <strong>Cancel by:</strong> <span style="color:#c53030;font-weight:700">Tonight (19 May before 12:30 PM)</span> for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398073767</strong></div>
+          <div class="detail">💰 <strong>A$280.88</strong> charged 19 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398073767/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID TOUR 2 -->
+    <div class="timeline-card" data-type="madrid">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Madrid</span>
+          <span class="badge badge-pending">⏳ Pay Later</span>
+        </div>
+        <div class="date-chip">📅 Thursday, 21 May 2026 · 10:30 AM</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Madrid Highlights Bike Tour</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Rent &amp; Roll Madrid, <a href="https://maps.google.com/?q=C.+de+Felipe+IV+10+Madrid" target="_blank">C. de Felipe IV, 10</a> — next to El Casón del Buen Retiro</div>
+          <div>🏁 <strong>End:</strong> Returns to meeting point</div>
+          <div>🚫 <strong>Cancel by:</strong> 20 May for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398064557</strong></div>
+          <div class="detail">💰 <strong>A$115.66</strong> charged 20 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398064557/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID TOUR 3 -->
+    <div class="timeline-card" data-type="madrid">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Madrid</span>
+          <span class="badge badge-pending">⏳ Pay Later</span>
+        </div>
+        <div class="date-chip">📅 Thursday, 21 May 2026 · 5:30 PM · until ~9:30 PM</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Spanish Cooking Class — Paella, Tapas &amp; Sangria</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Cooking Point, <a href="https://maps.google.com/?q=C.+de+Moratín+11+Madrid" target="_blank">C. de Moratín, 11</a>, Madrid</div>
+          <div>🏁 <strong>End:</strong> Returns to meeting point</div>
+          <div>👨‍🍳 <strong>Includes:</strong> Paella · Tapas · Sangria cooking &amp; tasting</div>
+          <div>🚫 <strong>Cancel by:</strong> 20 May for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398070053</strong></div>
+          <div class="detail">💰 <strong>A$252.80</strong> charged 20 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398070053/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MADRID TOUR 4 -->
+    <div class="timeline-card" data-type="madrid">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Madrid</span>
+          <div class="badges">
+            <span class="badge badge-nonrefund">🚫 Non-Refundable</span>
+            <span class="badge badge-confirmed">✓ Paid</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Saturday, 23 May 2026 · 11:30 AM</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Chocolate &amp; Churros Cooking Class in Madrid</div>
+        <div class="tour-detail-box confirmed">
+          <div>📍 <strong>Meet:</strong> <a href="https://maps.google.com/?q=Plaza+de+Chueca+Madrid" target="_blank">Plaza de Chueca</a> — outside the Metro station stairs</div>
+          <div>🏁 <strong>End:</strong> Returns to meeting point</div>
+          <div>🍫 <strong>Includes:</strong> Make &amp; eat churros with chocolate · Chueca neighbourhood</div>
+          <div>🚫 <strong>Cancellation:</strong> <span style="color:#c53030;font-weight:700">All sales final — non-refundable</span></div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398071387</strong></div>
+          <div class="detail">💰 <strong>A$214.80</strong> paid 16 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398071387/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARCELONA MISSING ACCOMMODATION -->
+    <div class="timeline-card" data-type="barcelona hotel">
+      <div class="timeline-dot dot-missing">?</div>
+      <div class="missing-card">
+        <span class="missing-ico">🏨</span>
+        <div>
+          <div class="missing-title">Barcelona Accommodation — Not Found in Gmail</div>
+          <div class="missing-desc">Tours on 25 &amp; 26 May. Need accommodation ~25–27 May (Santorini check-in is 28 May). No confirmation found — check Expedia. Also urgently add your Barcelona hotel address to Day Tour pickup (booking #1398078665) — the operator sends your exact pickup time the day before.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARCELONA TOUR 1 -->
+    <div class="timeline-card" data-type="barcelona">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Barcelona</span>
+          <div class="badges">
+            <span class="action-tag">⚡ Add Hotel Address</span>
+            <span class="badge badge-pending">⏳ Pay Later</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Monday, 25 May 2026 · 9:00 AM · Full Day</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Barcelona in 1 Day: Sagrada Família, Park Güell &amp; Old Town</div>
+        <div class="tour-detail-box danger">
+          <div>🏨 <strong>Pickup:</strong> <span style="color:#c53030;font-weight:700">Hotel pickup — you haven't added your address yet!</span> <a href="https://www.viator.com/account/booking/detail/1398078665/meetingAndPickup" target="_blank">Add it now →</a></div>
+          <div>📬 <strong>Note:</strong> Operator will send your specific pickup time the day before (24 May)</div>
+          <div>🏁 <strong>End:</strong> Returns to hotel/pickup point</div>
+          <div>🚫 <strong>Cancel by:</strong> 24 May for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398078665</strong></div>
+          <div class="detail">💰 <strong>A$328.70</strong> charged 23 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398078665/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARCELONA TOUR 2 -->
+    <div class="timeline-card" data-type="barcelona">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Barcelona</span>
+          <span class="badge badge-pending">⏳ Pay Later</span>
+        </div>
+        <div class="date-chip">📅 Tuesday, 26 May 2026 · 11:00 AM · 3 hours</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Barcelona 3-Hour Bike Tour: Highlights &amp; Hidden Gems</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Fountain in the centre of <a href="https://maps.google.com/?q=Placa+Reial+Barcelona" target="_blank">Plaça Reial</a> — guide holding a <strong>🔴 RED UMBRELLA</strong></div>
+          <div>⏰ <strong>Arrive 15 minutes early</strong> · Metro: Jaume I (L4) or Liceu (L3)</div>
+          <div>🏁 <strong>End:</strong> Returns to Plaça Reial</div>
+          <div>🚫 <strong>Cancel by:</strong> 25 May for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398082427</strong></div>
+          <div class="detail">💰 <strong>A$161.92</strong> charged 25 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398082427/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- BARCELONA TOUR 3 -->
+    <div class="timeline-card" data-type="barcelona">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Barcelona</span>
+          <span class="badge badge-pending">⏳ Pay Later</span>
+        </div>
+        <div class="date-chip">📅 Tuesday, 26 May 2026 · 4:00 PM</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Ramblas, Old Town, Gothic &amp; Gaudí Architecture Walking Tour</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Sidewalk in front of Foot Locker, <a href="https://maps.google.com/?q=Placa+de+Catalunya+20+Barcelona" target="_blank">Plaça de Catalunya, 20</a> — guide with <strong>🤍 WHITE UMBRELLA</strong></div>
+          <div>🏁 <strong>End:</strong> 310 Carrer del Consell de Cent — near Casa Batlló &amp; Casa Milà</div>
+          <div>🌧️ <strong>Note:</strong> Weather dependent — full refund if cancelled due to rain</div>
+          <div>🚫 <strong>Cancel by:</strong> 25 May for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398083721</strong></div>
+          <div class="detail">💰 <strong>A$110.78</strong> charged 25 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398083721/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MILOS ACCOMMODATION -->
+    <div class="timeline-card" data-type="greece hotel">
+      <div class="timeline-dot dot-hotel">🏨</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-hotel">🏨 Booking.com · Milos, Greece 🇬🇷</span>
+          <div class="badges">
+            <span style="font-size:13px">🍾</span>
+            <span class="badge badge-confirmed">✓ Confirmed</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Sunday, 31 May – Friday, 5 June 2026 · 5 nights</div>
+        <div style="font-size:18px;font-weight:800;color:#276749;margin-bottom:2px">Boho Sapiens Marina — Royal Suite</div>
+        <div style="font-size:13px;color:#718096;margin-bottom:8px">
+          📍 <a href="https://maps.google.com/?q=36.72472,24.44545" target="_blank" style="color:#3182ce;font-weight:600;text-decoration:none">Αδάμαντα-Ζεφυρία, Adamas, 84800, Greece</a>
+          &nbsp;· GPS: N 036° 43.483, E 24° 26.727
+        </div>
+        <div class="stay-bar">
+          <div class="stay-block">
+            <div class="stay-label">Check-in</div>
+            <div class="stay-val">31 May</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">15:00 – 23:00</div>
+          </div>
+          <div style="font-size:20px;opacity:0.3">→</div>
+          <div class="stay-block">
+            <div class="stay-label">Check-out</div>
+            <div class="stay-val">5 Jun</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">by 11:00</div>
+          </div>
+          <div class="stay-nights">5 nights · 2 adults · Hot tub 🛁</div>
+        </div>
+        <div style="background:#fff5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#742a2a;margin:4px 0 6px">
+          ⚠️ <strong>Cancellation:</strong> 50% penalty (AUD 1,005.56) already active since 1 May · <strong style="color:#c53030">From 1 June: 100% non-refundable (AUD 2,011.12)</strong> — 2 weeks away! · Date changes NOT possible.
+        </div>
+        <div class="tour-detail-box confirmed">
+          <div>🍾 <strong>Honeymoon booking</strong> — property has been notified</div>
+          <div>🛁 <strong>Room:</strong> 45m² one-bedroom apartment · Sea view · Hot tub · Balcony · Kitchenette</div>
+          <div>🚢 <strong>Arrival:</strong> Contact property in advance with your arrival time — they'll meet you at Athena Travel Services, 500m from Adamas port</div>
+          <div>📞 <strong>Property:</strong> <a href="tel:+306977233878">+30 697 723 3878</a> · <a href="mailto:info@athenatravel.gr">info@athenatravel.gr</a> (Mon–Sat 9AM–5PM)</div>
+          <div>🚗 <strong>Transfers:</strong> 1–4 pax €20/way · 5–6 pax €30/way · 8AM–10PM · <a href="https://transfer.iconicguest.com/booking_engine/#/ee2d2af56f" target="_blank">Book here →</a></div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Booking: <strong>6124402611</strong></div>
+          <div class="detail">💰 Total: <strong>AUD 2,027.80</strong></div>
+          <div class="detail">👤 Booked under: <strong>Demetra Alexandrou</strong></div>
+          <a href="https://www.booking.com/hotel/gr/boho-sapiens-royal-suite.html" target="_blank" class="cta-link cta-hotel">View Property →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SANTORINI ACCOMMODATION -->
+    <div class="timeline-card" data-type="greece hotel">
+      <div class="timeline-dot dot-hotel">🏨</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-hotel">🏨 Booking.com · Santorini, Greece 🇬🇷</span>
+          <div class="badges">
+            <span style="font-size:13px">🍾</span>
+            <span class="badge badge-confirmed">✓ Confirmed</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Thursday, 28 May – Sunday, 31 May 2026 · 3 nights</div>
+        <div style="font-size:18px;font-weight:800;color:#276749;margin-bottom:2px">Cocoon Suites — Honeymoon Suite</div>
+        <div style="font-size:13px;color:#718096;margin-bottom:8px">
+          📍 <a href="https://maps.google.com/?q=36.43058,25.42530" target="_blank" style="color:#3182ce;font-weight:600;text-decoration:none">Imeroviglion, Imerovíglion, 84700, Santorini</a>
+          &nbsp;· GPS: N 036° 25.835, E 25° 25.518
+        </div>
+        <div class="stay-bar">
+          <div class="stay-block">
+            <div class="stay-label">Check-in</div>
+            <div class="stay-val">28 May</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">from 15:00</div>
+          </div>
+          <div style="font-size:20px;opacity:0.3">→</div>
+          <div class="stay-block">
+            <div class="stay-label">Check-out</div>
+            <div class="stay-val">31 May</div>
+            <div style="font-size:11px;color:#48bb78;margin-top:2px;font-weight:600">by 11:00 → Milos 15:00</div>
+          </div>
+          <div class="stay-nights">3 nights · Caldera view 🌋</div>
+        </div>
+        <div style="background:#fed7d7;border-radius:8px;padding:9px 12px;font-size:12px;color:#742a2a;margin:4px 0 6px;font-weight:600">
+          🚫 FULLY NON-REFUNDABLE — cancellation, modification or no-show = 100% charge (AUD 3,958.51). No exceptions.
+        </div>
+        <div class="tour-detail-box confirmed">
+          <div>🍾 <strong>Honeymoon Suite with outdoor hot tub &amp; Caldera View</strong> — property notified of honeymoon</div>
+          <div>🏊 <strong>Special request logged:</strong> cave pool experience (indoor-to-outdoor pool)</div>
+          <div>🛁 <strong>Room:</strong> Hot tub · Terrace · Sea &amp; Caldera view · Spa bath · Minibar · Bathrobe · Slippers · Extra long beds</div>
+          <div>⚠️ <strong>Note:</strong> Upper floors accessible by stairs only · Photo ID + credit card required at check-in</div>
+          <div>🔄 <strong>Same-day transfer:</strong> Check out Santorini by 11:00 → ferry/transfer to Milos → check in by 15:00</div>
+          <div>📞 <strong>Property:</strong> <a href="tel:+302286025230">+30 2286 025230</a></div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Booking: <strong>6585436684</strong></div>
+          <div class="detail">💰 Total: <strong>AUD 3,958.51</strong></div>
+          <div class="detail">👤 Booked under: <strong>Demetra Alexandrou</strong></div>
+          <a href="https://www.booking.com/hotel/gr/cocoon-suites.html" target="_blank" class="cta-link cta-hotel">View Property →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROME MISSING ACCOMMODATION -->
+    <div class="timeline-card" data-type="rome hotel">
+      <div class="timeline-dot dot-missing">?</div>
+      <div class="missing-card">
+        <span class="missing-ico">🏨</span>
+        <div>
+          <div class="missing-title">Rome Accommodation — Not Found in Gmail</div>
+          <div class="missing-desc">You have tours on 10 &amp; 11 June in Rome. No hotel confirmation found in Gmail — check your Expedia account or other booking platforms.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROME TOUR 1 -->
+    <div class="timeline-card" data-type="rome">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Rome</span>
+          <span class="badge badge-pending">⏳ Pay Later</span>
+        </div>
+        <div class="date-chip">📅 Wednesday, 10 June 2026 · 3:00 PM</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">3-in-1 Cooking Class: Fettuccine, Ravioli &amp; Tiramisu</div>
+        <div class="tour-detail-box pending">
+          <div>📍 <strong>Meet:</strong> Restaurant Gusto al Passeto, <a href="https://maps.google.com/?q=Via+Giuseppe+Zanardelli+14+Rome" target="_blank">Via Giuseppe Zanardelli, 14</a>, Rome</div>
+          <div>⏰ <strong>Arrive 10 minutes early</strong></div>
+          <div>🏁 <strong>End:</strong> Returns to meeting point</div>
+          <div>🍝 <strong>Includes:</strong> Make fettuccine, ravioli &amp; tiramisu — near Piazza Navona</div>
+          <div>🚫 <strong>Cancel by:</strong> 9 June for full refund</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398087313</strong></div>
+          <div class="detail">💰 <strong>A$171.84</strong> charged 9 Jun</div>
+          <a href="https://www.viator.com/account/booking/detail/1398087313/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROME TOUR 2 -->
+    <div class="timeline-card" data-type="rome">
+      <div class="timeline-dot dot-tour">🎭</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-tour">🎭 Viator · Rome</span>
+          <div class="badges">
+            <span class="badge badge-nonrefund">⚠️ 8-Day Cancel Policy</span>
+            <span class="badge badge-confirmed">✓ Paid</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Thursday, 11 June 2026 · 9:30 AM · Full Day</div>
+        <div style="font-size:15px;font-weight:800;color:#2d3748;margin-bottom:6px">Rome in a Day: Vatican, Sistine Chapel, Colosseum &amp; Historic Centre</div>
+        <div class="tour-detail-box confirmed">
+          <div>📍 <strong>Meet:</strong> <a href="https://maps.google.com/?q=Via+delle+Terme+di+Tito+72+Rome" target="_blank">Via delle Terme di Tito, 72</a>, Rome — guide holding a <strong>🟢 GREEN WALKS sign</strong></div>
+          <div>⏰ <strong>Arrive 15 minutes early</strong></div>
+          <div>🏁 <strong>End:</strong> Returns to pickup point</div>
+          <div>🏛️ <strong>Includes:</strong> Vatican Museums · Sistine Chapel · Colosseum · Skip-the-line</div>
+          <div>🚫 <strong>Cancel by: <span style="color:#c53030">4 June</span></strong> for full refund (8-day policy — not standard 24h!)</div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>BR-1398085751</strong></div>
+          <div class="detail">💰 <strong>A$740.22</strong> paid 16 May</div>
+          <a href="https://www.viator.com/account/booking/detail/1398085751/summary" target="_blank" class="cta-link cta-tour">View →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PARIS MISSING ACCOMMODATION -->
+    <div class="timeline-card" data-type="paris hotel">
+      <div class="timeline-dot dot-missing">?</div>
+      <div class="missing-card">
+        <span class="missing-ico">🏨</span>
+        <div>
+          <div class="missing-title">Paris Accommodation — Not Found in Gmail</div>
+          <div class="missing-desc">Your Etihad flight arrives Paris on 23 June and departs 29 June. No hotel confirmation found — check your Expedia account or other booking platforms.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLIGHT 2: CDG → AUH (depart Paris) -->
+    <div class="timeline-card" data-type="flight paris">
+      <div class="timeline-dot dot-flight">✈</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-flight">✈️ Etihad Airways · First Comfort ⭐</span>
+          <div class="badges">
+            <span class="action-tag">⚡ Rebooking Unconfirmed</span>
+            <span class="badge badge-confirmed">✓ Ticketed</span>
+          </div>
+        </div>
+        <div class="date-chip">📅 Tuesday, 23 June 2026 · 6h 55m · Non-stop</div>
+        <div class="flight-route">
+          <div class="airport">
+            <div class="airport-code">CDG</div>
+            <div class="airport-time">10:40</div>
+            <div class="airport-city">Paris T1</div>
+          </div>
+          <div class="flight-mid">
+            <div class="flight-line-vis"><div class="fl"></div><span style="font-size:18px">✈️</span><div class="fl2"></div></div>
+            <div class="via-label">EY 32 · Non-stop · First Comfort</div>
+          </div>
+          <div class="airport">
+            <div class="airport-code">AUH</div>
+            <div class="airport-time">19:35</div>
+            <div class="airport-city">Abu Dhabi TA</div>
+          </div>
+        </div>
+        <div style="background:#fff5f5;border-radius:8px;padding:9px 12px;font-size:12px;color:#742a2a;margin:4px 0 8px">
+          ⚠️ <strong>Flight rebooked by Etihad — review and confirm</strong> · <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page.noheaderfooterma?mobileApp=true&NO_FOOTER=true&creationDateTime=2025-12-17T13:37:00.000Z&servicingPointOfSaleId=FNIEY08WM&isMobileApp=true#encryptedParameters=6396DC7CCCB23F63r3vQiWIlkRP9bcpSxFz3tUd98dLBn7p0MbrSKuBH793dR0rMlh2f06rPTfzNyT9WCPMrW4ZMZpyFzJX2lyyceIVA0i/1X2DO8ZOAu2xgiPU=" target="_blank" style="color:#9b2c2c;font-weight:700">Confirm now →</a>
+        </div>
+        <div style="background:#fefcbf;border-radius:8px;padding:8px 12px;font-size:12px;color:#744210;margin:4px 0 8px">
+          ⭐ You're flying <strong>First Comfort</strong> on this leg — 60kg checked baggage, Chauffeur included
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>7GNA4O</strong></div>
+          <div class="detail">💺 Seat: <strong>2H</strong></div>
+          <div class="detail">🧳 <strong>60kg</strong> checked · 12kg cabin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABU DHABI STOPOVER -->
+    <div class="timeline-card" data-type="flight">
+      <div class="timeline-dot dot-missing">🇦🇪</div>
+      <div class="missing-card">
+        <span class="missing-ico">🏨</span>
+        <div>
+          <div class="missing-title">Abu Dhabi Stopover — 23–29 June (6 nights)</div>
+          <div class="missing-desc">You arrive AUH on 23 June at 19:35 and depart for Sydney on 29 June at 10:25. That's a 6-night stopover in Abu Dhabi — no accommodation found in Gmail. Check your Expedia or Etihad Holidays booking if you've arranged this.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLIGHT 3: AUH → SYD (return home) -->
+    <div class="timeline-card" data-type="flight">
+      <div class="timeline-dot dot-flight">✈</div>
+      <div class="card">
+        <div class="card-top">
+          <span class="card-type type-flight">✈️ Etihad Airways · Business Comfort · Home!</span>
+          <span class="badge badge-confirmed">✓ Confirmed</span>
+        </div>
+        <div class="date-chip">📅 Monday, 29 June 2026 · 13h 45m · Non-stop</div>
+        <div class="flight-route">
+          <div class="airport">
+            <div class="airport-code">AUH</div>
+            <div class="airport-time">10:25</div>
+            <div class="airport-city">Abu Dhabi TA</div>
+          </div>
+          <div class="flight-mid">
+            <div class="flight-line-vis"><div class="fl"></div><span style="font-size:18px">✈️</span><div class="fl2"></div></div>
+            <div class="via-label">EY 450 · Non-stop · Business Comfort</div>
+          </div>
+          <div class="airport">
+            <div class="airport-code">SYD</div>
+            <div class="airport-time">06:10</div>
+            <div class="airport-city">Sydney T1 · Tue 30 Jun</div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="detail">🔖 Ref: <strong>9UQF5C</strong></div>
+          <div class="detail">💺 Seat: <strong>8G</strong></div>
+          <div class="detail">🧳 <strong>40kg</strong> checked · 12kg cabin</div>
+          <div class="detail">🏠 Arrives home Tue 30 June 06:10</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end timeline -->
+
+  <!-- QUICK REFS -->
+  <div class="section-header">📋 Quick Reference</div>
+  <div class="ref-grid">
+
+    <div class="ref-card">
+      <div class="ref-title">✈️ Etihad Flights</div>
+      <div class="ref-row">
+        <div><span class="ref-code">84EI7Q</span> <span style="background:#fed7d7;color:#9b2c2c;font-size:10px;padding:1px 5px;border-radius:8px;font-weight:700">⚠️ Reconfirm</span><div style="font-size:10px;color:#718096">19 May · SYD 15:40 → MAD 08:10+1 · EY451+EY101 · Biz · 6G/5F</div></div>
+      </div>
+      <div class="ref-row">
+        <div><span class="ref-code">7GNA4O</span> <span style="background:#fed7d7;color:#9b2c2c;font-size:10px;padding:1px 5px;border-radius:8px;font-weight:700">⚠️ Reconfirm</span><div style="font-size:10px;color:#718096">23 Jun · CDG 10:40 → AUH 19:35 · EY32 · First · 2H · Non-stop</div></div>
+      </div>
+      <div class="ref-row">
+        <div><span class="ref-code">9UQF5C</span><div style="font-size:10px;color:#718096">29 Jun · AUH 10:25 → SYD 06:10+1 · EY450 · Biz · 8G · Non-stop</div></div>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-title">🏨 Accommodation</div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Room Mate Oscar · Madrid</div><div style="font-size:11px;color:#718096">20–24 May · EXP-2455088058</div></div>
+        <span style="background:#c6f6d5;color:#276749;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">✓</span>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#c05621">Barcelona · TBC</div><div style="font-size:11px;color:#718096">~25–26 May · Not confirmed</div></div>
+        <span style="background:#feebc8;color:#744210;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">⚠️</span>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Boho Sapiens Marina · Milos 🇬🇷</div><div style="font-size:11px;color:#718096">31 May–5 Jun · BN: 6124402611 · Adamas Port</div></div>
+        <span style="background:#c6f6d5;color:#276749;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">✓</span>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Cocoon Suites · Santorini 🇬🇷</div><div style="font-size:11px;color:#718096">28–31 May · BN: 6585436684 · Imerovigli · 🚫 Non-refundable</div></div>
+        <span style="background:#c6f6d5;color:#276749;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">✓</span>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#c05621">Rome · TBC</div><div style="font-size:11px;color:#718096">~9–11 Jun · Not confirmed</div></div>
+        <span style="background:#feebc8;color:#744210;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">⚠️</span>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#c05621">Paris · TBC</div><div style="font-size:11px;color:#718096">~11–23 Jun · Not confirmed</div></div>
+        <span style="background:#feebc8;color:#744210;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:700">⚠️</span>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-title">🎭 Viator — Madrid Tours</div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Tapas &amp; Wine Walking Tour</div><div style="font-size:10px;color:#718096">20 May · 12:30 PM · Plaza Santa Ana (García Lorca statue)</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Highlights Bike Tour</div><div style="font-size:10px;color:#718096">21 May · 10:30 AM · Rent&amp;Roll, C. de Felipe IV 10</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Paella, Tapas &amp; Sangria Cooking Class</div><div style="font-size:10px;color:#718096">21 May · 5:30 PM · Cooking Point, C. de Moratín 11</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Chocolate &amp; Churros Cooking Class</div><div style="font-size:10px;color:#718096">23 May · 11:30 AM · Plaza de Chueca metro stairs</div></div>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-title">🎭 Viator — Barcelona Tours</div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#c53030">Barcelona in 1 Day: Sagrada Família &amp; Park Güell ⚠️</div><div style="font-size:10px;color:#e53e3e;font-weight:600">25 May · 9:00 AM · Hotel pickup — add address now!</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">3-Hour Bike Tour: Highlights &amp; Hidden Gems</div><div style="font-size:10px;color:#718096">26 May · 11:00 AM · Plaça Reial fountain — 🔴 red umbrella</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Ramblas, Gothic &amp; Gaudí Walking Tour</div><div style="font-size:10px;color:#718096">26 May · 4:00 PM · Foot Locker, Plaça Catalunya — 🤍 white umbrella</div></div>
+      </div>
+    </div>
+
+    <div class="ref-card">
+      <div class="ref-title">🎭 Viator — Rome Tours</div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Cooking Class: Fettuccine, Ravioli &amp; Tiramisu</div><div style="font-size:10px;color:#718096">10 Jun · 3:00 PM · Restaurant Gusto al Passeto, Via Zanardelli 14</div></div>
+      </div>
+      <div class="ref-row">
+        <div><div style="font-size:12px;font-weight:700;color:#2d3748">Rome in a Day: Vatican, Sistine &amp; Colosseum</div><div style="font-size:10px;color:#718096">11 Jun · 9:30 AM · Via delle Terme di Tito 72 — 🟢 green sign · Cancel by 4 Jun!</div></div>
+      </div>
+    </div>
+
+    <div class="ref-card" style="grid-column: 1 / -1">
+      <div class="ref-title">✅ Pre-Departure Checklist</div>
+      <div id="checklist">
+        <div class="checklist-item" id="ci1" onclick="toggleCheck('ci1','c1')"><input type="checkbox" id="c1"><label for="c1">✈️ Check in online with Etihad (ref 84EI7Q) — opens tomorrow 18 May at 15:40</label></div>
+        <div class="checklist-item" id="ci2" onclick="toggleCheck('ci2','c2')"><input type="checkbox" id="c2"><label for="c2">🚨 Decide on Madrid Tapas Tour — cancel by 19 May 12:30 PM or A$280.88 is gone (you'll be at the airport!)</label></div>
+        <div class="checklist-item" id="ci3" onclick="toggleCheck('ci3','c3')"><input type="checkbox" id="c3"><label for="c3">🏨 Add Barcelona hotel address to Booking #1398078665 (pickup tour)</label></div>
+        <div class="checklist-item" id="ci4" onclick="toggleCheck('ci4','c4')"><input type="checkbox" id="c4"><label for="c4">🏨 Find &amp; confirm Barcelona accommodation (tours on 25–26 May)</label></div>
+        <div class="checklist-item" id="ci5" onclick="toggleCheck('ci5','c5')"><input type="checkbox" id="c5"><label for="c5">🏨 Find &amp; confirm Rome accommodation (tours on 10–11 June)</label></div>
+        <div class="checklist-item" id="ci6" onclick="toggleCheck('ci6','c6')"><input type="checkbox" id="c6"><label for="c6">🏨 Find &amp; confirm Paris accommodation (23–29 June)</label></div>
+        <div class="checklist-item" id="ci7" onclick="toggleCheck('ci7','c7')"><input type="checkbox" id="c7"><label for="c7">🏨 Confirm Room Mate Oscar check-in at 3PM (Madrid, 20 May)</label></div>
+        <div class="checklist-item" id="ci8" onclick="toggleCheck('ci8','c8')"><input type="checkbox" id="c8"><label for="c8">⚠️ Note: Rome in a Day must be cancelled by 4 June if needed (8-day policy)</label></div>
+      </div>
+    </div>
+
+  </div>
+
+</div><!-- end main -->
+
+<footer>
+  Built from Gmail + Viator live data · Last updated 17 May 2026 · Etihad · Viator (9 tours) · Expedia
+</footer>
+
+<script>
+  // Countdown to departure
+  function updateCountdown() {
+    const dep = new Date('2026-05-19T15:40:00+10:00');
+    const now = new Date();
+    const diff = dep - now;
+    const el = document.getElementById('countdown-num');
+    if (!el) return;
+    if (diff > 0) {
+      const d = Math.floor(diff / 86400000);
+      const h = Math.floor((diff % 86400000) / 3600000);
+      el.textContent = d === 0 ? h + 'h' : d;
+    } else {
+      el.textContent = '🛫';
+      document.querySelector('.countdown-label').textContent = 'bon voyage!';
+    }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  // Trip length
+  const dep = new Date('2026-05-19');
+  const ret = new Date('2026-06-29');
+  const el = document.getElementById('trip-length');
+  if (el) el.textContent = Math.round((ret - dep) / 86400000);
+
+  // Filter
+  function filter(type, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.timeline-card').forEach(c => {
+      const t = c.dataset.type || '';
+      c.style.display = (type === 'all' || t.includes(type)) ? '' : 'none';
+    });
+  }
+
+  // Checklist persistence
+  function toggleCheck(rowId, cbId) {
+    const cb = document.getElementById(cbId);
+    const row = document.getElementById(rowId);
+    if (!cb || !row) return;
+    cb.checked = !cb.checked;
+    row.classList.toggle('done', cb.checked);
+    try { localStorage.setItem(cbId, cb.checked); } catch(e){}
+  }
+  ['c1','c2','c3','c4','c5','c6','c7','c8'].forEach(id => {
+    try {
+      const val = localStorage.getItem(id) === 'true';
+      const cb = document.getElementById(id);
+      const row = document.getElementById('ci' + id.slice(1));
+      if (val && cb && row) { cb.checked = true; row.classList.add('done'); }
+    } catch(e) {}
+  });
+</script>
+
+</body>
+</html>
