@@ -223,39 +223,59 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 /* ═══ BOTTOM DRAWER ═══ */
 #dr-ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;opacity:0;transition:opacity .3s;pointer-events:none}
 #dr-ov.open{opacity:1;pointer-events:all}
-#drawer{position:fixed;bottom:0;left:0;right:0;max-height:90vh;background:#fff;border-radius:20px 20px 0 0;z-index:1001;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -4px 30px rgba(0,0,0,.18)}
+#drawer{position:fixed;bottom:0;left:0;right:0;max-height:92vh;background:#f7fafc;border-radius:20px 20px 0 0;z-index:1001;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -4px 30px rgba(0,0,0,.2)}
 #drawer.open{transform:translateY(0)}
-.dr-hw{padding:10px 0 4px;display:flex;justify-content:center;flex-shrink:0}
+.dr-hw{padding:10px 0 0;display:flex;justify-content:center;flex-shrink:0;cursor:grab}
 .dr-h{width:36px;height:4px;background:#e2e8f0;border-radius:2px}
-.dr-head{padding:0 16px 12px;flex-shrink:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.dr-head{padding:8px 16px 10px;flex-shrink:0;display:flex;justify-content:space-between;align-items:center;gap:10px;background:white;border-bottom:1px solid #f0f4f8}
 .dr-title{font-size:15px;font-weight:900;color:#1a202c;line-height:1.2}
-.dr-sub{font-size:11px;color:#718096;margin-top:3px}
-.dr-close{background:#f0f4f8;border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;color:#4a5568}
-.dr-body{overflow-y:auto;flex:1;padding:4px 16px 36px;-webkit-overflow-scrolling:touch}
-.dr-tl{position:relative}
-.dr-item{display:flex;gap:11px;position:relative}
-.dr-item::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:2px;background:#f0f4f8;z-index:0}
-.dr-item:last-child::after{display:none}
-.dr-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;position:relative;z-index:1;border:2px solid white}
-.dd-flight{background:#2b6cb0;box-shadow:0 0 0 3px #bee3f8}
-.dd-hotel{background:#276749;box-shadow:0 0 0 3px #c6f6d5}
-.dd-tour{background:#b7791f;box-shadow:0 0 0 3px #fefcbf}
-.dd-plan{background:#718096;box-shadow:0 0 0 3px #e2e8f0}
-.dd-urgent{background:#c53030;box-shadow:0 0 0 3px #fed7d7}
-.dd-free{background:#e2e8f0;box-shadow:0 0 0 3px #f0f4f8}
-.dr-cont{flex:1;padding-bottom:16px}
-.dr-time{font-size:10px;color:#a0aec0;font-weight:700;letter-spacing:.3px;margin-bottom:2px}
-.dr-name{font-size:13px;font-weight:800;color:#1a202c;line-height:1.3}
-.dr-loc{font-size:11px;color:#718096;margin-top:4px;line-height:1.5;display:flex;align-items:flex-start;gap:4px}
-.dr-cancel{margin-top:6px;padding:4px 10px;background:#fff5f5;border:1px solid #fed7d7;border-radius:7px;font-size:10px;color:#9b2c2c;font-weight:700;display:inline-block}
-.dr-cost{margin-top:4px;font-size:10px;color:#718096}
-.dr-note{margin-top:4px;font-size:10px;color:#2b6cb0;background:#ebf8ff;border-radius:6px;padding:3px 8px;display:inline-block}
-.dr-gap{background:#f7fafc;border-radius:10px;padding:9px 12px;margin:0 0 14px 43px;border-left:3px solid #e2e8f0}
-.dr-gap-t{font-size:10px;font-weight:700;color:#a0aec0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.dr-sug{font-size:11px;color:#4a5568;padding:2px 0;line-height:1.5}
-.day{cursor:pointer}
-.day:active{background:#f0f4f8!important}
+.dr-sub{font-size:10px;color:#718096;margin-top:2px}
+.dr-close{background:#f0f4f8;border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#4a5568}
+.dr-back{background:none;border:none;color:#2b6cb0;font-size:12px;font-weight:700;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px}
+.dr-body{overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+
+/* Calendar grid */
+.cal-wrap{position:relative;padding:0 12px 24px}
+.cal-grid{position:relative;margin-left:44px}
+.cal-hour{position:absolute;left:-44px;width:40px;font-size:10px;color:#a0aec0;font-weight:600;text-align:right;line-height:1;padding-right:6px}
+.cal-line{position:absolute;left:0;right:0;border-top:1px solid #f0f4f8}
+.cal-line.major{border-color:#e2e8f0}
+.cal-event{position:absolute;left:4px;right:0;border-radius:8px;padding:5px 8px;cursor:pointer;overflow:hidden;box-sizing:border-box;transition:opacity .15s}
+.cal-event:active{opacity:.75}
+.cal-ev-name{font-size:11px;font-weight:800;color:white;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-ev-time{font-size:9px;color:rgba(255,255,255,.85);margin-top:1px;white-space:nowrap}
+.cal-ev-loc{font-size:9px;color:rgba(255,255,255,.75);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-free{position:absolute;left:4px;right:0;display:flex;align-items:center;justify-content:center}
+.cal-free-txt{font-size:9px;color:#cbd5e0;font-style:italic}
+.ev-flight{background:linear-gradient(135deg,#2b6cb0,#4299e1)}
+.ev-hotel{background:linear-gradient(135deg,#276749,#48bb78)}
+.ev-tour{background:linear-gradient(135deg,#b7791f,#d69e2e)}
+.ev-plan{background:linear-gradient(135deg,#718096,#a0aec0)}
+.ev-urgent{background:linear-gradient(135deg,#c53030,#fc8181)}
+.ev-free{background:linear-gradient(135deg,#4299e1,#63b3ed)}
+
+/* Event detail card */
+.ev-detail{padding:16px;display:flex;flex-direction:column;gap:12px}
+.ev-d-hero{background:white;border-radius:14px;padding:14px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.ev-d-badge{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 9px;border-radius:20px;margin-bottom:8px}
+.ev-d-name{font-size:16px;font-weight:900;color:#1a202c;line-height:1.2}
+.ev-d-time{font-size:12px;color:#718096;margin-top:5px;display:flex;align-items:center;gap:6px}
+.ev-d-sec{background:white;border-radius:12px;padding:12px 14px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.ev-d-sec-title{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#a0aec0;margin-bottom:8px}
+.ev-d-row{display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid #f7fafc;font-size:11px;color:#2d3748;line-height:1.5}
+.ev-d-row:last-child{border-bottom:none}
+.ev-d-row .lbl{flex-shrink:0;font-weight:700;color:#718096;width:70px;font-size:10px}
+.ev-d-row a{color:#2b6cb0;font-weight:700;text-decoration:none}
+.ev-d-cancel{background:#fff5f5;border:1px solid #fed7d7;border-radius:9px;padding:10px 12px}
+.ev-d-cancel-t{font-size:11px;font-weight:800;color:#9b2c2c;margin-bottom:3px}
+.ev-d-cancel-s{font-size:10px;color:#c53030}
+.ev-d-travel{background:#ebf8ff;border:1px solid #bee3f8;border-radius:9px;padding:10px 12px}
+.ev-d-travel-t{font-size:11px;font-weight:700;color:#2c5282;display:flex;align-items:center;gap:5px}
+
+/* Tap hint on day rows */
 .tap-hint{font-size:9px;color:#cbd5e0;font-style:italic;margin-top:3px}
+.day{cursor:pointer}
+.day:active{opacity:.85}
 
 </style>
 </head>
@@ -318,14 +338,6 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 
   <div class="sec">🗓️ Day-by-Day</div>
 
-  <div class="view-toggle">
-    <button class="vbtn active" onclick="showView('day',this)">📅 Day View</button>
-    <button class="vbtn" onclick="showView('detail',this)">📋 Detailed Cards</button>
-  </div>
-
-  <!-- ═══════════ DAY VIEW ═══════════ -->
-  <div id="day-view">
-
     <div id="upcoming"></div>
 
     <div class="month-hdr">MAY 2026</div>
@@ -340,10 +352,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-flight">✈️ EY451 departs SYD 15:40</span>
             <span class="tag t-flight">→ Abu Dhabi overnight</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 20 May -->
@@ -356,10 +366,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Room Mate Oscar — check-in 3PM ✓</span>
             <span class="tag t-tour">🎭 Tapas &amp; Wine Tour 12:30 PM ✓</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 21 May -->
@@ -372,10 +380,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Bike Tour 10:30 AM ✓</span>
             <span class="tag t-tour">🎭 Cooking Class 5:30 PM ✓</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 22 May -->
@@ -387,10 +393,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Room Mate Oscar ✓</span>
             <span class="tag t-free">💡 Prado Museum · Retiro Park · Gran Vía</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 23 May -->
@@ -402,10 +406,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Room Mate Oscar ✓</span>
             <span class="tag t-tour">🎭 Churros Cooking Class 11:30 AM ✓ 🚫 non-refundable</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 24 May -->
@@ -417,10 +419,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-train">🚄 AVE 12:27→15:44 [not booked]</span>
             <span class="tag t-hotel-need">🏨 Barcelona hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 25 May -->
@@ -432,10 +432,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-tour">🎭 BCN in 1 Day Tour 9:00 AM ✓ (add hotel address!)</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 26 May -->
@@ -448,10 +446,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Bike Tour 11:00 AM ✓ · 🔴 Plaça Reial</span>
             <span class="tag t-tour">🎭 Ramblas Walk 4:00 PM ✓ · 🤍 Plaça Catalunya</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 27 May -->
@@ -463,10 +459,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Montserrat day trip or beach</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 28 May -->
@@ -478,10 +472,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">✈️ Aegean BCN→ATH→JTR 12:15 PM [not booked]</span>
             <span class="tag t-hotel">🏨 Cocoon Suites — check-in 3PM ✓ 🚫</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 29 May -->
@@ -493,10 +485,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Cocoon Suites ✓</span>
             <span class="tag t-free">💡 Sunset in Oia · Catamaran cruise</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 30 May -->
@@ -508,10 +498,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Cocoon Suites ✓</span>
             <span class="tag t-free">💡 Winery tasting · beach clubs</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 31 May -->
@@ -523,10 +511,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">⛴️ SeaJets 14:30 [not booked]</span>
             <span class="tag t-hotel">🏨 Boho Sapiens Marina — check-in 3PM ✓</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
     </div><!-- end May days -->
@@ -543,10 +529,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Boho Sapiens Marina ✓</span>
             <span class="tag t-free">💡 Kleftiko boat tour</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 2 Jun -->
@@ -558,10 +542,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Boho Sapiens Marina ✓</span>
             <span class="tag t-free">💡 Sarakiniko Beach</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 3 Jun -->
@@ -573,10 +555,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Boho Sapiens Marina ✓</span>
             <span class="tag t-free">💡 Plaka sunset</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 4 Jun -->
@@ -589,10 +569,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Beach hopping</span>
             <span class="tag t-urgent">⚠️ Cancel Rome in a Day by today if needed!</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 5 Jun -->
@@ -604,10 +582,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">⛴️ SuperJet 10:45 [not booked] — early checkout arranged</span>
             <span class="tag t-hotel-need">🏨 Paros hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 6 Jun -->
@@ -619,10 +595,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Beaches and cafes</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 7 Jun -->
@@ -634,10 +608,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Boat hire or snorkelling</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 8 Jun -->
@@ -649,10 +621,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Relaxed island day</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 9 Jun -->
@@ -665,10 +635,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">✈️ Aegean A3654 16:25→17:30 [not booked]</span>
             <span class="tag t-hotel-need">🏨 Rome hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 10 Jun -->
@@ -680,10 +648,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-tour">🎭 Pasta &amp; Tiramisu Cooking 3:00 PM ✓ · Via Zanardelli 14</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 11 Jun -->
@@ -695,10 +661,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-tour">🎭 Rome in a Day 9:30 AM ✓ · Via Terme di Tito 72 🟢</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 12 Jun -->
@@ -710,10 +674,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Colosseum · Trastevere</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 13 Jun -->
@@ -725,10 +687,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Pantheon · Trevi Fountain · Spanish Steps</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 14 Jun -->
@@ -740,10 +700,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">🚗 Classic Italian car hire [not booked]</span>
             <span class="tag t-hotel-need">🏨 Amalfi hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 15 Jun -->
@@ -755,10 +713,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Amalfi boat tour · Positano</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 16 Jun -->
@@ -770,10 +726,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Pompeii &amp; Sorrento</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 17 Jun -->
@@ -785,10 +739,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Positano boat to Amalfi</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 18 Jun -->
@@ -800,10 +752,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Ravello gardens · chill day</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 19 Jun -->
@@ -815,10 +765,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">✈️ EasyJet Naples 15:30→CDG 17:50 [not booked]</span>
             <span class="tag t-hotel-need">🏨 Paris hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 20 Jun -->
@@ -830,10 +778,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Eiffel Tower · Louvre · Notre Dame</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 21 Jun -->
@@ -845,10 +791,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Montmartre · shopping</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 22 Jun -->
@@ -861,10 +805,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Shopping · cafes · Seine walk</span>
             <span class="tag t-urgent">⚠️ Leave hotel by 08:00 tomorrow!</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 23 Jun -->
@@ -877,10 +819,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-flight">✈️ First Comfort · seat 2H · arrives AUH 19:35 ✓</span>
             <span class="tag t-hotel-need">🏨 Abu Dhabi hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 24 Jun -->
@@ -892,10 +832,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Yas Island · Ferrari World</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 25 Jun -->
@@ -907,10 +845,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Grand Mosque · Louvre Abu Dhabi · Saadiyat Beach</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 26 Jun -->
@@ -922,10 +858,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">🚗 Private transfer ~1h 15m [not booked]</span>
             <span class="tag t-hotel-need">🏨 Dubai hotel needed ⚠️</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 27 Jun -->
@@ -937,10 +871,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Burj Khalifa · Dubai Mall · Marina dinner</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 28 Jun -->
@@ -952,10 +884,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-free">💡 Desert Safari · Palm Jumeirah</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 29 Jun -->
@@ -968,267 +898,11 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-flight">✈️ EY450 departs AUH 10:25 ✓ · Biz · seat 8G</span>
             <span class="tag t-flight">🏠 Arrives SYD 06:10 Tue 30 Jun</span>
           </div>
-        </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
-        <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
     </div><!-- end June days -->
-  </div><!-- end day-view -->
-
-  <!-- ═══════════ DETAILED VIEW ═══════════ -->
-  <div id="detail-view">
-    <div class="tline">
-
-      <!-- FLIGHT 1 -->
-      <div class="tc" data-type="flight"><div class="tdot dot-f">✈</div>
-        <div class="card">
-          <div class="ct"><span class="ctype cf">✈️ Etihad · Business Comfort</span><div class="badges"><span class="atag">⚡ Rebooked</span><span class="bc">✓ Ticketed</span></div></div>
-          <div class="dchip">📅 19 May · 24h 30m via AUH</div>
-          <div class="froute"><div class="ap"><div class="acode">SYD</div><div class="atime">15:40</div><div class="acity">Sydney T1</div></div><div class="fmid"><div class="fline"><div class="fl"></div><span>✈️</span><div class="fl2"></div></div><div class="fvia">EY451→AUH→EY101→MAD</div></div><div class="ap"><div class="acode">MAD</div><div class="atime">08:10</div><div class="acity">T4 · Wed 20 May</div></div></div>
-          <div class="db dbr">⚠️ <strong>Rebooked — must confirm.</strong> <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page?#encryptedParameters=6396DC7CCCB23F63kWpn0AMpRuU01I2QrM/PnLSZswDe3CI3wMGmJNWF1JeGaiHcc2QSBSNTM9DQjWLnLU+JP3F2Y+MIRb3d7sTRQGUUHxGcXHq5k1BqyR0QEfY=" target="_blank">Confirm →</a></div>
-          <div class="cfooter"><div class="det">🔖 <strong>84EI7Q</strong></div><div class="det">💺 6G/5F</div><div class="det">🧳 40kg+12kg</div><a href="https://www.etihad.com/en-au/manage/check-in" target="_blank" class="cta cta-f">Check In (18 May) →</a></div>
-        </div>
-      </div>
-
-      <!-- MADRID HOTEL -->
-      <div class="tc" data-type="hotel madrid"><div class="tdot dot-h">🏨</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ch">🏨 Expedia · Madrid</span><span class="bc">✓ Confirmed</span></div>
-          <div class="dchip">📅 20 May – checkout 24 May · 4 nights</div>
-          <div style="font-size:14px;font-weight:800;color:#276749;margin-bottom:2px">Room Mate Oscar</div>
-          <div style="font-size:11px;color:#718096;margin-bottom:6px">📍 <a href="https://maps.google.com/?q=Plaza+Pedro+Zerolo+12+Madrid" target="_blank" style="color:#3182ce;font-weight:600;text-decoration:none">Plaza Pedro Zerolo 12, Madrid 28004</a></div>
-          <div class="sbar"><div class="sb"><div class="sbl">Check-in</div><div class="sbv">20 May</div><div style="font-size:9px;color:#48bb78;font-weight:600">from 3PM</div></div><div style="opacity:.3">→</div><div class="sb"><div class="sbl">Checkout</div><div class="sbv">24 May</div><div style="font-size:9px;color:#48bb78;font-weight:600">by 12PM</div></div><div class="sbn">4 nights</div></div>
-          <div class="cfooter"><div class="det">🔖 <strong>EXP-2455088058</strong></div><a href="https://www.expedia.com/trips" target="_blank" class="cta cta-h">Expedia →</a></div>
-        </div>
-      </div>
-
-      <!-- MADRID TOURS -->
-      <div class="tc" data-type="tour madrid"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Tapas &amp; Wine Tour · 20 May 12:30PM</span><div class="badges"><span class="atag">⚡ Cancel by 19 May 12:30!</span><span class="bp">⏳ Pay Later</span></div></div>
-          <div class="db dby">📍 Federico García Lorca statue, Plaza de Santa Ana · 🏁 ends Plaza Mayor · 💰 A$280.88 charged 19 May</div>
-          <div class="cfooter"><div class="det">BR-1398073767</div><a href="https://www.viator.com/account/booking/detail/1398073767/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour madrid"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Bike Tour · 21 May 10:30AM</span><span class="bp">⏳ Pay Later</span></div>
-          <div class="db dby">📍 Rent&amp;Roll Madrid, C. de Felipe IV 10 · 💰 A$115.66 charged 20 May · Cancel by 20 May</div>
-          <div class="cfooter"><div class="det">BR-1398064557</div><a href="https://www.viator.com/account/booking/detail/1398064557/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour madrid"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Paella &amp; Sangria Cooking · 21 May 5:30PM</span><span class="bp">⏳ Pay Later</span></div>
-          <div class="db dby">📍 Cooking Point, C. de Moratín 11 · 💰 A$252.80 charged 20 May · Cancel by 20 May</div>
-          <div class="cfooter"><div class="det">BR-1398070053</div><a href="https://www.viator.com/account/booking/detail/1398070053/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour madrid"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Churros Class · 23 May 11:30AM</span><div class="badges"><span class="bn">🚫 Non-Refundable</span><span class="bc">✓ Paid</span></div></div>
-          <div class="db dbg">📍 Plaza de Chueca (outside metro stairs) · A$214.80 paid</div>
-          <div class="cfooter"><div class="det">BR-1398071387</div><a href="https://www.viator.com/account/booking/detail/1398071387/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-
-      <!-- AVE TRAIN -->
-      <div class="tc"><div class="tdot dot-p">🚄</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">🚄 AVE Train — Madrid → Barcelona · 24 May</div>
-          <div class="pdet"><strong>Renfe AVE #2591</strong> · Departs 12:27 → Arrives 15:44 (2h 30m) · <a href="https://www.renfe.com" target="_blank">renfe.com</a></div>
-          <div class="pcost">~€106pp / ~A$212 total</div>
-        </div>
-      </div>
-
-      <!-- BARCELONA HOTEL OPEN -->
-      <div class="tc"><div class="tdot dot-p">🏨</div>
-        <div class="copen"><div class="olbl">⚠️ Hotel Needed — Urgent</div>
-          <div class="ptitle" style="color:#92400e">🏨 Barcelona Hotel · 24–28 May · 4 nights</div>
-          <div class="pdet" style="color:#92400e">Not booked. Once confirmed — add address to Viator pickup #1398078665.</div>
-        </div>
-      </div>
-
-      <!-- BCN TOURS -->
-      <div class="tc" data-type="tour barcelona"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 BCN in 1 Day · 25 May 9:00AM</span><div class="badges"><span class="atag">⚡ Add hotel address!</span><span class="bp">⏳ Pay Later</span></div></div>
-          <div class="db dbr">🏨 Hotel pickup — <a href="https://www.viator.com/account/booking/detail/1398078665/meetingAndPickup" target="_blank">add address now →</a> · Operator sends pickup time 24 May · A$328.70 charged 23 May</div>
-          <div class="cfooter"><div class="det">BR-1398078665</div><a href="https://www.viator.com/account/booking/detail/1398078665/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour barcelona"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 BCN Bike Tour · 26 May 11:00AM</span><span class="bp">⏳ Pay Later</span></div>
-          <div class="db dby">📍 Plaça Reial fountain · 🔴 red umbrella · arrive 15 min early · A$161.92 charged 25 May</div>
-          <div class="cfooter"><div class="det">BR-1398082427</div><a href="https://www.viator.com/account/booking/detail/1398082427/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour barcelona"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Ramblas &amp; Gaudí Walk · 26 May 4:00PM</span><span class="bp">⏳ Pay Later</span></div>
-          <div class="db dby">📍 Foot Locker, Plaça Catalunya 20 · 🤍 white umbrella · Ends near Casa Batlló · A$110.78 charged 25 May</div>
-          <div class="cfooter"><div class="det">BR-1398083721</div><a href="https://www.viator.com/account/booking/detail/1398083721/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-
-      <!-- BCN→SANTORINI FLIGHT (PLANNED) -->
-      <div class="tc"><div class="tdot dot-p">✈</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">✈️ Barcelona → Athens → Santorini · 28 May</div>
-          <div class="pdet"><strong>Aegean A3711</strong> · BCN 12:15→ATH 4:05 · 1h15 layover → Santorini ~6PM</div>
-          <div class="pcost">~€527pp / ~A$1,053 total</div>
-        </div>
-      </div>
-
-      <!-- SANTORINI HOTEL -->
-      <div class="tc"><div class="tdot dot-h">🏨</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ch">🏨 Booking.com · Santorini 🇬🇷</span><div class="badges"><span style="font-size:12px">🍾</span><span class="bc">✓ Confirmed</span></div></div>
-          <div class="dchip">📅 28 May – checkout 31 May · 3 nights</div>
-          <div style="font-size:14px;font-weight:800;color:#276749;margin-bottom:2px">Cocoon Suites — Honeymoon Suite</div>
-          <div style="font-size:10px;color:#718096;margin-bottom:5px">📍 Imeroviglion, Santorini · +30 2286 025230</div>
-          <div class="sbar"><div class="sb"><div class="sbl">Check-in</div><div class="sbv">28 May</div><div style="font-size:9px;color:#48bb78;font-weight:600">from 15:00</div></div><div style="opacity:.3">→</div><div class="sb"><div class="sbl">Checkout</div><div class="sbv">31 May</div><div style="font-size:9px;color:#48bb78;font-weight:600">by 11:00</div></div><div class="sbn">3 nights · Caldera 🌋</div></div>
-          <div class="db dbr">🚫 <strong>Fully non-refundable — A$3,958.51 at risk.</strong> Honeymoon &amp; cave pool request logged.</div>
-          <div class="cfooter"><div class="det">BN: 6585436684</div><div class="det">💰 A$3,958.51 paid</div></div>
-        </div>
-      </div>
-
-      <!-- FERRY SANTORINI→MILOS -->
-      <div class="tc"><div class="tdot dot-p">⛴</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">⛴️ Ferry — Santorini → Milos · 31 May</div>
-          <div class="pdet"><strong>SeaJets</strong> · Olympic Sea Champion Jet · Departs 14:30 → Milos 16:25 · <a href="https://www.seajets.gr" target="_blank">seajets.gr</a></div>
-          <div class="pcost">~€98pp / ~A$318 total</div>
-        </div>
-      </div>
-
-      <!-- MILOS HOTEL -->
-      <div class="tc"><div class="tdot dot-h">🏨</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ch">🏨 Booking.com · Milos 🇬🇷</span><div class="badges"><span style="font-size:12px">🍾</span><span class="bc">✓ Confirmed</span></div></div>
-          <div class="dchip">📅 31 May – checkout 5 Jun · 5 nights</div>
-          <div style="font-size:14px;font-weight:800;color:#276749;margin-bottom:2px">Boho Sapiens Marina — Royal Suite</div>
-          <div style="font-size:10px;color:#718096;margin-bottom:5px">📍 Adamas Port, Milos 84800 · +30 697 723 3878</div>
-          <div class="sbar"><div class="sb"><div class="sbl">Check-in</div><div class="sbv">31 May</div><div style="font-size:9px;color:#48bb78;font-weight:600">15:00–23:00</div></div><div style="opacity:.3">→</div><div class="sb"><div class="sbl">Checkout</div><div class="sbv">5 Jun</div><div style="font-size:9px;color:#48bb78;font-weight:600">by 11:00</div></div><div class="sbn">5 nights · Hot tub 🛁</div></div>
-          <div class="db dby">⚠️ 50% penalty active · <strong>100% non-refundable from 1 June (A$2,011.12)</strong></div>
-          <div class="db dbg">🍾 Honeymoon · Sea view · 45m² · Balcony · Kitchenette<br>🚢 Meet: Athena Travel Services, 500m from port · <a href="https://transfer.iconicguest.com/booking_engine/#/ee2d2af56f" target="_blank">Book transfer (€20/way) →</a></div>
-          <div class="cfooter"><div class="det">BN: 6124402611</div><div class="det">💰 A$2,027.80</div><div class="det">👤 Demetra Alexandrou</div></div>
-        </div>
-      </div>
-
-      <!-- MILOS→PAROS FERRY -->
-      <div class="tc"><div class="tdot dot-p">⛴</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">⛴️ Ferry — Milos → Paros · 5 Jun</div>
-          <div class="pdet"><strong>SeaJets</strong> · SuperJet · Departs 10:45 → Paros 12:30 · Early checkout arranged · <a href="https://www.seajets.gr" target="_blank">seajets.gr</a></div>
-          <div class="pcost">~€90pp / ~A$292 total</div>
-        </div>
-      </div>
-
-      <!-- PAROS HOTEL OPEN -->
-      <div class="tc"><div class="tdot dot-p">🏨</div>
-        <div class="copen"><div class="olbl">Hotel Needed</div>
-          <div class="ptitle" style="color:#92400e">🏨 Paros Hotel · 5–9 Jun · 4 nights</div>
-        </div>
-      </div>
-
-      <!-- PAROS→ROME -->
-      <div class="tc"><div class="tdot dot-p">✈</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">⛴️✈️ Paros → Athens → Rome · 9 Jun</div>
-          <div class="pdet"><strong>SeaJets</strong> Champion Jet 10:45→13:50 · then <strong>Aegean A3654</strong> 16:25→17:30 Rome</div>
-          <div class="pcost">~€210pp / ~A$420 total</div>
-        </div>
-      </div>
-
-      <!-- ROME HOTEL OPEN -->
-      <div class="tc"><div class="tdot dot-p">🏨</div>
-        <div class="copen"><div class="olbl">Hotel Needed</div>
-          <div class="ptitle" style="color:#92400e">🏨 Rome Hotel · 9–14 Jun · 5 nights</div>
-        </div>
-      </div>
-
-      <!-- ROME TOURS -->
-      <div class="tc" data-type="tour rome"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Pasta &amp; Tiramisu Cooking · 10 Jun 3:00PM</span><span class="bp">⏳ Pay Later</span></div>
-          <div class="db dby">📍 Restaurant Gusto al Passeto, Via Zanardelli 14 · arrive 10 min early · A$171.84 charged 9 Jun</div>
-          <div class="cfooter"><div class="det">BR-1398087313</div><a href="https://www.viator.com/account/booking/detail/1398087313/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-      <div class="tc" data-type="tour rome"><div class="tdot dot-t">🎭</div>
-        <div class="card">
-          <div class="ct"><span class="ctype ctour">🎭 Rome in a Day · 11 Jun 9:30AM</span><div class="badges"><span class="bn">⚠️ 8-day cancel by 4 Jun</span><span class="bc">✓ Paid</span></div></div>
-          <div class="db dbg">📍 Via delle Terme di Tito 72 · 🟢 green WALKS sign · arrive 15 min early · A$740.22 paid</div>
-          <div class="cfooter"><div class="det">BR-1398085751</div><a href="https://www.viator.com/account/booking/detail/1398085751/summary" target="_blank" class="cta cta-t">View →</a></div>
-        </div>
-      </div>
-
-      <!-- ROME→AMALFI -->
-      <div class="tc"><div class="tdot dot-p">🚗</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">🚗 Classic Car Hire — Rome → Amalfi · 14 Jun</div>
-          <div class="pdet">Italian classic car hire — "need to find" provider · Rome → Napoli → Amalfi (~3–4 hrs)</div>
-          <div class="pcost">~€400 / ~A$651 total</div>
-        </div>
-      </div>
-
-      <!-- AMALFI HOTEL OPEN -->
-      <div class="tc"><div class="tdot dot-p">🏨</div>
-        <div class="copen"><div class="olbl">Hotel Needed</div>
-          <div class="ptitle" style="color:#92400e">🏨 Amalfi Coast Hotel · 14–19 Jun · 5 nights</div>
-          <div class="pdet" style="color:#92400e">Positano · Capri · Ravello · Pompeii</div>
-        </div>
-      </div>
-
-      <!-- NAPLES→PARIS -->
-      <div class="tc"><div class="tdot dot-p">✈</div>
-        <div class="cplan"><div class="plbl">Planned · Not Booked</div>
-          <div class="ptitle">✈️ EasyJet — Naples → Paris · 19 Jun</div>
-          <div class="pdet"><strong>EJU4954</strong> · Naples 15:30 → CDG 17:50 · 23kg luggage included · <a href="https://www.easyjet.com" target="_blank">easyjet.com</a></div>
-          <div class="pcost">~€216pp / ~A$704 total</div>
-        </div>
-      </div>
-
-      <!-- PARIS HOTEL OPEN -->
-      <div class="tc"><div class="tdot dot-p">🏨</div>
-        <div class="copen"><div class="olbl">Hotel Needed</div>
-          <div class="ptitle" style="color:#92400e">🏨 Paris Hotel · 19–23 Jun · 4 nights</div>
-          <div class="pdet" style="color:#92400e">⚠️ Etihad departs CDG 10:40 on 23 Jun — leave hotel by 08:00 that morning</div>
-        </div>
-      </div>
-
-      <!-- CDG→AUH CONFIRMED -->
-      <div class="tc"><div class="tdot dot-f">✈</div>
-        <div class="card">
-          <div class="ct"><span class="ctype cf">✈️ Etihad · First Comfort ⭐</span><div class="badges"><span class="atag">⚡ Rebooked</span><span class="bc">✓ Ticketed</span></div></div>
-          <div class="dchip">📅 23 Jun · 6h 55m · Non-stop · seat 2H</div>
-          <div class="froute"><div class="ap"><div class="acode">CDG</div><div class="atime">10:40</div><div class="acity">Paris T1</div></div><div class="fmid"><div class="fline"><div class="fl"></div><span>✈️</span><div class="fl2"></div></div><div class="fvia">EY32 · First Comfort · 2H</div></div><div class="ap"><div class="acode">AUH</div><div class="atime">19:35</div><div class="acity">Abu Dhabi TA</div></div></div>
-          <div class="db dbr">⚠️ <strong>Rebooked — must confirm.</strong> <a href="https://digital.etihad.com/selfservice/en-au/ssg-landing-page.noheaderfooterma?mobileApp=true&NO_FOOTER=true&creationDateTime=2025-12-17T13:37:00.000Z&servicingPointOfSaleId=FNIEY08WM&isMobileApp=true#encryptedParameters=6396DC7CCCB23F63r3vQiWIlkRP9bcpSxFz3tUd98dLBn7p0MbrSKuBH793dR0rMlh2f06rPTfzNyT9WCPMrW4ZMZpyFzJX2lyyceIVA0i/1X2DO8ZOAu2xgiPU=" target="_blank">Confirm →</a> · 60kg checked · Chauffeur included</div>
-          <div class="cfooter"><div class="det">🔖 <strong>7GNA4O</strong></div></div>
-        </div>
-      </div>
-
-      <!-- AUH/DUBAI PLANNED -->
-      <div class="tc"><div class="tdot dot-p">🏨</div><div class="copen"><div class="olbl">Hotel Needed</div><div class="ptitle" style="color:#92400e">🏨 Abu Dhabi Hotel · 23–26 Jun · 3 nights</div><div class="pdet" style="color:#92400e">Ferrari World · Grand Mosque · Louvre AUH · Saadiyat Beach</div></div></div>
-      <div class="tc"><div class="tdot dot-p">🚗</div><div class="cplan"><div class="plbl">Planned · Not Booked</div><div class="ptitle">🚗 Transfer — Abu Dhabi → Dubai · 26 Jun</div><div class="pdet">Private car ~1h 15m · "need to find" provider</div></div></div>
-      <div class="tc"><div class="tdot dot-p">🏨</div><div class="copen"><div class="olbl">Hotel Needed</div><div class="ptitle" style="color:#92400e">🏨 Dubai Hotel · 26–29 Jun · 3 nights</div><div class="pdet" style="color:#92400e">Burj Khalifa · Desert Safari · Palm Jumeirah</div></div></div>
-
-      <!-- AUH→SYD -->
-      <div class="tc"><div class="tdot dot-f">✈</div>
-        <div class="card">
-          <div class="ct"><span class="ctype cf">✈️ Etihad · Business Comfort · Home 🏠</span><span class="bc">✓ Confirmed</span></div>
-          <div class="dchip">📅 29 Jun · 13h 45m · Non-stop · seat 8G</div>
-          <div class="froute"><div class="ap"><div class="acode">AUH</div><div class="atime">10:25</div><div class="acity">Abu Dhabi TA</div></div><div class="fmid"><div class="fline"><div class="fl"></div><span>✈️</span><div class="fl2"></div></div><div class="fvia">EY450 · Biz Comfort · 8G</div></div><div class="ap"><div class="acode">SYD</div><div class="atime">06:10</div><div class="acity">T1 · Tue 30 Jun</div></div></div>
-          <div class="cfooter"><div class="det">🔖 <strong>9UQF5C</strong></div><div class="det">🧳 40kg+12kg</div></div>
-        </div>
-      </div>
-
-    </div><!-- end tline -->
-  </div><!-- end detail-view -->
 
   <!-- QUICK REF -->
   <div class="sec">📋 Quick Reference</div>
@@ -1437,67 +1111,160 @@ setInterval(tickClock,1000);
 setInterval(update,60000);
 
 
-// ═══ TOUR DETAILS (for drawer popup) ═══
-const TOUR_DETAILS = {
-  '2026-05-20T12:30':{name:'Tapas & Wine Walking Tour',dur:210,loc:'Plaza Santa Ana — meet at the Lorca statue',cancelBy:'19 May 12:30 PM',cost:'A$280.88',conf:true,refundable:true},
-  '2026-05-21T10:30':{name:'Madrid Highlights Bike Tour',dur:180,loc:'Rent&Roll, C. Felipe IV 10',cancelBy:'20 May 10:30 AM',cost:'A$115.66',conf:true,refundable:true},
-  '2026-05-21T17:30':{name:'Paella, Tapas & Sangria Cooking Class',dur:180,loc:'Cooking Point, C. Moratín 11',cancelBy:'20 May 5:30 PM',cost:'A$252.80',conf:true,refundable:true},
-  '2026-05-23T11:30':{name:'Churros & Chocolate Cooking Class',dur:120,loc:'Plaza de Chueca — metro stairs',cancelBy:'Non-refundable (already paid)',cost:'A$214.80',conf:true,refundable:false},
-  '2026-05-25T09:00':{name:'BCN in 1 Day — Full Day Tour',dur:480,loc:'Hotel pickup — add hotel address to booking first!',cancelBy:'24 May (24h policy)',cost:'A$328.70',conf:true,refundable:true,note:'Ref #1398078665 — update pickup address!'},
-  '2026-05-26T11:00':{name:'Barcelona Bike Tour — Hidden Gems',dur:180,loc:'Plaça Reial fountain — look for the 🔴 red umbrella guide',cancelBy:'25 May (24h policy)',cost:'A$161.92',conf:true,refundable:true},
-  '2026-05-26T16:00':{name:'Ramblas, Gothic Quarter & Gaudí Walk',dur:120,loc:'Foot Locker, Plaça Catalunya — 🤍 white umbrella guide',cancelBy:'25 May (24h policy)',cost:'A$110.78',conf:true,refundable:true},
-  '2026-06-10T15:00':{name:'Pasta & Tiramisu Cooking Class',dur:150,loc:'Via Zanardelli 14 — Gusto al Passeto restaurant',cancelBy:'9 June (24h policy)',cost:'A$171.84',conf:true,refundable:true},
-  '2026-06-11T09:30':{name:'Rome in a Day: Vatican & Colosseum',dur:600,loc:'Via Terme di Tito 72 — look for the 🟢 green sign',cancelBy:'⚠️ 4 June — 8-day policy, NOT standard 24h!',cost:'A$740.22',conf:true,refundable:false,note:'Already paid — cancel by 4 June if not going'},
+// ═══ FULL EVENT DATA ═══
+const EV_DATA = {
+  // FLIGHTS
+  '2026-05-19T15:40':{type:'flight',name:'EY451 — Sydney to Abu Dhabi',dur:1410,
+    details:{ref:'84EI7Q',class:'Business Comfort',seat:'14J',airline:'Etihad',
+    from:'Sydney Kingsford Smith (SYD)',to:'Abu Dhabi International (AUH)',note:'Overnight flight — arrives AUH ~05:10+1'},
+    travel:'🚗 Allow 1h to airport from home. Check-in closes 75 min before departure.'},
+  '2026-05-20T08:10':{type:'flight',name:'EY101 — Abu Dhabi to Madrid',dur:420,
+    details:{ref:'84EI7Q',class:'Business Comfort',airline:'Etihad',
+    from:'Abu Dhabi International (AUH)',to:'Madrid Barajas (MAD T4)',note:'Connection from EY451'},
+    travel:'🚇 Airport to hotel: Metro Line 8 (Barajas → Nuevos Ministerios) then Line 10, ~45 min. Or taxi ~€35.'},
+  '2026-06-23T10:40':{type:'flight',name:'EY32 — Paris to Abu Dhabi',dur:375,
+    details:{ref:'7GNA4O',class:'First Comfort',seat:'2H',airline:'Etihad',
+    from:'Paris Charles de Gaulle (CDG T2)',to:'Abu Dhabi International (AUH)',note:'⚠️ Leave hotel by 08:00. CDG from central Paris = 45–60 min.'},
+    travel:'🚆 RER B from Gare du Nord to CDG ~35 min. Or taxi €55–70. Leave hotel NO LATER than 08:00.'},
+  '2026-06-29T10:25':{type:'flight',name:'EY450 — Abu Dhabi to Sydney',dur:840,
+    details:{ref:'9UQF5C',class:'Business',seat:'8G',airline:'Etihad',
+    from:'Abu Dhabi International (AUH)',to:'Sydney Kingsford Smith (SYD)',note:'Arrives SYD 06:10 Tue 30 Jun 🏠'},
+    travel:'🚗 Dubai to AUH: ~1h 15 min private transfer (not booked). Leave Dubai by 07:30 latest.'},
+
+  // HOTELS
+  '2026-05-20T15:00':{type:'hotel',name:'Check in — Room Mate Oscar',dur:60,
+    details:{hotel:'Room Mate Oscar',addr:'Calle Pérez Galdós 3, Chueca, Madrid',ref:'EXP-2455088058',
+    checkIn:'From 3:00 PM',checkOut:'12:00 PM on 24 May',mapsQ:'Room+Mate+Oscar+Calle+Perez+Galdos+3+Madrid'},
+    travel:'📍 5 min walk from Gran Vía metro (Lines 1 & 5). Central Chueca location.'},
+  '2026-05-24T12:00':{type:'hotel',name:'Checkout — Room Mate Oscar',dur:30,
+    details:{hotel:'Room Mate Oscar',addr:'Calle Pérez Galdós 3, Chueca, Madrid',ref:'EXP-2455088058',
+    checkOut:'By 12:00 PM',mapsQ:'Room+Mate+Oscar+Calle+Perez+Galdos+3+Madrid'}},
+  '2026-05-28T15:00':{type:'hotel',name:'Check in — Cocoon Suites',dur:60,
+    details:{hotel:'Cocoon Suites Imerovigli',addr:'Imerovigli, Santorini 847 00, Greece',ref:'BN: 6585436684',
+    checkIn:'From 3:00 PM',checkOut:'By 11:00 AM on 31 May',mapsQ:'Cocoon+Suites+Imerovigli+Santorini',
+    note:'🚫 Non-refundable'},
+    travel:'🚌 From Santorini Airport or port: taxi ~€15–20 to Imerovigli. 15–20 min.'},
+  '2026-05-31T11:00':{type:'hotel',name:'Checkout — Cocoon Suites',dur:30,
+    details:{hotel:'Cocoon Suites Imerovigli',addr:'Imerovigli, Santorini',ref:'BN: 6585436684',
+    checkOut:'By 11:00 AM',mapsQ:'Cocoon+Suites+Imerovigli+Santorini'}},
+  '2026-05-31T16:25':{type:'hotel',name:'Check in — Boho Sapiens Marina',dur:60,
+    details:{hotel:'Boho Sapiens Marina — Royal Suite',addr:'Adamantas Port, Milos 848 00, Greece',ref:'BN: 6124402611',
+    checkIn:'On arrival from port',checkOut:'By 11:00 AM on 5 Jun',mapsQ:'Adamantas+Milos+Greece',
+    note:'🚨 100% non-refundable from 1 June. Contact: +30 697 723 3878'},
+    travel:'🚢 SeaJets from Santorini arrive Adamas port. Hotel is 2 min walk from the port.'},
+  '2026-06-05T11:00':{type:'hotel',name:'Checkout — Boho Sapiens Marina',dur:30,
+    details:{hotel:'Boho Sapiens Marina',addr:'Adamantas Port, Milos',ref:'BN: 6124402611',
+    checkOut:'By 11:00 AM (early checkout arranged)'}},
+
+  // TOURS (Madrid)
+  '2026-05-20T12:30':{type:'tour',name:'Tapas & Wine Walking Tour',dur:210,
+    details:{loc:'Plaza de Santa Ana — Lorca statue, Madrid',mapsQ:'Plaza+de+Santa+Ana+Madrid',
+    cancelBy:'19 May 12:30 PM',cost:'A$280.88',viatorRef:'Viator booking',guide:'Meet at Lorca statue'},
+    travel:'🚶 ~12 min walk from Room Mate Oscar. Head south via C/ Fuencarral toward Puerta del Sol.'},
+  '2026-05-21T10:30':{type:'tour',name:'Madrid Highlights Bike Tour',dur:180,
+    details:{loc:'Rent&Roll, Calle Felipe IV 10, Madrid',mapsQ:'Rent+and+Roll+Calle+Felipe+IV+10+Madrid',
+    cancelBy:'20 May 10:30 AM',cost:'A$115.66',guide:'Collect bike at shop'},
+    travel:'🚶 ~22 min walk from hotel. Head south via Paseo del Prado. Or 10 min on Metro Line 2 to Banco de España.'},
+  '2026-05-21T17:30':{type:'tour',name:'Paella, Tapas & Sangria Cooking',dur:180,
+    details:{loc:'Cooking Point, Calle Moratín 11, Madrid',mapsQ:'Cooking+Point+Calle+Moratin+11+Madrid',
+    cancelBy:'20 May 5:30 PM',cost:'A$252.80'},
+    travel:'🚶 ~18 min walk from hotel, or 8 min on Metro to Antón Martín station.'},
+  '2026-05-23T11:30':{type:'tour',name:'Churros & Chocolate Cooking Class',dur:120,
+    details:{loc:'Plaza de Chueca — metro stairs exit, Madrid',mapsQ:'Plaza+de+Chueca+Madrid',
+    cancelBy:'Non-refundable (paid 16 May — A$214.80)',cost:'A$214.80 ✓ paid',note:'🚫 Non-refundable'},
+    travel:'🚶 ~3 min walk from Room Mate Oscar. Plaza de Chueca is your neighbourhood!'},
+
+  // TOURS (Barcelona)
+  '2026-05-25T09:00':{type:'tour',name:'BCN in 1 Day — Full Day Tour',dur:480,
+    details:{loc:'Hotel pickup — update your hotel address in the Viator booking!',mapsQ:'',
+    cancelBy:'24 May (24h policy)',cost:'A$328.70',viatorRef:'Ref #1398078665',
+    note:'⚠️ Must add hotel address to pickup field in booking before tour'},
+    travel:'🏨 Hotel pickup — no travel needed once address is added to booking.'},
+  '2026-05-26T11:00':{type:'tour',name:'Barcelona Bike Tour — Hidden Gems',dur:180,
+    details:{loc:'Plaça Reial — look for the 🔴 red umbrella guide, Barcelona',mapsQ:'Placa+Reial+Barcelona',
+    cancelBy:'25 May (24h policy)',cost:'A$161.92',guide:'🔴 Red umbrella at the Plaça Reial fountain'},
+    travel:'🚶 Plaça Reial is in the Gothic Quarter. ~10–20 min walk from most central hotels.'},
+  '2026-05-26T16:00':{type:'tour',name:'Ramblas, Gothic & Gaudí Walk',dur:120,
+    details:{loc:'Foot Locker, Plaça de Catalunya — 🤍 white umbrella guide, Barcelona',mapsQ:'Placa+de+Catalunya+Barcelona',
+    cancelBy:'25 May (24h policy)',cost:'A$110.78',guide:'🤍 White umbrella at Foot Locker, Plaça Catalunya'},
+    travel:'🚶 Plaça de Catalunya is Barcelona\'s central square — walkable from almost anywhere.'},
+
+  // TRANSPORT (planned)
+  '2026-05-24T12:27':{type:'plan',name:'AVE Train: Madrid → Barcelona',dur:197,
+    details:{from:'Madrid Atocha (AVE platform)',to:'Barcelona Sants',note:'[Not booked] Approx 2h 30m journey. Book via Renfe.es',mapsQ:'Madrid+Atocha+train+station'},
+    travel:'🚖 Room Mate Oscar to Atocha: ~25 min walk or Metro Line 1 (4 stops). Allow 30 min before departure.'},
+  '2026-05-28T12:15':{type:'plan',name:'Aegean: Barcelona → Santorini',dur:180,
+    details:{from:'Barcelona El Prat (BCN)',to:'Santorini (JTR) via Athens (ATH)',note:'[Not booked] Book via Aegean Air or Skyscanner'}},
+  '2026-05-31T14:30':{type:'plan',name:'SeaJets Ferry: Santorini → Milos',dur:115,
+    details:{from:'Santorini (Athinios Port)',to:'Adamas, Milos',note:'[Not booked] SeaJets SuperCat — book at seajets.gr',mapsQ:'Athinios+Port+Santorini'},
+    travel:'🚌 Cocoon Suites to Athinios Port: ~15 min taxi (~€15). Book taxi in advance.'},
+  '2026-06-05T10:45':{type:'plan',name:'SuperJet Ferry: Milos → Paros',dur:90,
+    details:{from:'Adamas Port, Milos',to:'Paros New Port',note:'[Not booked] SeaJets — book at seajets.gr'}},
+  '2026-06-09T10:45':{type:'plan',name:'Ferry: Paros → Athens',dur:185,
+    details:{from:'Paros New Port',to:'Piraeus, Athens',note:'[Not booked]'}},
+  '2026-06-09T16:25':{type:'plan',name:'Aegean A3654: Athens → Rome',dur:65,
+    details:{from:'Athens International (ATH)',to:'Rome Fiumicino (FCO)',note:'[Not booked]'}},
+  '2026-06-19T15:30':{type:'plan',name:'EasyJet: Naples → Paris CDG',dur:140,
+    details:{from:'Naples Capodichino (NAP)',to:'Paris CDG',note:'[Not booked]'},
+    travel:'🚌 Naples Airport: ~30 min from Amalfi area. Allow 2h before departure.'},
+  '2026-06-26T09:00':{type:'plan',name:'Transfer: Abu Dhabi → Dubai',dur:75,
+    details:{from:'Abu Dhabi',to:'Dubai',note:'[Not booked] ~1h 15m private transfer via E11 highway'}},
+
+  // ROME TOURS
+  '2026-06-10T15:00':{type:'tour',name:'Pasta & Tiramisu Cooking Class',dur:150,
+    details:{loc:'Via Zanardelli 14 — Gusto al Passeto restaurant, Rome',mapsQ:'Via+Zanardelli+14+Rome',
+    cancelBy:'9 June (24h policy)',cost:'A$171.84'},
+    travel:'🚶 Near Piazza Navona. ~15–30 min from most central Rome hotels. Tram or taxi.'},
+  '2026-06-11T09:30':{type:'tour',name:'Rome in a Day: Vatican & Colosseum',dur:600,
+    details:{loc:'Via delle Terme di Tito 72 — look for 🟢 green sign, Rome',mapsQ:'Via+delle+Terme+di+Tito+72+Rome',
+    cancelBy:'⚠️ 4 JUNE — 8-day policy, NOT 24h!',cost:'A$740.22 ✓ paid',note:'Non-standard 8-day cancellation policy'},
+    travel:'🚇 Metro Line B to Colosseo stop. Via Terme di Tito is 2 min walk from Colosseum. Allow 20–30 min from centre.'},
 };
 
-const HOTEL_NOTES = {
-  '2026-05-20':'Room Mate Oscar — check in from 3:00 PM',
-  '2026-05-24':'Room Mate Oscar — checkout by 12:00 PM',
-  '2026-05-28':'Cocoon Suites Imerovigli — check in from 3:00 PM · Non-refundable',
-  '2026-05-31':'Boho Sapiens Marina, Milos — check in on arrival from port · 100% non-refundable from 1 Jun',
-  '2026-06-29':'EY450 departs AUH 10:25 AM · Business · seat 8G → arrives SYD 06:10 Tue 30 Jun',
+const CITY_SUGG = {
+  'Madrid':['🖼️ El Prado Museum — book online to skip queues','🌳 Retiro Park and the crystal palace','🛍️ Gran Vía and Fuencarral street market','🍷 Vermouth at a taberna in La Latina','🌃 Rooftop at Círculo de Bellas Artes'],
+  'Barcelona':['🏖️ Barceloneta beach','🏛️ Sagrada Família (book ahead!)','🎨 Casa Batlló or La Pedrera','🌄 Tibidabo for city views','🏔️ Montserrat day trip — 1h by train'],
+  'Santorini':['🌅 Sunset from Oia (arrive 1h early)','⛵ Catamaran caldera cruise','🍷 Santo Wines tasting','🏛️ Ancient Akrotiri ruins','🏊 Red Beach swimming'],
+  'Milos':['⛵ Kleftiko sea caves boat trip','🏖️ Sarakiniko lunar beach','🌆 Plaka village sunset','🐟 Fresh seafood at Adamas port','🏛️ Catacombs of Milos'],
+  'Paros':['🚢 Boat to Antiparos island','🍦 Naoussa fishing village stroll','🏄 Windsurfing at Pounta','🏛️ Panagia Ekatontapiliani church','🏖️ Kolymbithres beach rock formations'],
+  'Rome':['🏛️ Roman Forum & Palatine Hill','⛪ Pantheon (arrive before 10 AM)','🍕 Pizza in Trastevere','🛒 Campo de\'Fiori morning market','🌳 Borghese Gallery (book ahead)'],
+  'Amalfi Coast':['🚢 Boat Amalfi → Positano','🏛️ Pompeii ruins (1h by train)','🍋 Limoncello farm tour','🏊 Hidden coves by water taxi','🌅 Ravello clifftop dinner'],
+  'Paris':['🗼 Eiffel Tower (book sunset slot!)','☕ Brasserie breakfast','🖼️ Musée d\'Orsay','🛍️ Le Marais boutiques','🚢 Evening Seine cruise'],
+  'Abu Dhabi':['🕌 Sheikh Zayed Grand Mosque (free!)','🎨 Louvre Abu Dhabi','🏎️ Ferrari World — Yas Island','🏖️ Saadiyat Beach Club','🍽️ Emirates Palace drinks'],
+  'Dubai':['🌃 Burj Khalifa At the Top (sunset!)','💦 Dubai Mall fountain show (free, 30 min)','🏝️ Palm Jumeirah monorail','🐪 Desert safari + BBQ dinner','🛶 Old Dubai creek abra ride (2 AED)'],
 };
 
-const CITY_SUGGESTIONS = {
-  'Madrid':['🖼️ El Prado Museum — world-class paintings, book online','🌳 Retiro Park and the glass crystal palace','🛍️ Gran Vía shopping and Fuencarral street market','🍷 Vermouth at a traditional taberna in La Latina','🌃 Rooftop bar at Círculo de Bellas Artes for sunset views'],
-  'Barcelona':['🏖️ Barceloneta beach — 20 min walk from Gothic Quarter','🏛️ Sagrada Família — book tickets online to skip the queue','🎨 Casa Batlló or La Pedrera (Gaudí masterpieces, book ahead)','🍦 Artisan gelato walk through the Gothic Quarter','🌄 Tibidabo hill for panoramic views of the city','🏔️ Day trip to Montserrat monastery — 1h by train'],
-  'Santorini':['🌅 Sunset from Oia village — arrive 1h early to grab a good spot','⛵ Catamaran cruise around the caldera (half-day)','🍷 Wine tasting at Santo Wines — caldera views included','🏛️ Ancient Akrotiri ruins — the Pompeii of the Aegean','🏊 Red Beach or Perivolos black sand beach swimming','🚡 Cable car from Fira harbour up to the clifftop'],
-  'Milos':['⛵ Kleftiko sea caves boat trip — absolute must-do on Milos','🏖️ Sarakiniko beach — looks like a moonscape, totally unique','🌆 Sunset drinks in Plaka village above Adamas','🐟 Fresh seafood lunch at the port tavernas in Adamas','🏛️ Catacombs of Milos — one of the earliest Christian sites','🛶 Rent a small boat and explore the coastline yourself'],
-  'Paros':['🚢 Boat to Antiparos island for the day (30 min)','🍦 Wander Naoussa fishing village and grab ice cream','🏄 Windsurfing at Pounta beach — world-class conditions','🏛️ Panagia Ekatontapiliani — stunning 4th-century Byzantine church','🏖️ Kolymbithres beach — unique granite rock formations','🌊 Lageri beach for quiet swimming away from the crowds'],
-  'Rome':['🏛️ Roman Forum & Palatine Hill — same ticket as Colosseum','⛪ Pantheon — free entry, arrive before 10 AM','🍕 Pizza al taglio in Trastevere neighbourhood for lunch','🛒 Campo de\'Fiori morning market (closes ~2 PM)','🌳 Borghese Gallery & gardens — book ahead, limited entry','🍨 Gelato taste-test walk through the historic centre'],
-  'Amalfi Coast':['🚢 Boat from Amalfi to Positano — far better than the road bus','🏛️ Pompeii ruins — 1h by Circumvesuviana train from Sorrento','🍋 Limoncello tasting and lemon grove farm tour','🏊 Hidden cove beaches reachable only by water taxi','🌅 Sunset dinner at a clifftop restaurant in Ravello','🚞 Ferrovia Circumvesuviana to Sorrento for lunch'],
-  'Paris':['🗼 Eiffel Tower — book a sunset time slot well in advance','☕ Breakfast at a classic brasserie — café au lait and croissant','🖼️ Musée d\'Orsay for Impressionism (far less crowded than the Louvre)','🛍️ Le Marais neighbourhood boutiques and street art','🚢 Evening Seine River cruise with Champagne','🎨 Montmartre & Sacré-Coeur — best view over Paris at sunset'],
-  'Abu Dhabi':['🕌 Sheikh Zayed Grand Mosque — free entry, one of the world\'s largest','🎨 Louvre Abu Dhabi on Saadiyat Island — stunning architecture','🏎️ Ferrari World — home of the world\'s fastest roller coaster','🏖️ Saadiyat Beach Club for a luxury beach day','🍽️ Drinks or dinner at Emirates Palace (even if just the lobby!)','🛍️ Yas Mall for shopping and dining'],
-  'Dubai':['🌃 Burj Khalifa At the Top — book 124F at sunset for the best views','💦 Dubai Mall fountain show — free, runs every 30 min after 6 PM','🏝️ Palm Jumeirah monorail to The Pointe for dinner','🐪 Desert safari with dune bashing and BBQ dinner under the stars','🛶 Old Dubai creek abra boat ride — 2 AED, totally authentic','🌊 Jumeirah beach for the Burj Al Arab backdrop photos'],
-};
+// ── Calendar maths ─────────────────────────────────────────────────────────
+const PX_HR = 56; // pixels per hour
+const CAL_START = 6; // 6 AM
 
-function addMins(t, mins){
-  const [h,m]=t.split(':').map(Number), tot=h*60+m+mins;
-  return String(Math.floor(tot/60)).padStart(2,'0')+':'+String(tot%60).padStart(2,'0');
-}
-function fmtT(t){
-  const [h,m]=t.split(':').map(Number), ap=h>=12?'PM':'AM', h12=h%12||12;
-  return h12+(m?':'+String(m).padStart(2,'0'):'')+' '+ap;
-}
-function diffM(t1,t2){
-  const [h1,m1]=t1.split(':').map(Number),[h2,m2]=t2.split(':').map(Number);
-  return (h2*60+m2)-(h1*60+m1);
-}
+function toMins(t){ const[h,m]=t.split(':').map(Number); return h*60+m; }
+function addM(t,m){ const tot=toMins(t)+m; return pad(Math.floor(tot/60))+':'+pad(tot%60); }
+function pad(n){ return String(n).padStart(2,'0'); }
+function fmtT(t){ const[h,m]=t.split(':').map(Number),ap=h>=12?'PM':'AM',h12=h%12||12; return h12+(m?':'+pad(m):'')+' '+ap; }
+function toPx(t){ return (toMins(t)-CAL_START*60)*(PX_HR/60); }
+function durPx(d){ return Math.max(d*(PX_HR/60), 36); }
 function durStr(m){ return m>=60?(Math.floor(m/60)+'h'+(m%60?' '+m%60+'m':'')):m+'m'; }
 
+function mapsLink(q,label){
+  if(!q) return label;
+  return '<a href="https://maps.google.com/?q='+encodeURIComponent(q)+'" target="_blank" style="color:#2b6cb0;font-weight:700;text-decoration:none;">📍 '+label+' <span style="font-size:9px">↗</span></a>';
+}
+
+// ── OPEN DAY: render calendar ──────────────────────────────────────────────
 function openDay(dateStr){
-  if(!dateStr)return;
-  const evs=EVENTS.filter(e=>e.dt.startsWith(dateStr)).map(e=>{
-    const timeStr=e.dt.includes('T')?e.dt.split('T')[1]:'00:00';
-    const td=TOUR_DETAILS[e.dt]||null;
-    return{time:timeStr,label:e.label,type:e.type,td};
+  if(!dateStr) return;
+  const evs = EVENTS.filter(e=>e.dt.startsWith(dateStr)).map(e=>{
+    const timeStr = e.dt.includes('T')?e.dt.split('T')[1]:'00:00';
+    const d = EV_DATA[e.dt]||null;
+    return{dt:e.dt, time:timeStr, label:e.label, type:e.type, d};
   }).sort((a,b)=>a.time.localeCompare(b.time));
 
-  const [y,mo,d]=dateStr.split('-').map(Number);
+  const[y,mo,dy]=dateStr.split('-').map(Number);
   const dayRow=document.querySelector('.day[data-date="'+dateStr+'"]');
   const destEl=dayRow?dayRow.querySelector('.ddest'):null;
   const destText=destEl?destEl.textContent.replace('TODAY','').trim():'';
-  const dateObj=new Date(y,mo-1,d);
+  const dateObj=new Date(y,mo-1,dy);
   const dateLabel=dateObj.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 
   let city='';
@@ -1513,86 +1280,168 @@ function openDay(dateStr){
   else if(dl.includes('abu dhabi')&&!dl.includes('→'))city='Abu Dhabi';
   else if(dl.includes('dubai')&&!dl.includes('→'))city='Dubai';
 
-  const dotMap={flight:['dd-flight','✈️'],hotel:['dd-hotel','🏨'],tour:['dd-tour','🎭'],urgent:['dd-urgent','🚨'],action:['dd-urgent','⚡'],plan:['dd-plan','📌'],free:['dd-free','💡']};
+  // Find cal start/end
+  let calS = CAL_START, calE = 23;
+  if(evs.length){
+    const firstH = parseInt(evs[0].time.split(':')[0]);
+    calS = Math.max(CAL_START, firstH - 1);
+    const last = evs[evs.length-1];
+    const dur = last.d?last.d.dur:60;
+    const lastEnd = toMins(addM(last.time, dur));
+    calE = Math.min(24, Math.ceil(lastEnd/60) + 2);
+  }
+  const totalH = calE - calS;
+  const gridH = totalH * PX_HR;
 
-  const schedule=evs.map(e=>{
-    const endTime=e.td?addMins(e.time,e.td.dur):null;
-    return{...e,endTime};
-  });
-
-  let body='<div class="dr-tl">';
-
-  // Morning gap if first event is after 09:00
-  if(schedule.length&&schedule[0].time>'09:00'&&diffM('08:00',schedule[0].time)>=90){
-    body+=gapBlock('08:00',schedule[0].time,city,'☀️ Morning free — enjoy a slow breakfast and explore the neighbourhood');
+  // Build hour lines & labels
+  let gridHtml = '';
+  for(let h=calS; h<=calE; h++){
+    const top = (h-calS)*PX_HR;
+    const label = h===0?'12 AM':h<12?h+' AM':h===12?'12 PM':(h-12)+' PM';
+    gridHtml += '<div class="cal-hour" style="top:'+top+'px">'+label+'</div>';
+    gridHtml += '<div class="cal-line'+(h%1===0?' major':'')+'" style="top:'+top+'px"></div>';
   }
 
-  schedule.forEach((ev,i)=>{
-    const[dotCls,icon]=(dotMap[ev.type]||['dd-plan','📌']);
-    const timeDisp=ev.endTime?fmtT(ev.time)+' – '+fmtT(ev.endTime):fmtT(ev.time);
-    body+='<div class="dr-item">';
-    body+='<div class="dr-dot '+dotCls+'">'+icon+'</div>';
-    body+='<div class="dr-cont">';
-    body+='<div class="dr-time">'+timeDisp+'</div>';
-    if(ev.td){
-      body+='<div class="dr-name">'+ev.td.name+'</div>';
-      body+='<div class="dr-loc">📍 '+ev.td.loc+'</div>';
-      body+='<div class="dr-cost">⏱️ '+durStr(ev.td.dur)+'&nbsp;&nbsp;💰 '+ev.td.cost+'</div>';
-      body+='<div class="dr-cancel">❌ Cancel by: '+ev.td.cancelBy+'</div>';
-      if(ev.td.note)body+='<div class="dr-note">ℹ️ '+ev.td.note+'</div>';
-    } else {
-      body+='<div class="dr-name">'+ev.label+'</div>';
-    }
-    body+='</div></div>';
-    // Gap to next event
-    if(i<schedule.length-1){
-      const from=ev.endTime||ev.time, to=schedule[i+1].time, gap=diffM(from,to);
-      if(gap>=60) body+=gapBlock(from,to,city);
-    }
+  // Color map
+  const colors={flight:'ev-flight',hotel:'ev-hotel',tour:'ev-tour',plan:'ev-plan',urgent:'ev-urgent',action:'ev-urgent',free:'ev-free'};
+
+  // Build event blocks
+  evs.forEach(ev=>{
+    const startMins = toMins(ev.time);
+    const top = (startMins - calS*60) * (PX_HR/60);
+    const dur = ev.d?ev.d.dur:(ev.type==='hotel'?30:60);
+    const height = Math.max(dur*(PX_HR/60), 36);
+    const endT = addM(ev.time, dur);
+    const cls = colors[ev.type]||'ev-plan';
+    const nm = ev.d?ev.d.name:ev.label;
+    const loc = ev.d&&ev.d.details&&ev.d.details.loc?ev.d.details.loc:'';
+    const locShort = loc.split('—')[0].split(',')[0].trim();
+    gridHtml += '<div class="cal-event '+cls+'" style="top:'+top+'px;height:'+height+'px" onclick="openEvDetail(\''+ev.dt+'\',event)">';
+    gridHtml += '<div class="cal-ev-name">'+nm+'</div>';
+    if(height>44) gridHtml += '<div class="cal-ev-time">'+fmtT(ev.time)+(dur?(' – '+fmtT(endT)):'')+'</div>';
+    if(height>60&&locShort) gridHtml += '<div class="cal-ev-loc">📍 '+locShort+'</div>';
+    gridHtml += '</div>';
   });
 
-  // Evening block if last event ends before 20:00
-  if(schedule.length){
-    const last=schedule[schedule.length-1];
-    const lastEnd=last.endTime||last.time;
-    if(lastEnd<'20:30') body+=eveningBlock(lastEnd,city);
+  // Free time labels for big gaps
+  const schedule=evs.map(ev=>({
+    start:toMins(ev.time),
+    end:toMins(addM(ev.time,ev.d?ev.d.dur:60))
+  }));
+  for(let i=0;i<schedule.length-1;i++){
+    const gapStart=schedule[i].end, gapEnd=schedule[i+1].start, gap=gapEnd-gapStart;
+    if(gap>=90){
+      const top=(gapStart-calS*60)*(PX_HR/60)+4;
+      const height=(gapEnd-gapStart)*(PX_HR/60)-8;
+      if(height>20){
+        gridHtml+='<div class="cal-free" style="top:'+top+'px;height:'+height+'px"><span class="cal-free-txt">'+durStr(gap)+' free</span></div>';
+      }
+    }
   }
 
-  // Full free day
-  if(!schedule.length) body+=freeDayBlock(city);
+  const calHtml='<div class="cal-wrap" style="padding-top:16px"><div class="cal-grid" style="height:'+gridH+'px;position:relative">'+gridHtml+'</div>';
 
-  body+='</div>';
+  // Suggestions strip for free days
+  let suggHtml='';
+  const suggs=CITY_SUGG[city]||[];
+  if(suggs.length&&evs.filter(e=>e.type==='tour'||e.type==='flight').length<2){
+    suggHtml='<div style="padding:12px 12px 0"><div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#a0aec0;margin-bottom:8px">💡 Ideas for today in '+city+'</div>';
+    suggs.slice(0,5).forEach(s=>{suggHtml+='<div style="font-size:12px;color:#2d3748;padding:4px 0;border-bottom:1px solid #f7fafc">'+s+'</div>';});
+    suggHtml+='</div>';
+  }
 
   document.getElementById('dr-title').textContent=destText||dateLabel;
-  document.getElementById('dr-sub').textContent=dateLabel;
-  document.getElementById('dr-body').innerHTML=body;
+  document.getElementById('dr-sub').textContent=dateLabel+' · Tap any event for full details';
+  document.getElementById('dr-body').innerHTML=calHtml+suggHtml+'</div>';
   document.getElementById('dr-ov').classList.add('open');
   document.getElementById('drawer').classList.add('open');
   document.body.style.overflow='hidden';
+  window._drDate=dateStr;
+  window._drCity=city;
+  window._drDest=destText;
+  window._drDateLabel=dateLabel;
 }
 
-function gapBlock(from,to,city,customMsg){
-  const mins=diffM(from,to); if(mins<45)return'';
-  const title=customMsg||('💡 Free time — '+durStr(mins)+' ('+fmtT(from)+' – '+fmtT(to)+')');
-  const sugs=(CITY_SUGGESTIONS[city]||[]).slice(0,3);
-  let h='<div class="dr-gap"><div class="dr-gap-t">'+title+'</div>';
-  sugs.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
-  return h+'</div>';
+// ── OPEN EVENT DETAIL ──────────────────────────────────────────────────────
+function openEvDetail(dtKey, e){
+  e.stopPropagation();
+  const ev = EV_DATA[dtKey];
+  if(!ev) return;
+  const timeStr=dtKey.includes('T')?dtKey.split('T')[1]:'00:00';
+  const endT=addM(timeStr,ev.dur||60);
+  const d=ev.details||{};
+
+  const badgeColors={flight:'background:#ebf8ff;color:#2b6cb0',hotel:'background:#f0fff4;color:#276749',tour:'background:#fefcbf;color:#744210',plan:'background:#edf2f7;color:#718096',urgent:'background:#fff5f5;color:#c53030'};
+  const badgeEmojis={flight:'✈️',hotel:'🏨',tour:'🎭',plan:'📌',urgent:'🚨'};
+  const bc=badgeColors[ev.type]||badgeColors.plan;
+  const be=badgeEmojis[ev.type]||'📌';
+
+  let html='<div class="ev-detail">';
+
+  // Hero
+  html+='<div class="ev-d-hero">';
+  html+='<div class="ev-d-badge" style="'+bc+'">'+be+' '+ev.type.toUpperCase()+'</div>';
+  html+='<div class="ev-d-name">'+ev.name+'</div>';
+  html+='<div class="ev-d-time">🕐 '+fmtT(timeStr);
+  if(ev.dur) html+=' – '+fmtT(endT)+' &nbsp;·&nbsp; ⏱️ '+durStr(ev.dur);
+  html+='</div></div>';
+
+  // Location / meeting point
+  if(d.loc||d.from||d.addr){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">📍 Location</div>';
+    if(d.loc){
+      html+='<div class="ev-d-row"><span class="lbl">Meet at</span><span>'+mapsLink(d.mapsQ,d.loc)+'</span></div>';
+    }
+    if(d.addr){
+      html+='<div class="ev-d-row"><span class="lbl">Address</span><span>'+mapsLink(d.mapsQ,d.addr)+'</span></div>';
+    }
+    if(d.from) html+='<div class="ev-d-row"><span class="lbl">From</span><span>'+d.from+'</span></div>';
+    if(d.to) html+='<div class="ev-d-row"><span class="lbl">To</span><span>'+d.to+'</span></div>';
+    if(d.guide) html+='<div class="ev-d-row"><span class="lbl">Guide</span><span>'+d.guide+'</span></div>';
+    html+='</div>';
+  }
+
+  // Travel time note
+  if(ev.travel){
+    html+='<div class="ev-d-travel"><div class="ev-d-travel-t">🗺️ Getting there</div><div style="font-size:11px;color:#2c5282;margin-top:4px;line-height:1.6">'+ev.travel+'</div></div>';
+  }
+
+  // Booking details
+  const hasBooking=d.ref||d.class||d.seat||d.airline||d.viatorRef||d.checkIn||d.checkOut;
+  if(hasBooking){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">📋 Booking Details</div>';
+    if(d.ref) html+='<div class="ev-d-row"><span class="lbl">Ref</span><span style="font-family:monospace;font-weight:700;font-size:12px;color:#2b6cb0">'+d.ref+'</span></div>';
+    if(d.viatorRef) html+='<div class="ev-d-row"><span class="lbl">Booking</span><span>'+d.viatorRef+'</span></div>';
+    if(d.airline) html+='<div class="ev-d-row"><span class="lbl">Airline</span><span>'+d.airline+'</span></div>';
+    if(d.class) html+='<div class="ev-d-row"><span class="lbl">Class</span><span>'+d.class+'</span></div>';
+    if(d.seat) html+='<div class="ev-d-row"><span class="lbl">Seat</span><span style="font-weight:700">'+d.seat+'</span></div>';
+    if(d.checkIn) html+='<div class="ev-d-row"><span class="lbl">Check-in</span><span>'+d.checkIn+'</span></div>';
+    if(d.checkOut) html+='<div class="ev-d-row"><span class="lbl">Check-out</span><span>'+d.checkOut+'</span></div>';
+    html+='</div>';
+  }
+
+  // Cost + cancellation
+  if(d.cost||d.cancelBy){
+    html+='<div class="ev-d-cancel">';
+    if(d.cancelBy){html+='<div class="ev-d-cancel-t">❌ Cancel by: '+d.cancelBy+'</div>';}
+    if(d.cost){html+='<div class="ev-d-cancel-s">💰 '+d.cost+'</div>';}
+    html+='</div>';
+  }
+
+  // Note
+  if(d.note){
+    html+='<div style="background:#fffbeb;border:1px solid #f6e05e;border-radius:9px;padding:10px 12px;font-size:11px;color:#744210;line-height:1.5">ℹ️ '+d.note+'</div>';
+  }
+
+  html+='</div>';
+
+  document.getElementById('dr-title').innerHTML='<button class="dr-back" onclick="backToCal()">← Day</button>';
+  document.getElementById('dr-sub').textContent=window._drDateLabel||'';
+  document.getElementById('dr-body').innerHTML=html;
 }
-function eveningBlock(from,city){
-  const sugs=(CITY_SUGGESTIONS[city]||[]).filter(s=>/sunset|dinner|bar|cruise|roof|night|walk|view/.test(s.toLowerCase())).slice(0,3);
-  const fallback=(CITY_SUGGESTIONS[city]||[]).slice(0,3);
-  const items=sugs.length?sugs:fallback;
-  let h='<div class="dr-gap"><div class="dr-gap-t">🌙 Evening free — from '+fmtT(from)+'</div>';
-  items.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
-  return h+'</div>';
-}
-function freeDayBlock(city){
-  const sugs=CITY_SUGGESTIONS[city]||['Explore the local area','Try local cuisine','Visit a nearby attraction'];
-  let h='<div class="dr-item"><div class="dr-dot dd-free">🌞</div><div class="dr-cont"><div class="dr-time">All day</div><div class="dr-name">Free Day in '+(city||'the city')+'</div></div></div>';
-  h+='<div class="dr-gap" style="margin-top:8px"><div class="dr-gap-t">💡 Ideas for the day</div>';
-  sugs.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
-  return h+'</div>';
+
+function backToCal(){
+  if(window._drDate) openDay(window._drDate);
 }
 
 function closeDrawer(){
@@ -1605,25 +1454,20 @@ function closeDrawer(){
 // Swipe to close
 (function(){
   const dr=document.getElementById('drawer');
-  let sy=0;
-  dr.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;},{passive:true});
+  let sy=0,dragging=false;
+  dr.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;dragging=true;},{passive:true});
   dr.addEventListener('touchmove',e=>{
+    if(!dragging)return;
     const dy=e.touches[0].clientY-sy;
     if(dy>0)dr.style.transform='translateY('+dy+'px)';
   },{passive:true});
   dr.addEventListener('touchend',e=>{
+    dragging=false;
     const dy=e.changedTouches[0].clientY-sy;
     if(dy>100)closeDrawer(); else dr.style.transform='';
   });
 })();
 
-// View toggle
-function showView(v,btn){
-  document.querySelectorAll('.vbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('day-view').style.display=v==='day'?'block':'none';
-  document.getElementById('detail-view').style.display=v==='detail'?'block':'none';
-}
 
 // Checklist
 function tc(rid,cid){
