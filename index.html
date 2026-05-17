@@ -220,6 +220,43 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   .ref-grid{grid-template-columns:1fr}
   .ovg{grid-template-columns:repeat(3,1fr)}
 }
+/* ═══ BOTTOM DRAWER ═══ */
+#dr-ov{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:1000;opacity:0;transition:opacity .3s;pointer-events:none}
+#dr-ov.open{opacity:1;pointer-events:all}
+#drawer{position:fixed;bottom:0;left:0;right:0;max-height:90vh;background:#fff;border-radius:20px 20px 0 0;z-index:1001;transform:translateY(100%);transition:transform .38s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -4px 30px rgba(0,0,0,.18)}
+#drawer.open{transform:translateY(0)}
+.dr-hw{padding:10px 0 4px;display:flex;justify-content:center;flex-shrink:0}
+.dr-h{width:36px;height:4px;background:#e2e8f0;border-radius:2px}
+.dr-head{padding:0 16px 12px;flex-shrink:0;display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.dr-title{font-size:15px;font-weight:900;color:#1a202c;line-height:1.2}
+.dr-sub{font-size:11px;color:#718096;margin-top:3px}
+.dr-close{background:#f0f4f8;border:none;border-radius:50%;width:30px;height:30px;font-size:16px;cursor:pointer;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;color:#4a5568}
+.dr-body{overflow-y:auto;flex:1;padding:4px 16px 36px;-webkit-overflow-scrolling:touch}
+.dr-tl{position:relative}
+.dr-item{display:flex;gap:11px;position:relative}
+.dr-item::after{content:'';position:absolute;left:15px;top:34px;bottom:0;width:2px;background:#f0f4f8;z-index:0}
+.dr-item:last-child::after{display:none}
+.dr-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;position:relative;z-index:1;border:2px solid white}
+.dd-flight{background:#2b6cb0;box-shadow:0 0 0 3px #bee3f8}
+.dd-hotel{background:#276749;box-shadow:0 0 0 3px #c6f6d5}
+.dd-tour{background:#b7791f;box-shadow:0 0 0 3px #fefcbf}
+.dd-plan{background:#718096;box-shadow:0 0 0 3px #e2e8f0}
+.dd-urgent{background:#c53030;box-shadow:0 0 0 3px #fed7d7}
+.dd-free{background:#e2e8f0;box-shadow:0 0 0 3px #f0f4f8}
+.dr-cont{flex:1;padding-bottom:16px}
+.dr-time{font-size:10px;color:#a0aec0;font-weight:700;letter-spacing:.3px;margin-bottom:2px}
+.dr-name{font-size:13px;font-weight:800;color:#1a202c;line-height:1.3}
+.dr-loc{font-size:11px;color:#718096;margin-top:4px;line-height:1.5;display:flex;align-items:flex-start;gap:4px}
+.dr-cancel{margin-top:6px;padding:4px 10px;background:#fff5f5;border:1px solid #fed7d7;border-radius:7px;font-size:10px;color:#9b2c2c;font-weight:700;display:inline-block}
+.dr-cost{margin-top:4px;font-size:10px;color:#718096}
+.dr-note{margin-top:4px;font-size:10px;color:#2b6cb0;background:#ebf8ff;border-radius:6px;padding:3px 8px;display:inline-block}
+.dr-gap{background:#f7fafc;border-radius:10px;padding:9px 12px;margin:0 0 14px 43px;border-left:3px solid #e2e8f0}
+.dr-gap-t{font-size:10px;font-weight:700;color:#a0aec0;text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.dr-sug{font-size:11px;color:#4a5568;padding:2px 0;line-height:1.5}
+.day{cursor:pointer}
+.day:active{background:#f0f4f8!important}
+.tap-hint{font-size:9px;color:#cbd5e0;font-style:italic;margin-top:3px}
+
 </style>
 </head>
 <body>
@@ -295,7 +332,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
     <div class="days">
 
       <!-- 19 May -->
-      <div class="day d-transit" data-date="2026-05-19">
+      <div class="day d-transit" data-date="2026-05-19" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">19</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇺→🇦🇪 In Transit</div>
@@ -304,11 +341,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-flight">→ Abu Dhabi overnight</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 20 May -->
-      <div class="day d-confirmed" data-date="2026-05-20">
+      <div class="day d-confirmed" data-date="2026-05-20" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">20</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -318,11 +357,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Tapas &amp; Wine Tour 12:30 PM ✓</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 21 May -->
-      <div class="day d-confirmed" data-date="2026-05-21">
+      <div class="day d-confirmed" data-date="2026-05-21" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">21</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -332,11 +373,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Cooking Class 5:30 PM ✓</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 22 May -->
-      <div class="day d-free" data-date="2026-05-22">
+      <div class="day d-free" data-date="2026-05-22" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">22</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -345,11 +388,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Prado Museum · Retiro Park · Gran Vía</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 23 May -->
-      <div class="day d-confirmed" data-date="2026-05-23">
+      <div class="day d-confirmed" data-date="2026-05-23" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">23</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -358,11 +403,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Churros Cooking Class 11:30 AM ✓ 🚫 non-refundable</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 24 May -->
-      <div class="day d-open" data-date="2026-05-24">
+      <div class="day d-open" data-date="2026-05-24" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">24</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid → Barcelona</div>
@@ -371,11 +418,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Barcelona hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 25 May -->
-      <div class="day d-open" data-date="2026-05-25">
+      <div class="day d-open" data-date="2026-05-25" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">25</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -384,11 +433,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 BCN in 1 Day Tour 9:00 AM ✓ (add hotel address!)</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 26 May -->
-      <div class="day d-open" data-date="2026-05-26">
+      <div class="day d-open" data-date="2026-05-26" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">26</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -398,11 +449,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Ramblas Walk 4:00 PM ✓ · 🤍 Plaça Catalunya</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 27 May -->
-      <div class="day d-open" data-date="2026-05-27">
+      <div class="day d-open" data-date="2026-05-27" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">27</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -411,11 +464,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Montserrat day trip or beach</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 28 May -->
-      <div class="day d-confirmed" data-date="2026-05-28">
+      <div class="day d-confirmed" data-date="2026-05-28" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">28</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸→🇬🇷 Barcelona → Santorini</div>
@@ -424,11 +479,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Cocoon Suites — check-in 3PM ✓ 🚫</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 29 May -->
-      <div class="day d-free" data-date="2026-05-29">
+      <div class="day d-free" data-date="2026-05-29" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">29</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini</div>
@@ -437,11 +494,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Sunset in Oia · Catamaran cruise</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 30 May -->
-      <div class="day d-free" data-date="2026-05-30">
+      <div class="day d-free" data-date="2026-05-30" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">30</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini</div>
@@ -450,11 +509,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Winery tasting · beach clubs</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 31 May -->
-      <div class="day d-confirmed" data-date="2026-05-31">
+      <div class="day d-confirmed" data-date="2026-05-31" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">31</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini → Milos</div>
@@ -462,6 +523,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-plan">⛴️ SeaJets 14:30 [not booked]</span>
             <span class="tag t-hotel">🏨 Boho Sapiens Marina — check-in 3PM ✓</span>
           </div>
+        </div>
+          <div class="tap-hint">Tap for full day plan</div>
         </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
@@ -472,7 +535,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
     <div class="days">
 
       <!-- 1 Jun -->
-      <div class="day d-free" data-date="2026-06-01">
+      <div class="day d-free" data-date="2026-06-01" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">1</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -481,11 +544,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Kleftiko boat tour</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 2 Jun -->
-      <div class="day d-free" data-date="2026-06-02">
+      <div class="day d-free" data-date="2026-06-02" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">2</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -494,11 +559,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Sarakiniko Beach</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 3 Jun -->
-      <div class="day d-free" data-date="2026-06-03">
+      <div class="day d-free" data-date="2026-06-03" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">3</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -507,11 +574,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Plaka sunset</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 4 Jun -->
-      <div class="day d-free" data-date="2026-06-04">
+      <div class="day d-free" data-date="2026-06-04" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">4</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -521,11 +590,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-urgent">⚠️ Cancel Rome in a Day by today if needed!</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#bee3f8">—</span></div>
       </div>
 
       <!-- 5 Jun -->
-      <div class="day d-open" data-date="2026-06-05">
+      <div class="day d-open" data-date="2026-06-05" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">5</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos → Paros</div>
@@ -534,11 +605,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Paros hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 6 Jun -->
-      <div class="day d-open" data-date="2026-06-06">
+      <div class="day d-open" data-date="2026-06-06" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">6</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -547,11 +620,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Beaches and cafes</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 7 Jun -->
-      <div class="day d-open" data-date="2026-06-07">
+      <div class="day d-open" data-date="2026-06-07" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">7</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -560,11 +635,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Boat hire or snorkelling</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 8 Jun -->
-      <div class="day d-open" data-date="2026-06-08">
+      <div class="day d-open" data-date="2026-06-08" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">8</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -573,11 +650,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Relaxed island day</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 9 Jun -->
-      <div class="day d-open" data-date="2026-06-09">
+      <div class="day d-open" data-date="2026-06-09" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">9</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷→🇮🇹 Paros → Rome</div>
@@ -587,11 +666,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Rome hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 10 Jun -->
-      <div class="day d-confirmed" data-date="2026-06-10">
+      <div class="day d-confirmed" data-date="2026-06-10" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">10</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -600,11 +681,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Pasta &amp; Tiramisu Cooking 3:00 PM ✓ · Via Zanardelli 14</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 11 Jun -->
-      <div class="day d-confirmed" data-date="2026-06-11">
+      <div class="day d-confirmed" data-date="2026-06-11" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">11</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -613,11 +696,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-tour">🎭 Rome in a Day 9:30 AM ✓ · Via Terme di Tito 72 🟢</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 12 Jun -->
-      <div class="day d-open" data-date="2026-06-12">
+      <div class="day d-open" data-date="2026-06-12" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">12</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -626,11 +711,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Colosseum · Trastevere</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 13 Jun -->
-      <div class="day d-open" data-date="2026-06-13">
+      <div class="day d-open" data-date="2026-06-13" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">13</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -639,11 +726,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Pantheon · Trevi Fountain · Spanish Steps</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 14 Jun -->
-      <div class="day d-open" data-date="2026-06-14">
+      <div class="day d-open" data-date="2026-06-14" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">14</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome → Amalfi Coast</div>
@@ -652,11 +741,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Amalfi hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 15 Jun -->
-      <div class="day d-open" data-date="2026-06-15">
+      <div class="day d-open" data-date="2026-06-15" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">15</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -665,11 +756,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Amalfi boat tour · Positano</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 16 Jun -->
-      <div class="day d-open" data-date="2026-06-16">
+      <div class="day d-open" data-date="2026-06-16" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">16</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -678,11 +771,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Pompeii &amp; Sorrento</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 17 Jun -->
-      <div class="day d-open" data-date="2026-06-17">
+      <div class="day d-open" data-date="2026-06-17" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">17</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -691,11 +786,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Positano boat to Amalfi</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 18 Jun -->
-      <div class="day d-open" data-date="2026-06-18">
+      <div class="day d-open" data-date="2026-06-18" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">18</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -704,11 +801,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Ravello gardens · chill day</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 19 Jun -->
-      <div class="day d-open" data-date="2026-06-19">
+      <div class="day d-open" data-date="2026-06-19" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">19</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹→🇫🇷 Amalfi → Naples → Paris</div>
@@ -717,11 +816,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Paris hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 20 Jun -->
-      <div class="day d-open" data-date="2026-06-20">
+      <div class="day d-open" data-date="2026-06-20" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">20</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -730,11 +831,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Eiffel Tower · Louvre · Notre Dame</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 21 Jun -->
-      <div class="day d-open" data-date="2026-06-21">
+      <div class="day d-open" data-date="2026-06-21" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">21</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -743,11 +846,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Montmartre · shopping</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 22 Jun -->
-      <div class="day d-open" data-date="2026-06-22">
+      <div class="day d-open" data-date="2026-06-22" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">22</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -757,11 +862,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-urgent">⚠️ Leave hotel by 08:00 tomorrow!</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 23 Jun -->
-      <div class="day d-confirmed" data-date="2026-06-23">
+      <div class="day d-confirmed" data-date="2026-06-23" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">23</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷→🇦🇪 Paris → Abu Dhabi</div>
@@ -771,11 +878,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Abu Dhabi hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
 
       <!-- 24 Jun -->
-      <div class="day d-open" data-date="2026-06-24">
+      <div class="day d-open" data-date="2026-06-24" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">24</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi</div>
@@ -784,11 +893,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Yas Island · Ferrari World</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 25 Jun -->
-      <div class="day d-open" data-date="2026-06-25">
+      <div class="day d-open" data-date="2026-06-25" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">25</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi</div>
@@ -797,11 +908,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Grand Mosque · Louvre Abu Dhabi · Saadiyat Beach</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 26 Jun -->
-      <div class="day d-open" data-date="2026-06-26">
+      <div class="day d-open" data-date="2026-06-26" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">26</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi → Dubai</div>
@@ -810,11 +923,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel-need">🏨 Dubai hotel needed ⚠️</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 27 Jun -->
-      <div class="day d-open" data-date="2026-06-27">
+      <div class="day d-open" data-date="2026-06-27" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">27</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai</div>
@@ -823,11 +938,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Burj Khalifa · Dubai Mall · Marina dinner</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 28 Jun -->
-      <div class="day d-open" data-date="2026-06-28">
+      <div class="day d-open" data-date="2026-06-28" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">28</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai</div>
@@ -836,11 +953,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-free">💡 Desert Safari · Palm Jumeirah</span>
           </div>
         </div>
+          <div class="tap-hint">Tap for full day plan</div>
+        </div>
         <div class="dstat"><span class="sicon" style="color:#d69e2e">⚠️</span></div>
       </div>
 
       <!-- 29 Jun -->
-      <div class="day d-transit" data-date="2026-06-29">
+      <div class="day d-transit" data-date="2026-06-29" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">29</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai → Abu Dhabi → 🇦🇺 Sydney</div>
@@ -849,6 +968,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-flight">✈️ EY450 departs AUH 10:25 ✓ · Biz · seat 8G</span>
             <span class="tag t-flight">🏠 Arrives SYD 06:10 Tue 30 Jun</span>
           </div>
+        </div>
+          <div class="tap-hint">Tap for full day plan</div>
         </div>
         <div class="dstat"><span class="sicon">✓</span></div>
       </div>
@@ -1176,6 +1297,21 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   </div>
 
 </div>
+
+<!-- ═══ BOTTOM DRAWER ═══ -->
+<div id="dr-ov" onclick="closeDrawer()"></div>
+<div id="drawer">
+  <div class="dr-hw"><div class="dr-h"></div></div>
+  <div class="dr-head">
+    <div>
+      <div class="dr-title" id="dr-title">Day plan</div>
+      <div class="dr-sub" id="dr-sub"></div>
+    </div>
+    <button class="dr-close" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="dr-body" id="dr-body"></div>
+</div>
+
 <footer>Alex &amp; Demetra · Honeymoon 2026 · Updated 17 May 2026 · <a href="https://github.com/alexcaalano/travel-hub" target="_blank" style="color:#a0aec0">github</a></footer>
 
 <script>
@@ -1299,6 +1435,187 @@ update();
 tickClock();
 setInterval(tickClock,1000);
 setInterval(update,60000);
+
+
+// ═══ TOUR DETAILS (for drawer popup) ═══
+const TOUR_DETAILS = {
+  '2026-05-20T12:30':{name:'Tapas & Wine Walking Tour',dur:210,loc:'Plaza Santa Ana — meet at the Lorca statue',cancelBy:'19 May 12:30 PM',cost:'A$280.88',conf:true,refundable:true},
+  '2026-05-21T10:30':{name:'Madrid Highlights Bike Tour',dur:180,loc:'Rent&Roll, C. Felipe IV 10',cancelBy:'20 May 10:30 AM',cost:'A$115.66',conf:true,refundable:true},
+  '2026-05-21T17:30':{name:'Paella, Tapas & Sangria Cooking Class',dur:180,loc:'Cooking Point, C. Moratín 11',cancelBy:'20 May 5:30 PM',cost:'A$252.80',conf:true,refundable:true},
+  '2026-05-23T11:30':{name:'Churros & Chocolate Cooking Class',dur:120,loc:'Plaza de Chueca — metro stairs',cancelBy:'Non-refundable (already paid)',cost:'A$214.80',conf:true,refundable:false},
+  '2026-05-25T09:00':{name:'BCN in 1 Day — Full Day Tour',dur:480,loc:'Hotel pickup — add hotel address to booking first!',cancelBy:'24 May (24h policy)',cost:'A$328.70',conf:true,refundable:true,note:'Ref #1398078665 — update pickup address!'},
+  '2026-05-26T11:00':{name:'Barcelona Bike Tour — Hidden Gems',dur:180,loc:'Plaça Reial fountain — look for the 🔴 red umbrella guide',cancelBy:'25 May (24h policy)',cost:'A$161.92',conf:true,refundable:true},
+  '2026-05-26T16:00':{name:'Ramblas, Gothic Quarter & Gaudí Walk',dur:120,loc:'Foot Locker, Plaça Catalunya — 🤍 white umbrella guide',cancelBy:'25 May (24h policy)',cost:'A$110.78',conf:true,refundable:true},
+  '2026-06-10T15:00':{name:'Pasta & Tiramisu Cooking Class',dur:150,loc:'Via Zanardelli 14 — Gusto al Passeto restaurant',cancelBy:'9 June (24h policy)',cost:'A$171.84',conf:true,refundable:true},
+  '2026-06-11T09:30':{name:'Rome in a Day: Vatican & Colosseum',dur:600,loc:'Via Terme di Tito 72 — look for the 🟢 green sign',cancelBy:'⚠️ 4 June — 8-day policy, NOT standard 24h!',cost:'A$740.22',conf:true,refundable:false,note:'Already paid — cancel by 4 June if not going'},
+};
+
+const HOTEL_NOTES = {
+  '2026-05-20':'Room Mate Oscar — check in from 3:00 PM',
+  '2026-05-24':'Room Mate Oscar — checkout by 12:00 PM',
+  '2026-05-28':'Cocoon Suites Imerovigli — check in from 3:00 PM · Non-refundable',
+  '2026-05-31':'Boho Sapiens Marina, Milos — check in on arrival from port · 100% non-refundable from 1 Jun',
+  '2026-06-29':'EY450 departs AUH 10:25 AM · Business · seat 8G → arrives SYD 06:10 Tue 30 Jun',
+};
+
+const CITY_SUGGESTIONS = {
+  'Madrid':['🖼️ El Prado Museum — world-class paintings, book online','🌳 Retiro Park and the glass crystal palace','🛍️ Gran Vía shopping and Fuencarral street market','🍷 Vermouth at a traditional taberna in La Latina','🌃 Rooftop bar at Círculo de Bellas Artes for sunset views'],
+  'Barcelona':['🏖️ Barceloneta beach — 20 min walk from Gothic Quarter','🏛️ Sagrada Família — book tickets online to skip the queue','🎨 Casa Batlló or La Pedrera (Gaudí masterpieces, book ahead)','🍦 Artisan gelato walk through the Gothic Quarter','🌄 Tibidabo hill for panoramic views of the city','🏔️ Day trip to Montserrat monastery — 1h by train'],
+  'Santorini':['🌅 Sunset from Oia village — arrive 1h early to grab a good spot','⛵ Catamaran cruise around the caldera (half-day)','🍷 Wine tasting at Santo Wines — caldera views included','🏛️ Ancient Akrotiri ruins — the Pompeii of the Aegean','🏊 Red Beach or Perivolos black sand beach swimming','🚡 Cable car from Fira harbour up to the clifftop'],
+  'Milos':['⛵ Kleftiko sea caves boat trip — absolute must-do on Milos','🏖️ Sarakiniko beach — looks like a moonscape, totally unique','🌆 Sunset drinks in Plaka village above Adamas','🐟 Fresh seafood lunch at the port tavernas in Adamas','🏛️ Catacombs of Milos — one of the earliest Christian sites','🛶 Rent a small boat and explore the coastline yourself'],
+  'Paros':['🚢 Boat to Antiparos island for the day (30 min)','🍦 Wander Naoussa fishing village and grab ice cream','🏄 Windsurfing at Pounta beach — world-class conditions','🏛️ Panagia Ekatontapiliani — stunning 4th-century Byzantine church','🏖️ Kolymbithres beach — unique granite rock formations','🌊 Lageri beach for quiet swimming away from the crowds'],
+  'Rome':['🏛️ Roman Forum & Palatine Hill — same ticket as Colosseum','⛪ Pantheon — free entry, arrive before 10 AM','🍕 Pizza al taglio in Trastevere neighbourhood for lunch','🛒 Campo de\'Fiori morning market (closes ~2 PM)','🌳 Borghese Gallery & gardens — book ahead, limited entry','🍨 Gelato taste-test walk through the historic centre'],
+  'Amalfi Coast':['🚢 Boat from Amalfi to Positano — far better than the road bus','🏛️ Pompeii ruins — 1h by Circumvesuviana train from Sorrento','🍋 Limoncello tasting and lemon grove farm tour','🏊 Hidden cove beaches reachable only by water taxi','🌅 Sunset dinner at a clifftop restaurant in Ravello','🚞 Ferrovia Circumvesuviana to Sorrento for lunch'],
+  'Paris':['🗼 Eiffel Tower — book a sunset time slot well in advance','☕ Breakfast at a classic brasserie — café au lait and croissant','🖼️ Musée d\'Orsay for Impressionism (far less crowded than the Louvre)','🛍️ Le Marais neighbourhood boutiques and street art','🚢 Evening Seine River cruise with Champagne','🎨 Montmartre & Sacré-Coeur — best view over Paris at sunset'],
+  'Abu Dhabi':['🕌 Sheikh Zayed Grand Mosque — free entry, one of the world\'s largest','🎨 Louvre Abu Dhabi on Saadiyat Island — stunning architecture','🏎️ Ferrari World — home of the world\'s fastest roller coaster','🏖️ Saadiyat Beach Club for a luxury beach day','🍽️ Drinks or dinner at Emirates Palace (even if just the lobby!)','🛍️ Yas Mall for shopping and dining'],
+  'Dubai':['🌃 Burj Khalifa At the Top — book 124F at sunset for the best views','💦 Dubai Mall fountain show — free, runs every 30 min after 6 PM','🏝️ Palm Jumeirah monorail to The Pointe for dinner','🐪 Desert safari with dune bashing and BBQ dinner under the stars','🛶 Old Dubai creek abra boat ride — 2 AED, totally authentic','🌊 Jumeirah beach for the Burj Al Arab backdrop photos'],
+};
+
+function addMins(t, mins){
+  const [h,m]=t.split(':').map(Number), tot=h*60+m+mins;
+  return String(Math.floor(tot/60)).padStart(2,'0')+':'+String(tot%60).padStart(2,'0');
+}
+function fmtT(t){
+  const [h,m]=t.split(':').map(Number), ap=h>=12?'PM':'AM', h12=h%12||12;
+  return h12+(m?':'+String(m).padStart(2,'0'):'')+' '+ap;
+}
+function diffM(t1,t2){
+  const [h1,m1]=t1.split(':').map(Number),[h2,m2]=t2.split(':').map(Number);
+  return (h2*60+m2)-(h1*60+m1);
+}
+function durStr(m){ return m>=60?(Math.floor(m/60)+'h'+(m%60?' '+m%60+'m':'')):m+'m'; }
+
+function openDay(dateStr){
+  if(!dateStr)return;
+  const evs=EVENTS.filter(e=>e.dt.startsWith(dateStr)).map(e=>{
+    const timeStr=e.dt.includes('T')?e.dt.split('T')[1]:'00:00';
+    const td=TOUR_DETAILS[e.dt]||null;
+    return{time:timeStr,label:e.label,type:e.type,td};
+  }).sort((a,b)=>a.time.localeCompare(b.time));
+
+  const [y,mo,d]=dateStr.split('-').map(Number);
+  const dayRow=document.querySelector('.day[data-date="'+dateStr+'"]');
+  const destEl=dayRow?dayRow.querySelector('.ddest'):null;
+  const destText=destEl?destEl.textContent.replace('TODAY','').trim():'';
+  const dateObj=new Date(y,mo-1,d);
+  const dateLabel=dateObj.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+  let city='';
+  const dl=destText.toLowerCase();
+  if(dl.includes('madrid'))city='Madrid';
+  else if(dl.includes('barcelona')&&!dl.includes('→'))city='Barcelona';
+  else if(dl.includes('santorini')&&!dl.includes('→'))city='Santorini';
+  else if(dl.includes('milos')&&!dl.includes('→'))city='Milos';
+  else if(dl.includes('paros')&&!dl.includes('→'))city='Paros';
+  else if(dl.includes('rome')&&!dl.includes('→'))city='Rome';
+  else if(dl.includes('amalfi'))city='Amalfi Coast';
+  else if(dl.includes('paris')&&!dl.includes('→'))city='Paris';
+  else if(dl.includes('abu dhabi')&&!dl.includes('→'))city='Abu Dhabi';
+  else if(dl.includes('dubai')&&!dl.includes('→'))city='Dubai';
+
+  const dotMap={flight:['dd-flight','✈️'],hotel:['dd-hotel','🏨'],tour:['dd-tour','🎭'],urgent:['dd-urgent','🚨'],action:['dd-urgent','⚡'],plan:['dd-plan','📌'],free:['dd-free','💡']};
+
+  const schedule=evs.map(e=>{
+    const endTime=e.td?addMins(e.time,e.td.dur):null;
+    return{...e,endTime};
+  });
+
+  let body='<div class="dr-tl">';
+
+  // Morning gap if first event is after 09:00
+  if(schedule.length&&schedule[0].time>'09:00'&&diffM('08:00',schedule[0].time)>=90){
+    body+=gapBlock('08:00',schedule[0].time,city,'☀️ Morning free — enjoy a slow breakfast and explore the neighbourhood');
+  }
+
+  schedule.forEach((ev,i)=>{
+    const[dotCls,icon]=(dotMap[ev.type]||['dd-plan','📌']);
+    const timeDisp=ev.endTime?fmtT(ev.time)+' – '+fmtT(ev.endTime):fmtT(ev.time);
+    body+='<div class="dr-item">';
+    body+='<div class="dr-dot '+dotCls+'">'+icon+'</div>';
+    body+='<div class="dr-cont">';
+    body+='<div class="dr-time">'+timeDisp+'</div>';
+    if(ev.td){
+      body+='<div class="dr-name">'+ev.td.name+'</div>';
+      body+='<div class="dr-loc">📍 '+ev.td.loc+'</div>';
+      body+='<div class="dr-cost">⏱️ '+durStr(ev.td.dur)+'&nbsp;&nbsp;💰 '+ev.td.cost+'</div>';
+      body+='<div class="dr-cancel">❌ Cancel by: '+ev.td.cancelBy+'</div>';
+      if(ev.td.note)body+='<div class="dr-note">ℹ️ '+ev.td.note+'</div>';
+    } else {
+      body+='<div class="dr-name">'+ev.label+'</div>';
+    }
+    body+='</div></div>';
+    // Gap to next event
+    if(i<schedule.length-1){
+      const from=ev.endTime||ev.time, to=schedule[i+1].time, gap=diffM(from,to);
+      if(gap>=60) body+=gapBlock(from,to,city);
+    }
+  });
+
+  // Evening block if last event ends before 20:00
+  if(schedule.length){
+    const last=schedule[schedule.length-1];
+    const lastEnd=last.endTime||last.time;
+    if(lastEnd<'20:30') body+=eveningBlock(lastEnd,city);
+  }
+
+  // Full free day
+  if(!schedule.length) body+=freeDayBlock(city);
+
+  body+='</div>';
+
+  document.getElementById('dr-title').textContent=destText||dateLabel;
+  document.getElementById('dr-sub').textContent=dateLabel;
+  document.getElementById('dr-body').innerHTML=body;
+  document.getElementById('dr-ov').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function gapBlock(from,to,city,customMsg){
+  const mins=diffM(from,to); if(mins<45)return'';
+  const title=customMsg||('💡 Free time — '+durStr(mins)+' ('+fmtT(from)+' – '+fmtT(to)+')');
+  const sugs=(CITY_SUGGESTIONS[city]||[]).slice(0,3);
+  let h='<div class="dr-gap"><div class="dr-gap-t">'+title+'</div>';
+  sugs.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
+  return h+'</div>';
+}
+function eveningBlock(from,city){
+  const sugs=(CITY_SUGGESTIONS[city]||[]).filter(s=>/sunset|dinner|bar|cruise|roof|night|walk|view/.test(s.toLowerCase())).slice(0,3);
+  const fallback=(CITY_SUGGESTIONS[city]||[]).slice(0,3);
+  const items=sugs.length?sugs:fallback;
+  let h='<div class="dr-gap"><div class="dr-gap-t">🌙 Evening free — from '+fmtT(from)+'</div>';
+  items.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
+  return h+'</div>';
+}
+function freeDayBlock(city){
+  const sugs=CITY_SUGGESTIONS[city]||['Explore the local area','Try local cuisine','Visit a nearby attraction'];
+  let h='<div class="dr-item"><div class="dr-dot dd-free">🌞</div><div class="dr-cont"><div class="dr-time">All day</div><div class="dr-name">Free Day in '+(city||'the city')+'</div></div></div>';
+  h+='<div class="dr-gap" style="margin-top:8px"><div class="dr-gap-t">💡 Ideas for the day</div>';
+  sugs.forEach(s=>{h+='<div class="dr-sug">'+s+'</div>';});
+  return h+'</div>';
+}
+
+function closeDrawer(){
+  document.getElementById('dr-ov').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+  document.body.style.overflow='';
+  document.getElementById('drawer').style.transform='';
+}
+
+// Swipe to close
+(function(){
+  const dr=document.getElementById('drawer');
+  let sy=0;
+  dr.addEventListener('touchstart',e=>{sy=e.touches[0].clientY;},{passive:true});
+  dr.addEventListener('touchmove',e=>{
+    const dy=e.touches[0].clientY-sy;
+    if(dy>0)dr.style.transform='translateY('+dy+'px)';
+  },{passive:true});
+  dr.addEventListener('touchend',e=>{
+    const dy=e.changedTouches[0].clientY-sy;
+    if(dy>100)closeDrawer(); else dr.style.transform='';
+  });
+})();
 
 // View toggle
 function showView(v,btn){
