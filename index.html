@@ -182,6 +182,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 
+/* TODAY / PAST / UPCOMING */
+.day.past{opacity:.4;background:#f7fafc}
+.day.past .dnum{color:#a0aec0}
+.day.today{background:#fffbeb!important;box-shadow:inset 3px 0 0 #f6ad55}
+.today-badge{display:inline-block;background:#f6ad55;color:#744210;font-size:8px;font-weight:800;padding:1px 5px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px;margin-left:4px;vertical-align:middle}
+.day.past::before{background:#e2e8f0!important}
+.day.today .ddest{font-weight:800}
+
+/* UPCOMING BANNER */
+#upcoming{margin-bottom:12px}
+.up-card{background:white;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden;margin-bottom:8px}
+.up-hdr{background:#2b6cb0;color:white;font-size:10px;font-weight:800;padding:6px 12px;letter-spacing:.5px;display:flex;justify-content:space-between;align-items:center}
+.up-row{display:flex;align-items:center;gap:8px;padding:7px 12px;border-bottom:1px solid #f0f4f8;font-size:11px}
+.up-row:last-child{border-bottom:none}
+.up-when{flex-shrink:0;font-size:9px;font-weight:700;color:#a0aec0;min-width:60px;text-align:right}
+.up-urg{background:#fff5f5;border-left:3px solid #fc8181}
+.up-urg .up-when{color:#c53030}
+.up-today{background:#fffbeb;border-left:3px solid #f6ad55}
+.up-today .up-when{color:#b7791f}
+
 /* MOBILE */
 @media(max-width:600px){
   .hdr{padding:14px 12px 12px}
@@ -258,11 +278,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <!-- ═══════════ DAY VIEW ═══════════ -->
   <div id="day-view">
 
+    <div id="upcoming"></div>
+
     <div class="month-hdr">MAY 2026</div>
     <div class="days">
 
       <!-- 19 May -->
-      <div class="day d-transit">
+      <div class="day d-transit" data-date="2026-05-19">
         <div class="ddate"><div class="dnum">19</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇺→🇦🇪 In Transit</div>
@@ -275,7 +297,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 20 May -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-05-20">
         <div class="ddate"><div class="dnum">20</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -289,7 +311,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 21 May -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-05-21">
         <div class="ddate"><div class="dnum">21</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -303,7 +325,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 22 May -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-05-22">
         <div class="ddate"><div class="dnum">22</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -316,7 +338,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 23 May -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-05-23">
         <div class="ddate"><div class="dnum">23</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid</div>
@@ -329,7 +351,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 24 May -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-05-24">
         <div class="ddate"><div class="dnum">24</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid → Barcelona</div>
@@ -342,7 +364,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 25 May -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-05-25">
         <div class="ddate"><div class="dnum">25</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -355,7 +377,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 26 May -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-05-26">
         <div class="ddate"><div class="dnum">26</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -369,7 +391,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 27 May -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-05-27">
         <div class="ddate"><div class="dnum">27</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
@@ -382,7 +404,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 28 May -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-05-28">
         <div class="ddate"><div class="dnum">28</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇪🇸→🇬🇷 Barcelona → Santorini</div>
@@ -395,7 +417,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 29 May -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-05-29">
         <div class="ddate"><div class="dnum">29</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini</div>
@@ -408,7 +430,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 30 May -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-05-30">
         <div class="ddate"><div class="dnum">30</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini</div>
@@ -421,7 +443,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 31 May -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-05-31">
         <div class="ddate"><div class="dnum">31</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Santorini → Milos</div>
@@ -439,7 +461,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
     <div class="days">
 
       <!-- 1 Jun -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-06-01">
         <div class="ddate"><div class="dnum">1</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -452,7 +474,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 2 Jun -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-06-02">
         <div class="ddate"><div class="dnum">2</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -465,7 +487,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 3 Jun -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-06-03">
         <div class="ddate"><div class="dnum">3</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -478,7 +500,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 4 Jun -->
-      <div class="day d-free">
+      <div class="day d-free" data-date="2026-06-04">
         <div class="ddate"><div class="dnum">4</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos</div>
@@ -492,7 +514,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 5 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-05">
         <div class="ddate"><div class="dnum">5</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Milos → Paros</div>
@@ -505,7 +527,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 6 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-06">
         <div class="ddate"><div class="dnum">6</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -518,7 +540,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 7 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-07">
         <div class="ddate"><div class="dnum">7</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -531,7 +553,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 8 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-08">
         <div class="ddate"><div class="dnum">8</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷 Paros</div>
@@ -544,7 +566,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 9 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-09">
         <div class="ddate"><div class="dnum">9</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷→🇮🇹 Paros → Rome</div>
@@ -558,7 +580,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 10 Jun -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-06-10">
         <div class="ddate"><div class="dnum">10</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -571,7 +593,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 11 Jun -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-06-11">
         <div class="ddate"><div class="dnum">11</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -584,7 +606,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 12 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-12">
         <div class="ddate"><div class="dnum">12</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -597,7 +619,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 13 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-13">
         <div class="ddate"><div class="dnum">13</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome</div>
@@ -610,7 +632,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 14 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-14">
         <div class="ddate"><div class="dnum">14</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Rome → Amalfi Coast</div>
@@ -623,7 +645,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 15 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-15">
         <div class="ddate"><div class="dnum">15</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -636,7 +658,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 16 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-16">
         <div class="ddate"><div class="dnum">16</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -649,7 +671,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 17 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-17">
         <div class="ddate"><div class="dnum">17</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -662,7 +684,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 18 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-18">
         <div class="ddate"><div class="dnum">18</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹 Amalfi Coast</div>
@@ -675,7 +697,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 19 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-19">
         <div class="ddate"><div class="dnum">19</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇮🇹→🇫🇷 Amalfi → Naples → Paris</div>
@@ -688,7 +710,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 20 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-20">
         <div class="ddate"><div class="dnum">20</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -701,7 +723,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 21 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-21">
         <div class="ddate"><div class="dnum">21</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -714,7 +736,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 22 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-22">
         <div class="ddate"><div class="dnum">22</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷 Paris</div>
@@ -728,7 +750,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 23 Jun -->
-      <div class="day d-confirmed">
+      <div class="day d-confirmed" data-date="2026-06-23">
         <div class="ddate"><div class="dnum">23</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇫🇷→🇦🇪 Paris → Abu Dhabi</div>
@@ -742,7 +764,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 24 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-24">
         <div class="ddate"><div class="dnum">24</div><div class="dday">Wed</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi</div>
@@ -755,7 +777,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 25 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-25">
         <div class="ddate"><div class="dnum">25</div><div class="dday">Thu</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi</div>
@@ -768,7 +790,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 26 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-26">
         <div class="ddate"><div class="dnum">26</div><div class="dday">Fri</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Abu Dhabi → Dubai</div>
@@ -781,7 +803,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 27 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-27">
         <div class="ddate"><div class="dnum">27</div><div class="dday">Sat</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai</div>
@@ -794,7 +816,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 28 Jun -->
-      <div class="day d-open">
+      <div class="day d-open" data-date="2026-06-28">
         <div class="ddate"><div class="dnum">28</div><div class="dday">Sun</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai</div>
@@ -807,7 +829,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 29 Jun -->
-      <div class="day d-transit">
+      <div class="day d-transit" data-date="2026-06-29">
         <div class="ddate"><div class="dnum">29</div><div class="dday">Mon</div></div>
         <div class="dcont">
           <div class="ddest">🇦🇪 Dubai → Abu Dhabi → 🇦🇺 Sydney</div>
@@ -1146,15 +1168,108 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 <footer>Alex &amp; Demetra · Honeymoon 2026 · Updated 17 May 2026 · <a href="https://github.com/alexcaalano/travel-hub" target="_blank" style="color:#a0aec0">github</a></footer>
 
 <script>
-// Countdown
+// ── KEY EVENTS ──
+const EVENTS=[
+  {dt:'2026-05-18T15:40',label:'✈️ Etihad check-in opens — ref 84EI7Q (SYD→MAD)',type:'action'},
+  {dt:'2026-05-19T12:30',label:'🚨 LAST CHANCE cancel Tapas Tour — A$280.88 at risk',type:'urgent'},
+  {dt:'2026-05-19T15:40',label:'✈️ Departs Sydney · EY451 · ref 84EI7Q',type:'flight'},
+  {dt:'2026-05-20T08:10',label:'✈️ Arrives Madrid · EY101',type:'flight'},
+  {dt:'2026-05-20T12:30',label:'🎭 Tapas & Wine Tour · Plaza Santa Ana (Lorca statue)',type:'tour'},
+  {dt:'2026-05-20T15:00',label:'🏨 Check in Room Mate Oscar (from 3PM)',type:'hotel'},
+  {dt:'2026-05-21T10:30',label:'🎭 Madrid Bike Tour · Rent&Roll, C. Felipe IV 10',type:'tour'},
+  {dt:'2026-05-21T17:30',label:'🎭 Paella & Sangria Cooking Class · C. Moratín 11',type:'tour'},
+  {dt:'2026-05-23T11:30',label:'🎭 Churros Cooking Class · Plaza de Chueca',type:'tour'},
+  {dt:'2026-05-24T12:00',label:'🏨 Checkout Room Mate Oscar (by 12PM)',type:'hotel'},
+  {dt:'2026-05-24T12:27',label:'🚄 AVE Train Madrid→Barcelona [not booked]',type:'plan'},
+  {dt:'2026-05-25T09:00',label:'🎭 BCN Day Tour · Hotel pickup (add hotel address!)',type:'tour'},
+  {dt:'2026-05-26T11:00',label:'🎭 BCN Bike Tour · Plaça Reial fountain 🔴 red umbrella',type:'tour'},
+  {dt:'2026-05-26T16:00',label:'🎭 Ramblas & Gaudí Walk · Foot Locker Plaça Catalunya 🤍',type:'tour'},
+  {dt:'2026-05-28T12:15',label:'✈️ Aegean BCN→ATH→Santorini departs [not booked]',type:'plan'},
+  {dt:'2026-05-28T15:00',label:'🏨 Check in Cocoon Suites Santorini (from 3PM)',type:'hotel'},
+  {dt:'2026-05-31T11:00',label:'🏨 Checkout Cocoon Suites Santorini (by 11AM)',type:'hotel'},
+  {dt:'2026-05-31T14:30',label:'⛴️ SeaJets ferry → Milos departs [not booked]',type:'plan'},
+  {dt:'2026-05-31T16:25',label:'🏨 Check in Boho Sapiens Marina Milos (arrive port ~4:25PM)',type:'hotel'},
+  {dt:'2026-06-01T00:00',label:'🚨 Milos becomes 100% non-refundable today (A$2,011)',type:'urgent'},
+  {dt:'2026-06-04T09:00',label:'⚠️ TODAY: Last safe day to cancel Rome in a Day (8-day rule)',type:'urgent'},
+  {dt:'2026-06-05T10:45',label:'⛴️ SuperJet Milos→Paros departs [not booked]',type:'plan'},
+  {dt:'2026-06-05T11:00',label:'🏨 Checkout Boho Sapiens Marina Milos (by 11AM)',type:'hotel'},
+  {dt:'2026-06-09T10:45',label:'⛴️ SeaJets Paros→Athens departs [not booked]',type:'plan'},
+  {dt:'2026-06-09T17:30',label:'✈️ Arrive Rome · Aegean A3654 [not booked]',type:'plan'},
+  {dt:'2026-06-10T15:00',label:'🎭 Pasta & Tiramisu Cooking · Via Zanardelli 14',type:'tour'},
+  {dt:'2026-06-11T09:30',label:'🎭 Rome in a Day · Via Terme di Tito 72 🟢 green sign',type:'tour'},
+  {dt:'2026-06-14T09:00',label:'🚗 Drive Rome→Amalfi Coast [car hire not booked]',type:'plan'},
+  {dt:'2026-06-19T15:30',label:'✈️ EasyJet Naples→Paris CDG departs [not booked]',type:'plan'},
+  {dt:'2026-06-23T08:00',label:'⚠️ Leave Paris hotel by 08:00 — EY32 departs CDG 10:40!',type:'urgent'},
+  {dt:'2026-06-23T10:40',label:'✈️ EY32 departs Paris CDG → Abu Dhabi · seat 2H · First Comfort',type:'flight'},
+  {dt:'2026-06-26T09:00',label:'🚗 Transfer Abu Dhabi→Dubai [not booked]',type:'plan'},
+  {dt:'2026-06-29T10:25',label:'✈️ EY450 departs Abu Dhabi→Sydney · seat 8G 🏠',type:'flight'},
+];
+
+function tod(){const n=new Date();return new Date(n.getFullYear(),n.getMonth(),n.getDate());}
+function pDt(s){const[d,t]=s.split('T'),[y,mo,dy]=d.split('-').map(Number);if(!t)return new Date(y,mo-1,dy);const[h,mi]=t.split(':').map(Number);return new Date(y,mo-1,dy,h,mi);}
+function fWhen(dt){
+  const now=new Date(),diff=dt-now;
+  if(diff<0)return'passed';
+  const m=Math.floor(diff/60000);if(m<60)return'in '+m+'m';
+  const h=Math.floor(diff/3600000);if(h<24)return'in '+h+'h';
+  const d=Math.floor(diff/86400000);if(d===1)return'tomorrow';return'in '+d+' days';
+}
+function dLabel(dt){return dt.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'});}
+
 function upCD(){
   const dep=new Date('2026-05-19T15:40:00+10:00'),now=new Date(),diff=dep-now;
   const el=document.getElementById('cd'),lbl=document.getElementById('cdl');
   if(!el)return;
-  if(diff>0){const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000);el.textContent=d===0?h+'h':d;}
-  else{el.textContent='🛫';if(lbl)lbl.textContent='bon voyage!';}
+  if(diff>86400000){const d=Math.floor(diff/86400000);el.textContent=d;}
+  else if(diff>0){const h=Math.floor(diff/3600000),m=Math.floor((diff%3600000)/60000);el.textContent=h+'h '+m+'m';if(lbl)lbl.textContent='to takeoff!';}
+  else if(diff>-42*86400000){el.textContent='🛫';if(lbl)lbl.textContent='trip in progress!';}
+  else{el.textContent='🏠';if(lbl)lbl.textContent='welcome home!';}
 }
-upCD();setInterval(upCD,60000);
+
+function markDays(){
+  const t=tod();
+  document.querySelectorAll('.day[data-date]').forEach(row=>{
+    const[y,mo,d]=row.dataset.date.split('-').map(Number);
+    const rd=new Date(y,mo-1,d);
+    row.classList.remove('past','today');
+    if(rd<t){
+      row.classList.add('past');
+    } else if(rd.getTime()===t.getTime()){
+      row.classList.add('today');
+      const dest=row.querySelector('.ddest');
+      if(dest&&!dest.querySelector('.today-badge')){
+        const b=document.createElement('span');
+        b.className='today-badge';b.textContent='TODAY';dest.appendChild(b);
+      }
+    }
+  });
+  // Scroll to today on first load
+  const todRow=document.querySelector('.day.today');
+  if(todRow&&!window._scrolled){window._scrolled=true;setTimeout(()=>todRow.scrollIntoView({behavior:'smooth',block:'center'}),500);}
+}
+
+function buildUpcoming(){
+  const now=new Date(),in7=new Date(now.getTime()+7*86400000);
+  const up=EVENTS.filter(e=>{const dt=pDt(e.dt);return dt>=now&&dt<=in7;}).sort((a,b)=>pDt(a.dt)-pDt(b.dt)).slice(0,8);
+  const c=document.getElementById('upcoming');
+  if(!c)return;
+  if(!up.length){c.innerHTML='';return;}
+  const icons={flight:'✈️',hotel:'🏨',tour:'🎭',urgent:'🚨',action:'⚡',plan:'📌'};
+  let h=`<div class="up-card"><div class="up-hdr"><span>⚡ Coming Up — Next 7 Days</span><span style="font-weight:400;opacity:.8">${new Date().toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'})}</span></div>`;
+  up.forEach(e=>{
+    const dt=pDt(e.dt),w=fWhen(dt);
+    const isUrgent=e.type==='urgent';
+    const isToday=dt.toDateString()===now.toDateString();
+    const cls=isUrgent?'up-urg':isToday?'up-today':'';
+    h+=`<div class="up-row ${cls}"><span style="font-size:13px">${icons[e.type]||'📌'}</span><span style="flex:1">${e.label}</span><span class="up-when">${w}<br><span style="font-weight:400;font-size:8px">${dLabel(dt)}</span></span></div>`;
+  });
+  h+='</div>';
+  c.innerHTML=h;
+}
+
+function update(){upCD();markDays();buildUpcoming();}
+update();
+setInterval(update,60000);
 
 // View toggle
 function showView(v,btn){
