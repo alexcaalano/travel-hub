@@ -290,7 +290,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <div class="hdr-status">
     <div class="hs-item"><span class="hs-dot live"></span><span>Live time: <strong id="livetime">–</strong></span></div>
     <div class="hs-item" style="opacity:.5">|</div>
-    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>18 May 2026, 1:30 AM AEST</strong></span></div>
+    <div class="hs-item"><span class="hs-dot built"></span><span>Content last updated: <strong>19 May 2026, 12:00 AM AEST</strong></span></div>
   </div>
   <div class="route">
     <div class="rc">🇦🇺 SYD</div><span class="ra">›</span>
@@ -418,7 +418,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
           <div class="ddest">🇪🇸 Madrid → Barcelona</div>
           <div class="dtags">
             <span class="tag t-train">🚄 AVE 12:27→15:44 [not booked]</span>
-            <span class="tag t-hotel-need">🏨 Barcelona hotel needed ⚠️</span>
+            <span class="tag t-hotel">🏨 Catalonia Magdalenes — check-in 3PM ✓</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
@@ -430,8 +430,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
           <div class="dtags">
-            <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
-            <span class="tag t-tour">🎭 BCN in 1 Day Tour 9:00 AM ✓ (add hotel address!)</span>
+            <span class="tag t-hotel">🏨 Catalonia Magdalenes ✓</span>
+            <span class="tag t-tour">🎭 BCN in 1 Day Tour 9:00 AM ✓</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
@@ -443,7 +443,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
           <div class="dtags">
-            <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
+            <span class="tag t-hotel">🏨 Catalonia Magdalenes ✓</span>
             <span class="tag t-tour">🎭 Bike Tour 11:00 AM ✓ · 🔴 Plaça Reial</span>
             <span class="tag t-tour">🎭 Ramblas Walk 4:00 PM ✓ · 🤍 Plaça Catalunya</span>
           </div>
@@ -457,7 +457,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇪🇸 Barcelona</div>
           <div class="dtags">
-            <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
+            <span class="tag t-hotel">🏨 Catalonia Magdalenes ✓</span>
             <span class="tag t-free">💡 Montserrat day trip or beach</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -1006,9 +1006,11 @@ const EVENTS=[
   {dt:'2026-05-23T11:30',label:'🎭 Churros Cooking Class · Plaza de Chueca',type:'tour'},
   {dt:'2026-05-24T12:00',label:'🏨 Checkout Room Mate Oscar (by 12PM)',type:'hotel'},
   {dt:'2026-05-24T12:27',label:'🚄 AVE Train Madrid→Barcelona [not booked]',type:'plan'},
-  {dt:'2026-05-25T09:00',label:'🎭 BCN Day Tour · Hotel pickup (add hotel address!)',type:'tour'},
+  {dt:'2026-05-24T15:00',label:'🏨 Check in Catalonia Magdalenes, Barcelona (from 3PM) ✓',type:'hotel'},
+  {dt:'2026-05-25T09:00',label:'🎭 BCN Day Tour · Hotel pickup — Magdalenes 13-15',type:'tour'},
   {dt:'2026-05-26T11:00',label:'🎭 BCN Bike Tour · Plaça Reial fountain 🔴 red umbrella',type:'tour'},
   {dt:'2026-05-26T16:00',label:'🎭 Ramblas & Gaudí Walk · Foot Locker Plaça Catalunya 🤍',type:'tour'},
+  {dt:'2026-05-28T12:00',label:'🏨 Checkout Catalonia Magdalenes (by 12PM) ⚠️ tight before flight',type:'hotel'},
   {dt:'2026-05-28T12:15',label:'✈️ Aegean BCN→ATH→Santorini departs [not booked]',type:'plan'},
   {dt:'2026-05-28T15:00',label:'🏨 Check in Cocoon Suites Santorini (from 3PM)',type:'hotel'},
   {dt:'2026-05-31T11:00',label:'🏨 Checkout Cocoon Suites Santorini (by 11AM)',type:'hotel'},
@@ -1330,6 +1332,22 @@ const EV_DATA = {
     details:{loc:'Sarakiniko Beach, Milos',mapsQ:'Sarakiniko+Beach+Milos'},
     travel:'🚗 ~10 min drive from Adamas. Hire car or taxi.',
     tips:['Tentative post-wedding plan — no pressure at all','Sarakiniko is the famous moonscape beach — unmissable if you have not been!','Bring swimwear, towel, sunglasses, and snacks','Flat white rock surface gets very hot — wear thongs/slides']},
+
+
+  // ── BARCELONA HOTEL ────────────────────────────────────────────────────────
+  '2026-05-24T15:00':{type:'hotel',name:'Check in — Catalonia Magdalenes, Barcelona',dur:60,
+    details:{ref:'5931.712.969',addr:'Magdalenes, 13-15, Ciutat Vella, 08002 Barcelona',
+      mapsQ:'Catalonia+Magdalenes+13+Barcelona',checkIn:'24 May, from 3:00 PM',checkOut:'28 May, by 12:00 PM',
+      cancelBy:'21 May 2026 23:59 — free cancellation',cost:'A$1,843 approx — pay at property (€1,133.92)'},
+    travel:'🚄 AVE arrives Barcelona Sants (~3:44 PM). Metro L3 (Sants Estació → Liceu) then 5-min walk. Or taxi ~€15–20.',
+    inclusions:['Spa open 10:00 AM – 10:00 PM','Swimming pool (open during your stay)','Free WiFi throughout','AC, minibar, coffee machine, flat-screen TV','Safety deposit box, hairdryer, iron, satellite channels','Elevator access, private bathroom, desk'],
+    tips:['💍 Honeymoon request submitted — they may have a surprise waiting!','Requested arrival 12:00–13:00 but official check-in is from 3 PM. Call ahead to arrange early luggage drop or early check-in if available: +34 934 81 35 17','Pool is open during your stay ✓ (was only closed until 31 Mar 2026)','No prepayment — pay at property at checkout','⚠️ Cancel FREE before 21 May 2026 23:59 — costs €240 after that']},
+
+  '2026-05-28T12:00':{type:'hotel',name:'Checkout — Catalonia Magdalenes, Barcelona',dur:30,
+    details:{addr:'Magdalenes, 13-15, Ciutat Vella, 08002 Barcelona',mapsQ:'Catalonia+Magdalenes+13+Barcelona',
+      checkOut:'By 12:00 PM (noon)'},
+    travel:'🚕 Taxi to Barcelona Airport (T1 for Aegean) — allow 40 min minimum. Book the night before.',
+    tips:['⚠️ Checkout is at 12:00 PM and your flight departs at 12:15 PM — this timing needs resolving when you book the flight!','Ask the hotel for a wake-up call and have taxi pre-booked the night before','Leave bags at reception if you need a quick breakfast first','Barcelona airport security can be slow in peak season — buffer time is critical']},
 
 
 };
