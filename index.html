@@ -417,7 +417,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇪🇸 Madrid → Barcelona</div>
           <div class="dtags">
-            <span class="tag t-train">🚄 AVE 12:27→15:44 [not booked]</span>
+            <span class="tag t-train">🚄 AVE 11:27→15:11 · Ref 834HPM ✓</span>
             <span class="tag t-hotel">🏨 Catalonia Magdalenes — check-in 3PM ✓</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -1005,7 +1005,7 @@ const EVENTS=[
   {dt:'2026-05-21T17:30',label:'🎭 Paella & Sangria Cooking Class · C. Moratín 11',type:'tour'},
   {dt:'2026-05-23T11:30',label:'🎭 Churros Cooking Class · Plaza de Chueca',type:'tour'},
   {dt:'2026-05-24T12:00',label:'🏨 Checkout Room Mate Oscar (by 12PM)',type:'hotel'},
-  {dt:'2026-05-24T12:27',label:'🚄 AVE Train Madrid→Barcelona [not booked]',type:'plan'},
+  {dt:'2026-05-24T11:27',label:'🚄 AVE Madrid→Barcelona · Atocha 11:27 · Coach 16 ✓',type:'train'},
   {dt:'2026-05-24T15:00',label:'🏨 Check in Catalonia Magdalenes, Barcelona (from 3PM) ✓',type:'hotel'},
   {dt:'2026-05-25T09:00',label:'🎭 BCN Day Tour · Hotel pickup — Magdalenes 13-15',type:'tour'},
   {dt:'2026-05-26T11:00',label:'🎭 BCN Bike Tour · Plaça Reial fountain 🔴 red umbrella',type:'tour'},
@@ -1163,7 +1163,7 @@ const EV_DATA = {
   '2026-05-24T12:00':{type:'hotel',name:'Checkout — Room Mate Oscar',dur:30,
     details:{hotel:'Room Mate Oscar',addr:'Plaza de Pedro Zerolo, Chueca, Madrid',ref:'EXP-2455088058',
     checkOut:'By 12:00 PM',mapsQ:'Room+Mate+Oscar+Plaza+Pedro+Zerolo+Madrid'},
-    tips:['Request luggage storage at reception if your AVE train departs later','Reception can arrange a taxi to Atocha if needed (~25 min)']},
+    tips:['⚠️ Your AVE departs at 11:27 — check out by 10:30 AM and head straight to Atocha','Ask reception to arrange a taxi to Atocha the night before (allow 30 min drive)','Store bags at reception if needed while you check out early — they hold until pickup']},
 
   '2026-05-28T15:00':{type:'hotel',name:'Check in — Cocoon Suites, Santorini',dur:60,
     details:{hotel:'Cocoon Suites Imerovigli',addr:'Imerovigli, Santorini 847 00, Greece',ref:'BN: 6585436684',
@@ -1249,10 +1249,21 @@ const EV_DATA = {
     tips:['Great orientation tour — ideal to do early in your Barcelona stay','Wear comfortable walking shoes and bring water','Ends ~6:00 PM — good timing for Las Ramblas evening atmosphere','No entries into buildings — outdoor walking only']},
 
   // ── TRANSPORT ────────────────────────────────────────────────────────────
-  '2026-05-24T12:27':{type:'plan',name:'AVE Train: Madrid → Barcelona',dur:197,
-    details:{from:'Madrid Atocha (AVE platform)',to:'Barcelona Sants',note:'[Not booked] Approx 2h 30m. Book at Renfe.es or Ouigo.com',mapsQ:'Madrid+Atocha+train+station'},
-    travel:'🚖 Room Mate Oscar → Atocha: ~25 min walk or Metro Line 1 (Banco de España → Atocha, 4 stops). Allow 30 min before departure.',
-    tips:['Book at renfe.es — select AVE (high speed). Cheaper booked early.','Ouigo.com runs budget AVE from €9 — check availability','Departs Atocha (not Chamartín) for Barcelona Sants','Arrive Sants, then taxi or metro to your Barcelona hotel']},
+  '2026-05-24T11:27':{type:'train',name:'AVE: Madrid Atocha → Barcelona Sants',dur:224,
+    details:{from:'Madrid Puerta de Atocha',to:'Barcelona Sants',
+    localizador:'834HPM',ref:'2393067',cost:'€181.56 (2 adults)',
+    mapsQ:'Madrid+Atocha+train+station',
+    note:'AVE Estándar 03113 · Coach 16 · ⚠️ Boarding closes 2 min before departure'},
+    travel:'🚶 Room Mate Oscar → Atocha: ~25 min walk or Metro Line 1 (Banco de España → Atocha, 4 stops). Leave hotel by 10:45 AM — train boards before standard checkout.',
+    tickets:[
+      {label:'📄 Booking Confirmation (spainrail.com)',url:'./train-ticket-booking.pdf'},
+      {label:'🎟 Renfe Tickets — Alex & Demetra',url:'./train-ticket-alex-demetra.pdf'}
+    ],
+    passengers:[
+      {name:'Alex Serrano',seat:'Coach 16, Seat 16D',ticket:'7838602026257'},
+      {name:'Demetra',seat:'Coach 16, Seat 16C',ticket:'7838602026265'}
+    ],
+    tips:['⚠️ Checkout Room Mate Oscar by 10:30 AM — train departs before hotel checkout time','Boarding closes 2 minutes before departure — be on the platform by 11:20 at the latest','Arrives Barcelona Sants 15:11 — taxi or metro to Catalonia Magdalenes (~20 min, €15 taxi)','Seats 16C & 16D are side by side in Coach 16']},
 
   '2026-05-28T12:15':{type:'plan',name:'Aegean: Barcelona → Santorini',dur:180,
     details:{from:'Barcelona El Prat (BCN)',to:'Santorini (JTR) via Athens (ATH)',note:'[Not booked] Book at aegeanair.com or Skyscanner'},
@@ -1586,6 +1597,24 @@ function openEvDetail(dtKey, e){
     html+='<div style="background:#fffbeb;border:1px solid #f6e05e;border-radius:12px;padding:12px 14px"><div class="ev-d-sec-title" style="color:#744210;margin-bottom:6px">💡 Tips & Reminders</div><ul class="ev-d-list">';
     ev.tips.forEach(function(item){ html+='<li><span style="color:#b7791f;flex-shrink:0">→</span><span style="color:#744210">'+item+'</span></li>'; });
     html+='</ul></div>';
+  }
+
+  // Passengers
+  if(ev.passengers&&ev.passengers.length){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">🧳 Passengers</div><div style="display:flex;flex-direction:column;gap:6px">';
+    ev.passengers.forEach(function(p){
+      html+='<div style="background:#f7fafc;border-radius:8px;padding:9px 12px;font-size:11px;color:#2d3748"><strong style="color:#1a202c">'+p.name+'</strong> &nbsp;·&nbsp; '+p.seat+'<br><span style="color:#718096;font-size:10px">Ticket #'+p.ticket+'</span></div>';
+    });
+    html+='</div></div>';
+  }
+
+  // Tickets / PDFs
+  if(ev.tickets&&ev.tickets.length){
+    html+='<div class="ev-d-sec"><div class="ev-d-sec-title">🎟 Tickets</div><div style="display:flex;flex-direction:column;gap:8px">';
+    ev.tickets.forEach(function(t){
+      html+='<a href="'+t.url+'" target="_blank" style="display:flex;align-items:center;gap:10px;background:#ebf8ff;border:1px solid #90cdf4;border-radius:10px;padding:10px 14px;text-decoration:none;color:#2b6cb0;font-weight:600;font-size:12px">'+t.label+'<span style="margin-left:auto;font-size:11px;color:#4299e1;white-space:nowrap">Open PDF →</span></a>';
+    });
+    html+='</div></div>';
   }
 
   html+='</div>';
