@@ -1024,6 +1024,35 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 <footer>Alex &amp; Demetra · Honeymoon 2026 · Updated 19 May 2026 · <a href="https://github.com/alexcaalano/travel-hub" target="_blank" style="color:#a0aec0">github</a></footer>
 
 <script>
+// ── SEAJETS CHECK-IN DYNAMIC ALERT ──
+(function(){
+  // All times in UTC. Ferry departs 31 May 14:25 EEST (UTC+3) = 31 May 11:25 UTC
+  // Check-in opens 48h before departure = 29 May 11:25 UTC
+  // Check-in closes 2h before departure = 31 May 09:25 UTC
+  var WARN_START = Date.UTC(2026,4,27,11,25); // 48h before opens = 27 May 11:25 UTC
+  var CI_OPEN    = Date.UTC(2026,4,29,11,25); // 29 May 14:25 EEST
+  var CI_CLOSE   = Date.UTC(2026,4,31, 9,25); // 31 May 12:25 EEST
+  var now = Date.now();
+  if(now < WARN_START || now >= CI_CLOSE) return;
+
+  function fmt(ms){
+    var h=Math.floor(ms/36e5),m=Math.floor((ms%36e5)/6e4);
+    return h>0?h+'h '+m+'m':m+'m';
+  }
+  var el=document.createElement('div');
+  if(now < CI_OPEN){
+    var left=CI_OPEN-now;
+    el.className='alert al-wrn';
+    el.innerHTML='<span>⛴️</span><div><strong>SeaJets check-in opens in '+fmt(left)+'</strong>Opens 29 May 14:25 (Greek time) · Ref 1112QOMGC · <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#744210">webcheckin.seajets.com</a></div>';
+  } else {
+    var left=CI_CLOSE-now;
+    el.className='alert al-urg';
+    el.innerHTML='<span>🚨</span><div><strong>SeaJets check-in is NOW OPEN — closes in '+fmt(left)+'</strong>Check in now at <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#742a2a">webcheckin.seajets.com</a> · Ref 1112QOMGC · Alex &amp; Demetra both need to check in · Boarding passes issued on completion</div>';
+  }
+  var alerts=document.querySelector('.alerts');
+  if(alerts) alerts.insertBefore(el,alerts.firstChild);
+})();
+
 // ── KEY EVENTS ──
 const EVENTS=[
   {dt:'2026-05-18T15:40',label:'✈️ Etihad check-in opens — ref 84EI7Q (SYD→MAD)',type:'action'},
