@@ -641,13 +641,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       </div>
 
       <!-- 9 Jun -->
-      <div class="day d-open" data-date="2026-06-09" onclick="openDay(this.dataset.date)">
+      <div class="day d-transit" data-date="2026-06-09" onclick="openDay(this.dataset.date)">
         <div class="ddate"><div class="dnum">9</div><div class="dday">Tue</div></div>
         <div class="dcont">
           <div class="ddest">🇬🇷→🇮🇹 Paros → Rome</div>
           <div class="dtags">
             <span class="tag t-plan">⛴️ SeaJets 10:45→13:50 [not booked]</span>
-            <span class="tag t-plan">✈️ Aegean A3654 16:25→17:30 [not booked]</span>
+            <span class="tag t-flight">✈️ Aegean A3654 16:30→17:35 ATH→FCO ✓ · Seats 4C/4B · Ref 9JYVWR</span>
             <span class="tag t-hotel-need">🏨 Rome hotel needed ⚠️</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -1249,7 +1249,7 @@ const EVENTS=[
   {dt:'2026-06-05T10:45',label:'⛴️ SeaJets SUPERJET · Milos→Paros 10:45 · Ref 1112QWQQF ✓',type:'ferry'},
   {dt:'2026-06-05T11:00',label:'🏨 Checkout Boho Sapiens Marina Milos (by 11AM)',type:'hotel'},
   {dt:'2026-06-09T10:45',label:'⛴️ SeaJets Paros→Athens departs [not booked]',type:'plan'},
-  {dt:'2026-06-09T17:30',label:'✈️ Arrive Rome · Aegean A3654 [not booked]',type:'plan'},
+  {dt:'2026-06-09T16:30',label:'✈️ Aegean A3654 departs Athens 16:30 → Rome 17:35 · Ref 9JYVWR · Seats 4C/4B ✓',type:'flight'},
   {dt:'2026-06-10T15:00',label:'🎭 Pasta & Tiramisu Cooking · Via Zanardelli 14',type:'tour'},
   {dt:'2026-06-11T09:30',label:'🎭 Rome in a Day · Via Terme di Tito 72 🟢 green sign',type:'tour'},
   {dt:'2026-06-14T09:00',label:'🚗 Drive Rome→Amalfi Coast [car hire not booked]',type:'plan'},
@@ -1613,8 +1613,21 @@ const EV_DATA = {
   '2026-06-09T10:45':{type:'plan',name:'Ferry: Paros → Athens',dur:185,
     details:{from:'Paros New Port',to:'Piraeus, Athens',note:'[Not booked] Book at seajets.gr or ferryhopper.com'}},
 
-  '2026-06-09T16:25':{type:'plan',name:'Aegean A3654: Athens → Rome',dur:65,
-    details:{from:'Athens International (ATH)',to:'Rome Fiumicino (FCO)',note:'[Not booked] Book at aegeanair.com'}},
+  '2026-06-09T16:30':{type:'flight',name:'Aegean A3654: Athens → Rome Fiumicino',dur:65,
+    details:{loc:'Athens El. Venizelos International Airport (ATH) — Terminal main',mapsQ:'Athens+International+Airport+El+Venizelos',
+    cost:'€644.88 (2 adults incl. baggage + fast track)',ref:'9JYVWR',
+    note:'Departs 16:30 · Arrives Rome Fiumicino Terminal 1 at 17:35. Both have 32kg checked baggage + Security Fast Track. Airbus A321, ComfortFlex fare.'},
+    travel:'🚇 From Paros: ferry to Piraeus, then metro or taxi to Athens airport (allow ~4–5h total). Check-in closes 45 min before departure — aim to be at airport by 14:30.',
+    tickets:[
+      {label:'📄 Aegean Booking Confirmation (Ref 9JYVWR)',url:'./aegean-athens-rome.pdf'}
+    ],
+    passengers:[
+      {name:'Alex Serrano',seat:'Seat 4C (Up Front) · Ticket 390-2483259282 · 1x 32kg bag · Fast Track ✓'},
+      {name:'Demetra Alexandrou',seat:'Seat 4B (Up Front) · Ticket 390-2483259281 · 1x 32kg bag · Fast Track ✓'}
+    ],
+    inclusions:['2x economy seats (Up Front, row 4)','2x 32kg checked baggage','2x Security Fast Track','Carry-on baggage (8kg) + personal item each'],
+    exclusions:['Airport transfer','Meals (short flight)'],
+    tips:['🛂 Security Fast Track is on your boarding pass — use the fast lane at Athens airport','🧳 Check in bags early — both 32kg bags booked','🏛️ Rome Fiumicino Terminal 1 — take train to Rome city (30 min, €14)','⏰ Leave Paros early — Paros→Athens ferry + metro = ~4.5h','📱 Check in online 48h before departure at aegeanair.com']},
 
   '2026-06-19T15:30':{type:'plan',name:'EasyJet: Naples → Paris CDG',dur:140,
     details:{from:'Naples Capodichino (NAP)',to:'Paris Charles de Gaulle (CDG)',note:'[Not booked] Book at easyjet.com'},
