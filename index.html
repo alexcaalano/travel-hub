@@ -1051,6 +1051,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 
 <footer>Alex &amp; Demetra · Honeymoon 2026 · Updated 19 May 2026 · <a href="https://github.com/alexcaalano/travel-hub" target="_blank" style="color:#a0aec0">github</a></footer>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
 <script>
 // ── AUTO-HIDE EXPIRED ALERTS ──
 (function(){
@@ -1113,7 +1115,10 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   if(alerts) alerts.insertBefore(el,alerts.firstChild);
 })();
 
-// ── DAILY NOTES ──
+// ── SHARED DAILY NOTES (Firebase Realtime Database) ──
+var _fbApp = firebase.initializeApp({ databaseURL: 'https://honeymoon-hub-default-rtdb.firebaseio.com/' });
+var _db = firebase.database();
+
 function autoResizeTA(ta){
   ta.style.height='auto';
   ta.style.height=ta.scrollHeight+'px';
@@ -1128,19 +1133,6 @@ function toggleNotes(date,e){
     if(ta){autoResizeTA(ta);setTimeout(function(){ta.focus();},50);}
   }
 }
-function saveNote(date){
-  var ta=document.getElementById('note-ta-'+date);
-  if(!ta) return;
-  autoResizeTA(ta);
-  var val=ta.value;
-  if(val.trim()){
-    localStorage.setItem('note_'+date,val);
-  } else {
-    localStorage.removeItem('note_'+date);
-  }
-  var btn=document.getElementById('notes-btn-'+date);
-  if(btn){btn.className='notes-btn'+(val.trim()?' has-note':'');btn.innerHTML='📝 '+(val.trim()?'Journal ✎':'Notes');}
-}
 function fmtNoteDate(dateStr){
   try{var d=new Date(dateStr+'T12:00:00');return d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}catch(e){return dateStr;}
 }
@@ -1149,30 +1141,71 @@ function initNotes(){
     var date=day.dataset.date;
     var dcont=day.querySelector('.dcont');
     if(!dcont) return;
-    var saved=localStorage.getItem('note_'+date)||'';
+
     var btn=document.createElement('button');
     btn.id='notes-btn-'+date;
-    btn.className='notes-btn'+(saved?' has-note':'');
-    btn.innerHTML='📝 '+(saved?'Journal ✎':'Notes');
+    btn.className='notes-btn';
+    btn.innerHTML='📝 Notes';
     btn.onclick=function(e){toggleNotes(date,e);};
+
     var sec=document.createElement('div');
     sec.className='notes-section';
     sec.id='notes-'+date;
+
     var lbl=document.createElement('div');
     lbl.className='notes-date-label';
     lbl.textContent='✍️ '+fmtNoteDate(date);
+
     var ta=document.createElement('textarea');
     ta.className='notes-area';
     ta.id='note-ta-'+date;
     ta.placeholder='Write your memories for today…';
-    ta.value=saved;
-    ta.oninput=function(){saveNote(date);};
     ta.onclick=function(e){e.stopPropagation();};
-    if(saved){setTimeout(function(){autoResizeTA(ta);},0);}
+
+    // Write to Firebase on input (debounced 600ms)
+    var _saveTimer=null;
+    ta.oninput=function(){
+      autoResizeTA(ta);
+      var val=ta.value;
+      btn.className='notes-btn'+(val.trim()?' has-note':'');
+      btn.innerHTML='📝 '+(val.trim()?'Journal ✎':'Notes');
+      clearTimeout(_saveTimer);
+      _saveTimer=setTimeout(function(){
+        if(val.trim()){
+          _db.ref('notes/'+date).set(val);
+        } else {
+          _db.ref('notes/'+date).remove();
+        }
+      },600);
+    };
+
     sec.appendChild(lbl);
     sec.appendChild(ta);
     dcont.appendChild(btn);
     dcont.appendChild(sec);
+
+    // Real-time listener — syncs changes from either person instantly
+    _db.ref('notes/'+date).on('value',function(snap){
+      var val=snap.val()||'';
+      // Don't overwrite while this person is actively typing
+      if(document.activeElement===ta) return;
+      ta.value=val;
+      if(val){setTimeout(function(){autoResizeTA(ta);},0);}
+      btn.className='notes-btn'+(val?' has-note':'');
+      btn.innerHTML='📝 '+(val?'Journal ✎':'Notes');
+    });
+
+    // One-time migration: push any localStorage note to Firebase if Firebase is empty
+    (function(d,textarea){
+      var local=localStorage.getItem('note_'+d);
+      if(!local) return;
+      _db.ref('notes/'+d).once('value',function(snap){
+        if(!snap.val()){
+          _db.ref('notes/'+d).set(local);
+        }
+        localStorage.removeItem('note_'+d);
+      });
+    })(date,ta);
   });
 }
 document.addEventListener('DOMContentLoaded',initNotes);
