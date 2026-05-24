@@ -646,7 +646,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇬🇷→🇮🇹 Paros → Rome</div>
           <div class="dtags">
-            <span class="tag t-plan">⛴️ SeaJets 10:45→13:50 [not booked]</span>
+            <span class="tag t-ferry">⛴️ SeaJets SUPERRUNNER JET 09:40→13:15 ✓ · Ref 1112QWRPD</span>
             <span class="tag t-flight">✈️ Aegean A3654 16:30→17:35 ATH→FCO ✓ · Seats 4C/4B · Ref 9JYVWR</span>
             <span class="tag t-hotel-need">🏨 Rome hotel needed ⚠️</span>
           </div>
@@ -1115,6 +1115,29 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   if(alerts) alerts.insertBefore(el,alerts.firstChild);
 })();
 
+// ── SEAJETS PAROS→RAFINA CHECK-IN DYNAMIC ALERT ──
+(function(){
+  // Ferry departs 9 Jun 09:40 EEST (UTC+3) = 9 Jun 06:40 UTC
+  var WARN_START = Date.UTC(2026,5,5,6,40);  // 48h before CI_OPEN = 5 Jun 06:40 UTC
+  var CI_OPEN    = Date.UTC(2026,5,7,6,40);  // 7 Jun 09:40 EEST
+  var CI_CLOSE   = Date.UTC(2026,5,9,4,40);  // 9 Jun 07:40 EEST (2h before departure)
+  var now = Date.now();
+  if(now < WARN_START || now >= CI_CLOSE) return;
+  function fmt(ms){var h=Math.floor(ms/36e5),m=Math.floor((ms%36e5)/6e4);return h>0?h+'h '+m+'m':m+'m';}
+  var el=document.createElement('div');
+  if(now < CI_OPEN){
+    var left=CI_OPEN-now;
+    el.className='alert al-wrn';
+    el.innerHTML='<span>⛴️</span><div><strong>SeaJets Paros→Rafina check-in opens in '+fmt(left)+'</strong>Opens 7 Jun 09:40 (Greek time) · Ref 1112QWRPD · <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#744210">webcheckin.seajets.com</a></div>';
+  } else {
+    var left=CI_CLOSE-now;
+    el.className='alert al-urg';
+    el.innerHTML='<span>🚨</span><div><strong>SeaJets Paros→Rafina check-in is NOW OPEN — closes in '+fmt(left)+'</strong>Check in at <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#742a2a">webcheckin.seajets.com</a> · Ref 1112QWRPD · Both Alex &amp; Demetra</div>';
+  }
+  var alerts=document.querySelector('.alerts');
+  if(alerts) alerts.insertBefore(el,alerts.firstChild);
+})();
+
 // ── SHARED DAILY NOTES (Firebase Realtime Database) ──
 var _fbApp = firebase.initializeApp({ databaseURL: 'https://honeymoon-hub-default-rtdb.firebaseio.com/' });
 var _db = firebase.database();
@@ -1248,7 +1271,7 @@ const EVENTS=[
   {dt:'2026-06-04T09:00',label:'⚠️ TODAY: Last safe day to cancel Rome in a Day (8-day rule)',type:'urgent'},
   {dt:'2026-06-05T10:45',label:'⛴️ SeaJets SUPERJET · Milos→Paros 10:45 · Ref 1112QWQQF ✓',type:'ferry'},
   {dt:'2026-06-05T11:00',label:'🏨 Checkout Boho Sapiens Marina Milos (by 11AM)',type:'hotel'},
-  {dt:'2026-06-09T10:45',label:'⛴️ SeaJets Paros→Athens departs [not booked]',type:'plan'},
+  {dt:'2026-06-09T09:40',label:'⛴️ SeaJets SUPERRUNNER JET · Paros→Rafina 09:40→13:15 · Ref 1112QWRPD ✓',type:'ferry'},
   {dt:'2026-06-09T16:30',label:'✈️ Aegean A3654 departs Athens 16:30 → Rome 17:35 · Ref 9JYVWR · Seats 4C/4B ✓',type:'flight'},
   {dt:'2026-06-10T15:00',label:'🎭 Pasta & Tiramisu Cooking · Via Zanardelli 14',type:'tour'},
   {dt:'2026-06-11T09:30',label:'🎭 Rome in a Day · Via Terme di Tito 72 🟢 green sign',type:'tour'},
@@ -1610,8 +1633,21 @@ const EV_DATA = {
     ],
     tips:['🎫 Online check-in opens 3 Jun 10:45 EEST, closes 5 Jun 08:45 EEST · webcheckin.seajets.com','Or collect at Adamas Port agency 1h before with booking ref + passport','Boho Sapiens Marina is 2 min from port — easiest morning of the trip','⚠️ Ferry 10:45 · hotel checkout 11:00 — confirm early checkout with Boho Sapiens the day before','SUPERJET is fast — can be choppy in open water, sit lower deck if motion-sensitive']},
 
-  '2026-06-09T10:45':{type:'plan',name:'Ferry: Paros → Athens',dur:185,
-    details:{from:'Paros New Port',to:'Piraeus, Athens',note:'[Not booked] Book at seajets.gr or ferryhopper.com'}},
+  '2026-06-09T09:40':{type:'ferry',name:'SeaJets SUPERRUNNER JET: Paros → Rafina',dur:215,
+    details:{loc:'Paros New Port (PAS) — follow signs to SeaJets terminal',mapsQ:'Paros+New+Port+Ferry+Terminal',
+    cost:'€199.40 (2 adults, Platinum class)',ref:'1112QWRPD',
+    note:'Departs Paros 09:40 · Arrives Rafina (RAF) 13:15. Platinum class. Check in at port at least 1 hour before departure — be there by 08:40. Bring booking ref + ID/passport.'},
+    travel:'🚗 Rafina port → Athens Airport (ATH): ~25 min by taxi (€25–35). Perfect connection for 16:30 Aegean flight. Aim to leave Rafina by 13:45 to be at airport by 14:15.',
+    tickets:[
+      {label:'📄 SeaJets Booking Confirmation (Ref 1112QWRPD)',url:'./seajets-paros-athens.pdf'}
+    ],
+    passengers:[
+      {name:'Alex Serrano',seat:'Platinum Class · Loyalty Card 7140946250'},
+      {name:'Demetra Alexandrou',seat:'Platinum Class · Loyalty Card 2073985233'}
+    ],
+    inclusions:['2x Platinum class ferry tickets','SeaJets SUPERRUNNER JET vessel'],
+    exclusions:['Port transfer / taxi to Athens airport','Meals onboard'],
+    tips:['⏰ Be at Paros New Port by 08:40 (1h before departure)','🪪 Bring booking ref 1112QWRPD + passport/ID for boarding','🚕 From Rafina to Athens Airport is only ~25 min — perfect for your 16:30 Aegean flight','📱 Online check-in opens 48h before departure (7 Jun 09:40) at seajets.com — use last name + booking ref','🔗 Check in at webcheckin.seajets.com · Ref 1112QWRPD']},
 
   '2026-06-09T16:30':{type:'flight',name:'Aegean A3654: Athens → Rome Fiumicino',dur:65,
     details:{loc:'Athens El. Venizelos International Airport (ATH) — Terminal main',mapsQ:'Athens+International+Airport+El+Venizelos',
