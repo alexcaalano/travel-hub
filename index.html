@@ -321,9 +321,9 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 </div>
 
 <div class="alerts">
-  <div class="alert al-urg"><span>🚨</span><div><strong>Tapas Tour — last chance to cancel by 19 May 12:30 PM or A$280.88 is charged</strong>Act now if you want to cancel.</div></div>
-  <div class="alert al-inf"><span>🚐</span><div><strong>BCN Day Tour pickup confirmed — 9:10 AM, Catalonia Magdalenes lobby</strong>Guide: Niloufar · 📞 +34 657 204 220 · Save this number!</div></div>
-  <div class="alert al-wrn"><span>⚠️</span><div><strong>Rome in a Day — cancel by 4 June if needed (8-day policy)</strong>A$740.22 already paid. Non-standard window.</div></div>
+  <div class="alert al-urg" data-expires="2026-05-19T12:30"><span>🚨</span><div><strong>Tapas Tour — last chance to cancel by 19 May 12:30 PM or A$280.88 is charged</strong>Act now if you want to cancel.</div></div>
+  <div class="alert al-inf" data-expires="2026-05-25T23:59"><span>🚐</span><div><strong>BCN Day Tour pickup confirmed — 9:10 AM, Catalonia Magdalenes lobby</strong>Guide: Niloufar · 📞 +34 657 204 220 · Save this number!</div></div>
+  <div class="alert al-wrn" data-expires="2026-06-04T23:59"><span>⚠️</span><div><strong>Rome in a Day — cancel by 4 June if needed (8-day policy)</strong>A$740.22 already paid. Non-standard window.</div></div>
 </div>
 
 <div class="main">
@@ -1052,6 +1052,15 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 <footer>Alex &amp; Demetra · Honeymoon 2026 · Updated 19 May 2026 · <a href="https://github.com/alexcaalano/travel-hub" target="_blank" style="color:#a0aec0">github</a></footer>
 
 <script>
+// ── AUTO-HIDE EXPIRED ALERTS ──
+(function(){
+  var now = Date.now();
+  document.querySelectorAll('.alert[data-expires]').forEach(function(el){
+    var exp = new Date(el.dataset.expires).getTime();
+    if(!isNaN(exp) && now > exp){ el.style.display='none'; }
+  });
+})();
+
 // ── SEAJETS CHECK-IN DYNAMIC ALERT ──
 (function(){
   // All times in UTC. Ferry departs 31 May 14:25 EEST (UTC+3) = 31 May 11:25 UTC
