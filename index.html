@@ -282,11 +282,12 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 .notes-btn{display:inline-flex;align-items:center;gap:4px;background:#edf2f7;border:none;border-radius:8px;padding:4px 10px;font-size:9px;font-weight:600;color:#718096;cursor:pointer;margin-top:5px;transition:background .15s}
 .notes-btn:hover{background:#e2e8f0;color:#4a5568}
 .notes-btn.has-note{background:#fefcbf;color:#744210}
-.notes-section{display:none;margin-top:6px}
+.notes-section{display:none;margin-top:8px;background:#fffef5;border-radius:10px;padding:10px 12px 8px;border-left:3px solid #fbd38d}
 .notes-section.open{display:block}
-.notes-area{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:11px;color:#2d3748;resize:vertical;min-height:70px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fffef5;line-height:1.5}
-.notes-area:focus{outline:none;border-color:#63b3ed;background:white}
-.notes-area::placeholder{color:#cbd5e0}
+.notes-date-label{font-size:9px;font-weight:700;color:#b7791f;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.notes-area{width:100%;border:none;padding:0;font-size:12px;color:#2d3748;resize:none;overflow:hidden;min-height:18px;height:auto;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:transparent;line-height:1.7;display:block}
+.notes-area:focus{outline:none}
+.notes-area::placeholder{color:#d4b896;font-style:italic}
 
 </style>
 </head>
@@ -1104,6 +1105,10 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 })();
 
 // ── DAILY NOTES ──
+function autoResizeTA(ta){
+  ta.style.height='auto';
+  ta.style.height=ta.scrollHeight+'px';
+}
 function toggleNotes(date,e){
   if(e){e.stopPropagation();}
   var sec=document.getElementById('notes-'+date);
@@ -1111,21 +1116,24 @@ function toggleNotes(date,e){
   sec.classList.toggle('open');
   if(sec.classList.contains('open')){
     var ta=sec.querySelector('textarea');
-    if(ta) setTimeout(function(){ta.focus();},50);
+    if(ta){autoResizeTA(ta);setTimeout(function(){ta.focus();},50);}
   }
 }
 function saveNote(date){
   var ta=document.getElementById('note-ta-'+date);
   if(!ta) return;
+  autoResizeTA(ta);
   var val=ta.value;
   if(val.trim()){
     localStorage.setItem('note_'+date,val);
   } else {
     localStorage.removeItem('note_'+date);
   }
-  // Update button indicator
   var btn=document.getElementById('notes-btn-'+date);
-  if(btn) btn.className='notes-btn'+(val.trim()?' has-note':'');
+  if(btn){btn.className='notes-btn'+(val.trim()?' has-note':'');btn.innerHTML='📝 '+(val.trim()?'Journal ✎':'Notes');}
+}
+function fmtNoteDate(dateStr){
+  try{var d=new Date(dateStr+'T12:00:00');return d.toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}catch(e){return dateStr;}
 }
 function initNotes(){
   document.querySelectorAll('.day[data-date]').forEach(function(day){
@@ -1136,18 +1144,23 @@ function initNotes(){
     var btn=document.createElement('button');
     btn.id='notes-btn-'+date;
     btn.className='notes-btn'+(saved?' has-note':'');
-    btn.innerHTML='📝 Notes'+(saved?' ✎':'');
+    btn.innerHTML='📝 '+(saved?'Journal ✎':'Notes');
     btn.onclick=function(e){toggleNotes(date,e);};
     var sec=document.createElement('div');
     sec.className='notes-section';
     sec.id='notes-'+date;
+    var lbl=document.createElement('div');
+    lbl.className='notes-date-label';
+    lbl.textContent='✍️ '+fmtNoteDate(date);
     var ta=document.createElement('textarea');
     ta.className='notes-area';
     ta.id='note-ta-'+date;
-    ta.placeholder='Add your memories and notes for this day…';
+    ta.placeholder='Write your memories for today…';
     ta.value=saved;
     ta.oninput=function(){saveNote(date);};
     ta.onclick=function(e){e.stopPropagation();};
+    if(saved){setTimeout(function(){autoResizeTA(ta);},0);}
+    sec.appendChild(lbl);
     sec.appendChild(ta);
     dcont.appendChild(btn);
     dcont.appendChild(sec);
