@@ -278,6 +278,16 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
 .day{cursor:pointer}
 .day:active{opacity:.85}
 
+/* Daily Notes */
+.notes-btn{display:inline-flex;align-items:center;gap:4px;background:#edf2f7;border:none;border-radius:8px;padding:4px 10px;font-size:9px;font-weight:600;color:#718096;cursor:pointer;margin-top:5px;transition:background .15s}
+.notes-btn:hover{background:#e2e8f0;color:#4a5568}
+.notes-btn.has-note{background:#fefcbf;color:#744210}
+.notes-section{display:none;margin-top:6px}
+.notes-section.open{display:block}
+.notes-area{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:8px 10px;font-size:11px;color:#2d3748;resize:vertical;min-height:70px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fffef5;line-height:1.5}
+.notes-area:focus{outline:none;border-color:#63b3ed;background:white}
+.notes-area::placeholder{color:#cbd5e0}
+
 </style>
 </head>
 <body>
@@ -443,7 +453,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
           <div class="dtags">
             <span class="tag t-hotel">🏨 Catalonia Magdalenes ✓</span>
             <span class="tag t-tour">🎭 Bike Tour 11:00 AM ✓ · 🔴 Plaça Reial</span>
-            <span class="tag t-tour">🥘 Paella & Boqueria Tour 4:00 PM ✓ · Travel Bar</span>
+            <span class="tag t-tour">⛪ Sagrada Família 2:45 PM ✓ · Alex + Demetra</span>
+            <span class="tag t-tour">⛪ Sagrada Família 6:15 PM ✓ · Both (GYG 2x)</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
@@ -457,6 +468,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
           <div class="dtags">
             <span class="tag t-hotel">🏨 Catalonia Magdalenes ✓</span>
             <span class="tag t-tour">🎭 Ramblas Walk 10:30 AM ✓ · 🤍 Foot Locker Plaça Catalunya</span>
+            <span class="tag t-tour">🥘 Paella & Boqueria Tour 4:00 PM ✓ · Travel Bar</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
@@ -931,8 +943,10 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
       <div class="rrow"><div><div style="font-size:10px;font-weight:700">Chocolate &amp; Churros Class</div><div style="font-size:9px;color:#718096">23 May 11:30 · Plaza de Chueca metro stairs</div></div></div>
       <div class="rrow"><div><div style="font-size:10px;font-weight:700">BCN in 1 Day — Full Day Tour ✓</div><div style="font-size:9px;color:#718096">25 May 9:10 AM pickup · Guide: Niloufar · Catalonia Magdalenes lobby</div></div></div>
       <div class="rrow"><div><div style="font-size:10px;font-weight:700">BCN Bike Tour · Hidden Gems</div><div style="font-size:9px;color:#718096">26 May 11:00 · Plaça Reial · 🔴 red umbrella</div></div></div>
-      <div class="rrow"><div><div style="font-size:10px;font-weight:700">Paella &amp; Boqueria Market Tour</div><div style="font-size:9px;color:#718096">26 May 16:00 · Travel Bar, Carrer de la Boqueria 27 · GYG GYGRFQQAHHQA</div></div></div>
+      <div class="rrow"><div><div style="font-size:10px;font-weight:700">Sagrada Família 2:45 PM — Alex + Demetra</div><div style="font-size:9px;color:#718096">26 May 14:45 · Carrer de la Marina · 🪪 Photo ID · Alex: GYG GYGX7NF2LLBN · Demetra: Code 99875770</div></div></div>
+      <div class="rrow"><div><div style="font-size:10px;font-weight:700">Sagrada Família 6:15 PM — Both (2x GYG)</div><div style="font-size:9px;color:#718096">26 May 18:15 · Carrer de la Marina · 🪪 Photo ID · GYG GYGX7NF2FW7Q</div></div></div>
       <div class="rrow"><div><div style="font-size:10px;font-weight:700">Ramblas, Gothic &amp; Gaudí Walk</div><div style="font-size:9px;color:#718096">27 May 10:30 · Foot Locker Plaça Catalunya · 🤍</div></div></div>
+      <div class="rrow"><div><div style="font-size:10px;font-weight:700">Paella &amp; Boqueria Market Tour</div><div style="font-size:9px;color:#718096">27 May 16:00 · Travel Bar, Carrer de la Boqueria 27 · GYG GYGRFQQAHHQA</div></div></div>
     </div>
     <div class="rcard">
       <div class="rtitle">🎭 Viator — Rome</div>
@@ -952,11 +966,13 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <tr><td>23 May</td><td>Churros Class 🚫</td><td style="color:#9b2c2c">Non-refundable</td><td class="paidc">Paid 16 May</td><td style="text-align:right" class="paidc">A$214.80 ✓</td></tr>
         <tr><td>25 May</td><td>BCN Day Tour</td><td>24 May</td><td>23 May</td><td style="text-align:right">A$328.70</td></tr>
         <tr><td>26 May</td><td>BCN Bike Tour</td><td>25 May</td><td>25 May</td><td style="text-align:right">A$161.92</td></tr>
-        <tr><td>26 May</td><td>Paella &amp; Boqueria Tour (GYG)</td><td>25 May 4:00 PM</td><td>25 May</td><td style="text-align:right">A$198.96</td></tr>
+        <tr><td>26 May</td><td>Sagrada Família 14:45 (Alex GYG + Demetra official 🚫)</td><td style="color:#9b2c2c">Non-refundable</td><td class="paidc">Paid</td><td style="text-align:right" class="paidc">A$54.94 ✓</td></tr>
+        <tr><td>26 May</td><td>Sagrada Família 18:15 (2x GYG 🚫)</td><td style="color:#9b2c2c">Non-refundable</td><td class="paidc">Paid (GYG)</td><td style="text-align:right" class="paidc">A$109.88 ✓</td></tr>
         <tr><td>27 May</td><td>Ramblas Walk</td><td>26 May</td><td>26 May</td><td style="text-align:right">A$110.78</td></tr>
+        <tr><td>27 May</td><td>Paella &amp; Boqueria Tour (GYG)</td><td>26 May 4:00 PM</td><td>26 May</td><td style="text-align:right">A$198.96</td></tr>
         <tr><td>10 Jun</td><td>Rome Cooking Class</td><td>9 Jun</td><td>9 Jun</td><td style="text-align:right">A$171.84</td></tr>
         <tr><td>11 Jun</td><td>Rome in a Day 🚫</td><td class="urg">4 June (8-day rule)</td><td class="paidc">Paid 16 May</td><td style="text-align:right" class="paidc">A$740.22 ✓</td></tr>
-        <tr style="background:#f7fafc"><td colspan="4" style="font-weight:800">Tours Total</td><td style="text-align:right;font-weight:800">A$2,831.62</td></tr>
+        <tr style="background:#f7fafc"><td colspan="4" style="font-weight:800">Tours Total</td><td style="text-align:right;font-weight:800">A$2,996.44</td></tr>
       </table>
     </div>
     <div class="rcard" style="grid-column:1/-1">
@@ -990,12 +1006,14 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Churros &amp; Chocolate Class 🚫</div><div style="font-size:9px;color:#9b2c2c;margin-top:1px">23 May · Madrid · Non-refundable · Paid ✓</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$214.80</td></tr>
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">BCN in 1 Day — Full Day Tour</div><div style="font-size:9px;color:#718096;margin-top:1px">25 May · Hotel pickup Magdalenes 13-15 · Viator #1398078665</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$328.70</td></tr>
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Barcelona Bike Tour</div><div style="font-size:9px;color:#718096;margin-top:1px">26 May · Plaça Reial fountain 🔴 red umbrella · Viator</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$161.92</td></tr>
-        <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Paella &amp; Boqueria Market Tour</div><div style="font-size:9px;color:#718096;margin-top:1px">26 May · Travel Bar, Carrer de la Boqueria 27 · GYG GYGRFQQAHHQA</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$198.96</td></tr>
+        <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Sagrada Família 14:45 — Alex + Demetra 🚫</div><div style="font-size:9px;color:#9b2c2c;margin-top:1px">26 May · Alex: GYG GYGX7NF2LLBN · Demetra: Official Code 99875770 · Non-refundable · Paid ✓</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$54.94</td></tr>
+        <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Sagrada Família 18:15 — Both 2x 🚫</div><div style="font-size:9px;color:#9b2c2c;margin-top:1px">26 May · GYG GYGX7NF2FW7Q · 2 adults · Non-refundable · Paid ✓</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$109.88</td></tr>
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Ramblas &amp; Gaudí Walking Tour</div><div style="font-size:9px;color:#718096;margin-top:1px">27 May · Foot Locker Plaça Catalunya 🤍 · Viator</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$110.78</td></tr>
+        <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Paella &amp; Boqueria Market Tour</div><div style="font-size:9px;color:#718096;margin-top:1px">27 May · Travel Bar, Carrer de la Boqueria 27 · GYG GYGRFQQAHHQA</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$198.96</td></tr>
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Pasta &amp; Tiramisu Cooking Class</div><div style="font-size:9px;color:#718096;margin-top:1px">10 Jun · Via Zanardelli 14, Rome · Viator</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$171.84</td></tr>
         <tr style="border-bottom:1px solid #f7fafc"><td style="padding:7px 10px"><div style="font-weight:700;font-size:11px">Rome in a Day: Vatican &amp; Colosseum 🚫</div><div style="font-size:9px;color:#9b2c2c;margin-top:1px">11 Jun · Via Terme di Tito 72 🟢 · Non-refundable · Paid ✓</div></td><td style="text-align:right;padding:7px 10px;font-weight:700;font-size:11px;white-space:nowrap;vertical-align:middle">A$740.22</td></tr>
-        <tr style="background:#f0fff4;border-bottom:2px solid #c6f6d5"><td style="padding:5px 10px;font-size:10px;color:#276749;font-weight:700">Tours subtotal</td><td style="text-align:right;padding:5px 10px;font-weight:800;font-size:11px;color:#276749;white-space:nowrap">A$2,831.62</td></tr>
-        <tr style="background:#2d3748"><td style="padding:10px;font-weight:800;color:white;font-size:12px">💰 GRAND TOTAL <span style="font-size:9px;font-weight:400;opacity:0.7">(known amounts, see note)</span></td><td style="text-align:right;padding:10px;font-weight:800;color:#68d391;font-size:14px;white-space:nowrap">~A$18,338</td></tr>
+        <tr style="background:#f0fff4;border-bottom:2px solid #c6f6d5"><td style="padding:5px 10px;font-size:10px;color:#276749;font-weight:700">Tours subtotal</td><td style="text-align:right;padding:5px 10px;font-weight:800;font-size:11px;color:#276749;white-space:nowrap">A$2,996.44</td></tr>
+        <tr style="background:#2d3748"><td style="padding:10px;font-weight:800;color:white;font-size:12px">💰 GRAND TOTAL <span style="font-size:9px;font-weight:400;opacity:0.7">(known amounts, see note)</span></td><td style="text-align:right;padding:10px;font-weight:800;color:#68d391;font-size:14px;white-space:nowrap">~A$18,503</td></tr>
         <tr style="background:#f7fafc"><td colspan="2" style="font-size:9px;color:#718096;padding:7px 10px;line-height:1.5">🚫 Non-refundable items. ~ = approximate (EUR converted or pay-at-property). Remaining destinations not yet booked.</td></tr>
       </table>
     </div>
@@ -1085,6 +1103,58 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   if(alerts) alerts.insertBefore(el,alerts.firstChild);
 })();
 
+// ── DAILY NOTES ──
+function toggleNotes(date,e){
+  if(e){e.stopPropagation();}
+  var sec=document.getElementById('notes-'+date);
+  if(!sec) return;
+  sec.classList.toggle('open');
+  if(sec.classList.contains('open')){
+    var ta=sec.querySelector('textarea');
+    if(ta) setTimeout(function(){ta.focus();},50);
+  }
+}
+function saveNote(date){
+  var ta=document.getElementById('note-ta-'+date);
+  if(!ta) return;
+  var val=ta.value;
+  if(val.trim()){
+    localStorage.setItem('note_'+date,val);
+  } else {
+    localStorage.removeItem('note_'+date);
+  }
+  // Update button indicator
+  var btn=document.getElementById('notes-btn-'+date);
+  if(btn) btn.className='notes-btn'+(val.trim()?' has-note':'');
+}
+function initNotes(){
+  document.querySelectorAll('.day[data-date]').forEach(function(day){
+    var date=day.dataset.date;
+    var dcont=day.querySelector('.dcont');
+    if(!dcont) return;
+    var saved=localStorage.getItem('note_'+date)||'';
+    var btn=document.createElement('button');
+    btn.id='notes-btn-'+date;
+    btn.className='notes-btn'+(saved?' has-note':'');
+    btn.innerHTML='📝 Notes'+(saved?' ✎':'');
+    btn.onclick=function(e){toggleNotes(date,e);};
+    var sec=document.createElement('div');
+    sec.className='notes-section';
+    sec.id='notes-'+date;
+    var ta=document.createElement('textarea');
+    ta.className='notes-area';
+    ta.id='note-ta-'+date;
+    ta.placeholder='Add your memories and notes for this day…';
+    ta.value=saved;
+    ta.oninput=function(){saveNote(date);};
+    ta.onclick=function(e){e.stopPropagation();};
+    sec.appendChild(ta);
+    dcont.appendChild(btn);
+    dcont.appendChild(sec);
+  });
+}
+document.addEventListener('DOMContentLoaded',initNotes);
+
 // ── KEY EVENTS ──
 const EVENTS=[
   {dt:'2026-05-18T15:40',label:'✈️ Etihad check-in opens — ref 84EI7Q (SYD→MAD)',type:'action'},
@@ -1103,8 +1173,10 @@ const EVENTS=[
   {dt:'2026-05-24T15:00',label:'🏨 Check in Catalonia Magdalenes, Barcelona (from 3PM) ✓',type:'hotel'},
   {dt:'2026-05-25T09:10',label:'🎭 BCN Day Tour · 9:10 AM pickup · Guide: Niloufar · Magdalenes lobby',type:'tour'},
   {dt:'2026-05-26T11:00',label:'🎭 BCN Bike Tour · Plaça Reial fountain 🔴 red umbrella',type:'tour'},
-  {dt:'2026-05-26T16:00',label:'🥘 Paella & Boqueria Market Tour · Travel Bar, Carrer de la Boqueria 27',type:'tour'},
+  {dt:'2026-05-26T14:45',label:'⛪ Sagrada Família · Alex (GYG GYGX7NF2LLBN) + Demetra (Official ticket) · 2:45 PM',type:'tour'},
+  {dt:'2026-05-26T18:15',label:'⛪ Sagrada Família · Both (GYG GYGX7NF2FW7Q) · 6:15 PM',type:'tour'},
   {dt:'2026-05-27T10:30',label:'🎭 Ramblas & Gaudí Walk · Foot Locker Plaça Catalunya 🤍',type:'tour'},
+  {dt:'2026-05-27T16:00',label:'🥘 Paella & Boqueria Market Tour · Travel Bar, Carrer de la Boqueria 27',type:'tour'},
   {dt:'2026-05-28T12:00',label:'🏨 Checkout Catalonia Magdalenes (by 12PM) ⚠️ tight before flight',type:'hotel'},
   {dt:'2026-05-28T12:15',label:'✈️ Aegean BCN→ATH→JTR · Ref 9IBY5U · Seats 14E/14F ✓',type:'flight'},
   {dt:'2026-05-28T15:00',label:'🏨 Check in Cocoon Suites Santorini (from 3PM)',type:'hotel'},
@@ -1361,9 +1433,42 @@ const EV_DATA = {
     exclusions:['Food and drinks','Gratuities','Personal insurance'],
     tips:['Arrive 15 minutes early — look for the red umbrella at the fountain','Wear closed-toe shoes and comfortable clothing','Bring a small backpack with water','Sunscreen & sunglasses in summer; light layer in cooler months','Tour runs rain or shine — ponchos provided if wet']},
 
-  '2026-05-26T16:00':{type:'tour',name:'Paella & Boqueria Market Tour',dur:180,
+  '2026-05-26T14:45':{type:'tour',name:'Sagrada Família Entry + Audio Guide (2:45 PM)',dur:90,
+    details:{loc:'Entrance on Carrer de la Marina, Barcelona (C/ de Mallorca 401)',mapsQ:'Sagrada+Familia+Barcelona',
+    cancelBy:'Non-refundable — cancellation deadline passed',cost:'Alex A$54.94 (GYG) + Demetra official ticket',ref:'Alex: GYG GYGX7NF2LLBN · Demetra: Official Code 99875770',
+    note:'⚠️ Must show PHOTO ID at entry. Enter at 2:45 PM — allowed up to 15 min afterward. No shorts, short skirts or sleeveless shirts.'},
+    travel:'🚇 Metro L2/L5 Sagrada Família (2 min walk). Enter from Carrer de la Marina side. Entry only at 2:45 PM or within 15 min after.',
+    tickets:[
+      {label:'📄 Alex — GYG Booking (GYGX7NF2LLBN)',url:'./sagrada-familia-alex.pdf'},
+      {label:'📄 Demetra — Official SF Ticket (Code 99875770)',url:'./sagrada-familia-demetra.pdf'}
+    ],
+    passengers:[
+      {name:'Alex Serrano',seat:'Adult · GYG GYGX7NF2LLBN · PIN: XHy1EX=B'},
+      {name:'Demetra Alexandrou',seat:'Adult · Official SF Ticket · Code: 99875770 · Locator: 297786823'}
+    ],
+    inclusions:['Sagrada Família entry ticket each','Audio guide app','Access to Nativity or Passion Facade (no tower)'],
+    exclusions:['Tour guide','Smartphone or headphones — bring your own','Tower access'],
+    tips:['📱 Alex audio guide: SF app → "Already have tickets?" → enter GYG code, use sfapp@getyourguide.com','📱 Demetra audio guide: SF app → enter code 99875770 as Reservation No.','🪪 Both must carry photo ID — mandatory for entry','👗 No shorts, short skirts, sleeveless shirts or walking sticks','🎧 Bring headphones — required for audio guide']},
+
+  '2026-05-26T18:15':{type:'tour',name:'Sagrada Família Entry + Audio Guide (6:15 PM)',dur:90,
+    details:{loc:'Entrance on Carrer de la Marina, Barcelona (also listed as C/ de Mallorca 401)',mapsQ:'Sagrada+Familia+Barcelona',
+    cancelBy:'Non-refundable — cancellation deadline passed',cost:'A$109.88 (2 adults, GYG)',ref:'GYG GYGX7NF2FW7Q',
+    note:'⚠️ Must show PHOTO ID at entry. Enter at 6:15 PM — allowed up to 15 min afterward. No shorts, short skirts or sleeveless shirts.'},
+    travel:'🚇 Metro L2/L5 Sagrada Família (2 min walk). Enter from Carrer de la Marina side. Do not arrive early — entry only allowed at 6:15 PM or within 15 min after.',
+    tickets:[
+      {label:'📄 GYG Booking — 2 Adults (GYGX7NF2FW7Q)',url:'./sagrada-familia-2x.pdf'}
+    ],
+    passengers:[
+      {name:'Alex Serrano',seat:'Adult · General Entry · Audio Guide · PIN: Sz1NmUEP'},
+      {name:'Demetra Alexandrou',seat:'Adult · General Entry · Audio Guide · PIN: Sz1NmUEP'}
+    ],
+    inclusions:['2x Sagrada Família entry tickets','Audio guide app for both (download from digital ticket or SF app)','Access to Nativity or Passion Facade (no tower — this option)'],
+    exclusions:['Tour guide','Smartphone or headphones — bring your own','Tower access (not selected)'],
+    tips:['📱 Download audio guide before you go: SF app → "Already have tickets?" → enter code as Reservation No., use sfapp@getyourguide.com for email','🪪 Both must carry photo ID — mandatory for entry','👗 No shorts, short skirts, sleeveless shirts or walking sticks allowed','🎧 Bring headphones — required for the audio guide (both phones needed)','💡 Evening light in Sagrada Família is stunning — great time slot!']},
+
+  '2026-05-27T16:00':{type:'tour',name:'Paella & Boqueria Market Tour',dur:180,
     details:{loc:'Travel Bar — Carrer de la Boqueria 27, 08002 Barcelona (near Las Ramblas)',mapsQ:'Carrer+de+la+Boqueria+27+Barcelona',
-    cancelBy:'25 May 4:00 PM (24h policy)',cost:'A$198.96',ref:'GYG GYGRFQQAHHQA',
+    cancelBy:'26 May 4:00 PM (24h policy)',cost:'A$198.96',ref:'GYG GYGRFQQAHHQA',
     note:'Arrive by 3:45 PM. Enter Travel Bar — staff will direct you to your guide at the door. Provider: Travel Bound · +34 932 494 123'},
     travel:'🚶 ~5 min walk from Plaça Reial (bike tour drop-off area). Head north along Las Ramblas and turn right onto Carrer de la Boqueria — Travel Bar is at No. 27, right next to La Boqueria market entrance.',
     tickets:[
