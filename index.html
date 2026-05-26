@@ -1313,6 +1313,8 @@ const EVENTS=[
   {dt:'2026-06-04T09:00',label:'⚠️ TODAY: Last safe day to cancel Rome in a Day (8-day rule)',type:'urgent'},
   {dt:'2026-06-05T10:45',label:'⛴️ SeaJets SUPERJET · Milos→Paros 10:45 · Ref 1112QWQQF ✓',type:'ferry'},
   {dt:'2026-06-05T11:00',label:'🏨 Checkout Boho Sapiens Marina Milos (by 11AM)',type:'hotel'},
+  {dt:'2026-06-05T15:00',label:'🏨 Check in Angels Villas · Naousa, Paros (from 3PM) · BN 6037.531.038 ✓',type:'hotel'},
+  {dt:'2026-06-09T08:00',label:'🏨 Checkout Angels Villas Paros (by 11AM) · ⚠️ Ferry 09:40 — leave by 08:15!',type:'hotel'},
   {dt:'2026-06-09T09:40',label:'⛴️ SeaJets SUPERRUNNER JET · Paros→Rafina 09:40→13:15 · Ref 1112QWRPD ✓',type:'ferry'},
   {dt:'2026-06-09T16:30',label:'✈️ Aegean A3654 departs Athens 16:30 → Rome 17:35 · Ref 9JYVWR · Seats 4C/4B ✓',type:'flight'},
   {dt:'2026-06-10T11:00',label:'🍕 Rome Street Food Tour · Campo de\' Fiori (Giordano Bruno statue) · Ref 1402460413 ✓',type:'tour'},
@@ -1511,6 +1513,22 @@ const EV_DATA = {
   '2026-06-05T11:00':{type:'hotel',name:'Checkout — Boho Sapiens Marina',dur:30,
     details:{hotel:'Boho Sapiens Marina',ref:'BN: 6124402611',checkOut:'By 11:00 AM (early checkout arranged)',mapsQ:'Boho+Sapiens+Marina+Adamantas+Milos'},
     tips:['Early checkout arranged — ask about luggage storage if ferry is later','SuperJet to Paros departs Adamas port at 10:45 — hotel is 2 min from port']},
+
+  '2026-06-05T15:00':{type:'hotel',name:'Check in — Angels Villas, Paros (Naousa)',dur:60,
+    details:{hotel:'Angels Villas – Prime Concept',addr:'Naousa, Paros 84401, Greece',ref:'BN: 6037.531.038',
+    pin:'PIN: 6496',
+    checkIn:'From 3:00 PM (notify if arriving after 8PM)',checkOut:'By 11:00 AM on 9 Jun (⚠️ ferry at 09:40 — aim to check out by 08:15!)',
+    mapsQ:'Angels+Villas+Prime+Concept+Naousa+Paros',
+    phone:'+30 2284 051858',
+    note:'🚫 Non-refundable — cancellation fee = total reservation price. Breakfast included daily.'},
+    travel:'🚌 From Paros New Port (Parikia): taxi to Naousa ~20 min / ~€15–20. There is no direct bus from port to Angels Villas. Ferry arrives mid-morning — check in from 3PM. Ask about bag storage if you arrive early.',
+    inclusions:['Executive Sea View Villa — private villa with sea, pool, garden & mountain views','Breakfast included daily','Private hot tub (spa bath)','Private balcony & terrace · Outdoor dining area & patio','Full kitchen & kitchenware · Washing machine','Netflix & satellite TV · Air conditioning','Free WiFi · Free private parking on site','Safety deposit box · Coffee machine · Electric kettle'],
+    tips:['📞 Call ahead to confirm arrival time: +30 2284 051858','🧳 Property has stairs only to upper floors — keep bags manageable','🍳 Breakfast is included — confirm daily timing with reception on arrival','🚨 CHECKOUT DAY: Your SeaJets ferry departs Paros New Port at 09:40. Port is ~20 min away. Check out by 08:00, taxi leaves by 08:15 at the latest. Pre-book taxi the night before!','🛁 Hot tub with sea view — a highlight, especially at sunset over the Aegean','🏖️ Naousa is one of the prettiest villages in Paros — whitewashed lanes, great seafood tavernas right on the water']},
+
+  '2026-06-09T08:00':{type:'hotel',name:'Checkout — Angels Villas, Paros',dur:30,
+    details:{hotel:'Angels Villas – Prime Concept',ref:'BN: 6037.531.038',checkOut:'08:00–11:00 AM · ⚠️ Aim to be OUT by 08:00',mapsQ:'Angels+Villas+Prime+Concept+Naousa+Paros',
+    note:'SeaJets SUPERRUNNER JET departs Paros New Port at 09:40. Need to be at port by 08:40. Naousa → Paros New Port = ~20 min by taxi.'},
+    tips:['⏰ Set alarms — checkout and taxi must happen before 08:15','📞 Pre-book taxi the night before (+30 2284 051858 — ask reception to arrange)','🧳 Pack everything the night before so morning is just grab-and-go','⛴️ At Paros New Port: check in for SeaJets with Ref 1112QWRPD + passport — be there by 08:40','💡 Checkout window is 08:00–11:00, so you can be out at 08:00 on the dot — no need to wait']},
 
   // ── MADRID TOURS ─────────────────────────────────────────────────────────
   '2026-05-22T16:15':{type:'tour',name:'Royal Palace — Skip-the-Line Guided Tour',dur:120,
