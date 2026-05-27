@@ -678,6 +678,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
           <div class="dtags">
             <span class="tag t-hotel-need">🏨 Hotel needed ⚠️</span>
             <span class="tag t-tour">🎭 Rome in a Day 9:30 AM ✓ · Via Terme di Tito 72 🟢</span>
+            <span class="tag t-tour">🍕 Crazy Pizza Rome 8:30 PM ✓ · Via Veneto 167 · Res #77ZEBWTKG2MN</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
         </div>
@@ -1320,6 +1321,7 @@ const EVENTS=[
   {dt:'2026-06-10T11:00',label:'🍕 Rome Street Food Tour · Campo de\' Fiori (Giordano Bruno statue) · Ref 1402460413 ✓',type:'tour'},
   {dt:'2026-06-10T15:00',label:'🍝 3 in 1 Cooking Class · Via Zanardelli 14 (Gusto al Passeto) · Ref 1398087313 ✓',type:'tour'},
   {dt:'2026-06-11T09:30',label:'🎭 Rome in a Day · Via Terme di Tito 72 🟢 green sign',type:'tour'},
+  {dt:'2026-06-11T20:30',label:'🍕 Crazy Pizza Rome · Via Veneto 167 · 8:30 PM · Res #77ZEBWTKG2MN ✓',type:'tour'},
   {dt:'2026-06-12T18:30',label:'🍷 Rome Gourmet Food Tour · Via Cipro 4L (La Nicchia Cafe) · Ref 1402461465 ✓',type:'tour'},
   {dt:'2026-06-14T09:00',label:'🚗 Drive Rome→Amalfi Coast [car hire not booked]',type:'plan'},
   {dt:'2026-06-15T09:30',label:'⛵ Amalfi Coast Day Cruise · Bluestar Boat Tours, Via del Brigantino 2, Positano · Ref 1402472417 ✓',type:'tour'},
@@ -1805,6 +1807,19 @@ const EV_DATA = {
     inclusions:['Skip-the-line Vatican Museums entry (including Sistine Chapel and Raphael Rooms)','Reserved Colosseum entry with all ticket and reservation fees','Forum Romanum and Palatine Hill visit','Trevi Fountain, Pantheon, and Piazza Navona stops','Round-trip transportation within Rome','Professional English-speaking guide','Audio headsets where applicable'],
     exclusions:['Lunch — free time provided mid-day','Water and snacks (bring your own!)','Gratuities','St. Peter\'s Basilica interior (confirm on the day with guide)'],
     tips:['🚨 DRESS CODE ENFORCED at Vatican: covered knees, covered shoulders, no exposed toes. Bring a scarf/shawl to cover up.','No hats inside the Vatican','Bring valid photo ID — name must match ticket','Pack light — large bags slow security checks significantly','Bring a refillable water bottle — this is a 10-hour day with lots of walking','Wear your most comfortable, well-worn walking shoes — NOT new shoes','Bring snacks — the lunch break is short and Vatican area food is pricey']},
+
+  '2026-06-11T20:30':{type:'tour',name:'Crazy Pizza Rome — Dinner',dur:90,
+    details:{loc:'Via Veneto 167, Roma, Lazio, 00187',mapsQ:'Crazy+Pizza+Rome+Via+Veneto+167',
+    ref:'#77ZEBWTKG2MN',
+    cancelBy:'11 June 12:30 PM (8h policy — €10/person no-show fee)',
+    note:'Special occasion noted: Honeymoon 🥂 · Table held max 15 min after reservation time · Confirmation sent to alex@caalanodigital.com.au',
+    manageUrl:'https://www.sevenrooms.com/explore/crazypizzarome/reservations/manage/?is_success=true&lang=en&token=ZTBkODBjYjA5MjZmN2Y1OGI0MDRjYTdiZTg0NGIzZmUzYWQzZThjNDp7ImFjdHVhbF9pZCI6ICJhaE56Zm5ObGRtVnVjbTl2YlhNdGMyVmpkWEpsY2lnTEVodHVhV2RvZEd4dmIzQmZVbVZ6WlhKMllYUnBiMjVCWTNSMVlXd1lnSURMaWNQaXBBa00iLCAiYWN0dWFsX2NyZWF0ZWRfdGltZXN0YW1wIjogIjE3Nzk4NzMyNzguNjg0NzQzIn0%3D'},
+    travel:'🚇 Via Veneto is in the Ludovisi neighbourhood — Metro Line A to Barberini (5 min walk up Via Veneto), or Line A to Spagna (10 min walk). After a 10-hour Rome in a Day tour, a taxi from wherever you end up is very reasonable (~€8–12).',
+    tickets:[{label:'🔗 View / Modify Reservation Online',url:'https://www.sevenrooms.com/explore/crazypizzarome/reservations/manage/?is_success=true&lang=en&token=ZTBkODBjYjA5MjZmN2Y1OGI0MDRjYTdiZTg0NGIzZmUzYWQzZThjNDp7ImFjdHVhbF9pZCI6ICJhaE56Zm5ObGRtVnVjbTl2YlhNdGMyVmpkWEpsY2lnTEVodHVhV2RvZEd4dmIzQmZVbVZ6WlhKMllYUnBiMjVCWTNSMVlXd1lnSURMaWNQaXBBa00iLCAiYWN0dWFsX2NyZWF0ZWRfdGltZXN0YW1wIjogIjE3Nzk4NzMyNzguNjg0NzQzIn0%3D'}],
+    inclusions:['Table for 2 — Party of Alex Serrano','Honeymoon occasion noted with the restaurant'],
+    exclusions:['Food and drinks (pay on the night)'],
+    tips:['🎽 DRESS CODE: Smart-casual — no thongs, no activewear after a long day!','⏰ Table held for 15 minutes max — arrive by 8:45 PM at the latest or call ahead if running late','📞 To cancel or modify: use the SevenRooms link above, or contact restaurant at least 8 hours before (by 12:30 PM on 11 Jun)','💳 Card on file — €10/person fee for late cancel or no-show','🍕 Crazy Pizza is the famous "spinning pizza" restaurant — expect entertainment with your dinner! Via Veneto is also one of Rome\'s most iconic streets (La Dolce Vita era)','This is the perfect end to a 10-hour Rome in a Day tour — Via Veneto is a short taxi from the Colosseum/Forum area']},
+
   '2026-06-12T18:30':{type:'tour',name:'Rome Gourmet Food Tour with Fine Wine Barolo 5★',dur:240,
     details:{loc:'Via Cipro 4L, Rome — The Roman Food Tour meeting point (La Nicchia Cafe)',mapsQ:'Via+Cipro+4+Rome',
     cancelBy:'11 June 6:30 PM (24h policy)',cost:'A$360.14',ref:'1402461465'},
