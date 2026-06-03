@@ -785,8 +785,8 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
         <div class="dcont">
           <div class="ddest">🇮🇹→🇫🇷 Naples → Paris Orly</div>
           <div class="dtags">
-            <span class="tag t-hotel">🏨 Checkout Grand Hotel President by 11:00 ✓ · arrange early departure</span>
-            <span class="tag t-urgent">⚡ 07:20 departure — very early start! Bag drop closes 06:40</span>
+            <span class="tag t-hotel">🏨 Checkout Grand Hotel President ✓ · ⚠️ depart hotel 3:00 AM!</span>
+            <span class="tag t-urgent">⚡ 07:20 departure — leave Sorrento 3AM! Bag drop closes 06:40</span>
             <span class="tag t-flight">✈️ easyJet EJU4183 07:20→09:40 NAP→ORY ✓ · Seats 8A/8B · Ref KCQK63D</span>
             <span class="tag t-hotel">🏨 Hôtel Prince de Conti — check-in from 3PM ✓ · BN: 6407.235.051</span>
           </div>
@@ -1355,7 +1355,7 @@ const EVENTS=[
   {dt:'2026-06-14T15:00',label:'🏨 Check in — Grand Hotel President · Via Colle Parisi 4, Sorrento · BN: 5365.019.094',type:'hotel'},
   {dt:'2026-06-15T09:30',label:'⛵ Amalfi Coast Day Cruise · Bluestar Boat Tours, Via del Brigantino 2, Positano · Ref 1402472417 ✓',type:'tour'},
   {dt:'2026-06-16T07:40',label:'🌊 Capri & Blue Grotto Day Tour · Marina Piccola, Sorrento (outside Hotel Il Faro) · Ref 1402473523 ✓',type:'tour'},
-  {dt:'2026-06-19T05:00',label:'⚠️ Depart Sorrento by 05:00 AM — NAP airport bag drop closes 06:40!',type:'urgent'},
+  {dt:'2026-06-19T03:00',label:'⚠️ Depart Sorrento by 03:00 AM — 3h international buffer · NAP bag drop closes 06:40!',type:'urgent'},
   {dt:'2026-06-19T07:20',label:'✈️ easyJet EJU4183 07:20→09:40 Naples NAP → Paris Orly ORY · Seats 8A/8B · Ref KCQK63D ✓',type:'flight'},
   {dt:'2026-06-19T15:00',label:'🏨 Check in — Hôtel Prince de Conti · 8 Rue Guénégaud, 75006 Paris · BN: 6407.235.051',type:'hotel'},
   {dt:'2026-06-20T09:30',label:'🗼 Paris in A Day Tour · 41 Blvd Marguerite de Rochechouart (Anvers Metro) · green Walks sign · Ref 1402465441 ✓',type:'tour'},
@@ -1852,12 +1852,12 @@ const EV_DATA = {
   '2026-06-14T15:00':{type:'hotel',name:'Check in — Grand Hotel President, Sorrento',dur:60,
     details:{hotel:'Grand Hotel President',addr:'Via Colle Parisi 4, 80067 Sorrento, Italy',
     ref:'BN: 5365.019.094',pin:'3966',checkIn:'14 June (Sunday) — from 15:00',
-    checkOut:'19 June (Friday) — until 11:00 (⚠️ you\'ll need to leave by ~05:00 for your 07:20 flight!)',
+    checkOut:'19 June (Friday) — until 11:00 (⚠️ you\'ll need to leave by 03:00 AM for your 07:20 international flight!)',
     phone:'+39 081 878 2262',mapsQ:'Via+Colle+Parisi+4+Sorrento',
     note:'Economy Double Room · 5 nights · Breakfast included daily. Free private parking on site. Free WiFi throughout. NON-REFUNDABLE — no refund if cancelled.'},
     inclusions:['Economy Double or Twin Room · 5 nights (14–19 June)','Breakfast included daily','Free private parking on site','Free WiFi throughout','AC, TV, telephone, hairdryer, wake-up service','Bath or shower, free toiletries'],
     exclusions:['Lunch and dinner not included','City tax charged separately (~AUD 65 total, AUD 6.48/guest/night)'],
-    tips:['🍳 Breakfast is included — start every day well fuelled before heading out!','🚗 Free private parking on site — handy if you have a hire car for day trips','📞 Hotel direct: +39 081 878 2262','🚨 On 19 June: your flight departs NAP at 07:20 — bag drop closes 06:40. You\'ll need to leave the hotel by ~05:00 AM. Arrange an early checkout/luggage assistance with the hotel in advance.','🚕 Sorrento to Naples Airport (NAP): ~45–55 min by taxi (~€60–80). Book the night before — taxis are scarce at 5 AM!','🚌 Alternatively: Circumvesuviana train Sorrento → Napoli Centrale (~1h), then bus to airport (~30 min, too slow for this tight timing). Stick with a pre-booked taxi.','🌅 Grand Hotel President has fantastic views over the Bay of Naples — ask for a room with sea view!','🛍️ Sorrento is perfect for limoncello, ceramics, and local foods — the Piazza Tasso and Corso Italia are the main streets','⚠️ NON-REFUNDABLE booking — any cancellation forfeits the full AUD 2,766']},
+    tips:['🍳 Breakfast is included — start every day well fuelled before heading out!','🚗 Free private parking on site — handy if you have a hire car for day trips','📞 Hotel direct: +39 081 878 2262','🚨 On 19 June: your flight departs NAP at 07:20 — bag drop closes 06:40. For a 3-hour international buffer, leave the hotel at 03:00 AM sharp. Arrange an early checkout and pre-book your taxi the evening before.','🚕 Sorrento to Naples Airport (NAP): ~45–55 min by taxi (~€60–80). PRE-BOOK the night before — taxis at 3 AM are extremely scarce. Ask the hotel to help arrange a transfer!','🚌 Alternatively: Circumvesuviana train Sorrento → Napoli Centrale (~1h), then bus to airport (~30 min, too slow for this tight timing). Stick with a pre-booked taxi.','🌅 Grand Hotel President has fantastic views over the Bay of Naples — ask for a room with sea view!','🛍️ Sorrento is perfect for limoncello, ceramics, and local foods — the Piazza Tasso and Corso Italia are the main streets','⚠️ NON-REFUNDABLE booking — any cancellation forfeits the full AUD 2,766']},
 
   '2026-06-19T15:30':{type:'plan',name:'EasyJet: Naples → Paris CDG',dur:140,
     details:{from:'Naples Capodichino (NAP)',to:'Paris Charles de Gaulle (CDG)',note:'[Not booked] Book at easyjet.com'},
@@ -1932,14 +1932,14 @@ const EV_DATA = {
   '2026-06-19T07:20':{type:'flight',name:'easyJet EJU4183 — Naples to Paris Orly',dur:140,
     details:{from:'Naples International Airport (NAP)',to:'Paris Orly Airport (ORY)',
     ref:'KCQK63D',operator:'easyJet',
-    note:'⚡ Very early departure — bag drop opens 04:50, closes 06:40. Must be at airport by 05:00–05:30. Leave Amalfi area by 03:00–03:30 AM at the latest. Arrives Paris Orly — note: Etihad return on 23 Jun departs CDG (different airport).'},
+    note:'⚡ Very early departure — bag drop opens 04:50, closes 06:40. Must be at airport by 04:30–05:00 AM. Leave Sorrento (Grand Hotel President) by 03:00 AM. ~50 min taxi to NAP. Arrives Paris Orly — note: Etihad return on 23 Jun departs CDG (different airport).'},
     passengers:[
       {name:'Alex Serrano',seat:'Seat 8A · 2x 32kg hold bag · small cabin bag (under seat)'},
       {name:'Demetra Alexandrou',seat:'Seat 8B · small cabin bag (under seat)'}
     ],
     inclusions:['2 x 32kg hold bags (total)','1 x small cabin bag each (under seat, max 45×36×20cm)'],
     exclusions:['Large cabin bag (overhead locker) — not included, can be added','Food & drinks onboard','Seat upgrade'],
-    tips:['🚨 Bag drop CLOSES at 06:40 — arrive airport by 05:00–05:30 at the very latest','🌙 You will need to leave your Amalfi accommodation around 03:00–03:30 AM for the ~1.5–2h drive to Naples airport','🚗 Book a taxi the night before — do NOT rely on finding one at 3 AM','🛬 Arrives Paris ORLY (ORY) — NOT CDG! Use RER B from CDG on the 23rd for your Etihad flight home','🚌 From Orly to central Paris: Orlybus to Denfert-Rochereau (~30 min, €11.20) or Orlyval light rail + RER B (~35 min, ~€13)','✅ Online check-in opens 30 days before departure — check in when available to get your boarding passes','📱 Download the easyJet app for mobile boarding passes']},
+    tips:['🚨 Bag drop CLOSES at 06:40 — arrive airport by 04:30–05:00 AM','🌙 Leave Grand Hotel President, Sorrento at 03:00 AM — ~50 min taxi to Naples Airport (NAP)','🚕 PRE-BOOK your taxi the night before — do NOT rely on finding one at 3 AM. Ask the hotel to arrange a transfer!','🛬 Arrives Paris ORLY (ORY) — NOT CDG! Use RER B from CDG on the 23rd for your Etihad flight home','🚌 From Orly to central Paris: Orlybus to Denfert-Rochereau (~30 min, €11.20) or Orlyval light rail + RER B (~35 min, ~€13)','✅ Online check-in opens 30 days before departure — check in when available to get your boarding passes','📱 Download the easyJet app for mobile boarding passes']},
 
   '2026-06-19T15:00':{type:'hotel',name:'Check in — Hôtel Prince de Conti, Paris',dur:60,
     details:{hotel:'Hôtel Prince de Conti',addr:'8 Rue Guénégaud, 6th arr., 75006 Paris, France',
