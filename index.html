@@ -854,7 +854,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 Checkout Snob Hotel · by 11:00 AM ✓ (leave ~07:30 for CDG!)</span>
             <span class="tag t-urgent">⚡ EY32 departs CDG 10:40 — very early!</span>
             <span class="tag t-flight">✈️ First Comfort · seat 2H · arrives AUH 19:35 ✓</span>
-            <span class="tag t-plan">🚗 Transfer AUH → Palm Jumeirah [not booked] ~1h 15m</span>
+            <span class="tag t-plan">🚗 Pick up hire car at AUH → drive to Atlantis ~1h 15m [not booked]</span>
             <span class="tag t-hotel">🏨 Atlantis The Royal — check-in anytime ✓ · Conf: 9063SG284693</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -896,7 +896,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
           <div class="ddest">🇦🇪 Dubai → Abu Dhabi</div>
           <div class="dtags">
             <span class="tag t-hotel">🏨 Checkout Atlantis The Royal · noon ✓</span>
-            <span class="tag t-plan">🚗 Transfer Dubai → Yas Island [not booked] ~1h 30m</span>
+            <span class="tag t-plan">🚗 Drive hire car Palm Jumeirah → Yas Island ~1h 30m [not booked]</span>
             <span class="tag t-hotel">🏨 W Abu Dhabi · Yas Island — check-in from 3PM ✓ · Conf: 95880679</span>
             <span class="tag t-plan">🏁 Yas Marina Circuit — open drive experience day</span>
           </div>
@@ -1458,10 +1458,10 @@ const EVENTS=[
   {dt:'2026-06-23T07:30',label:'🏨 Leave Snob Hotel by 07:30 — EY32 departs CDG 10:40! Checkout by 11:00',type:'hotel'},
   {dt:'2026-06-23T08:00',label:'⚠️ Leave Paris hotel by 08:00 — EY32 departs CDG 10:40!',type:'urgent'},
   {dt:'2026-06-23T10:40',label:'✈️ EY32 departs Paris CDG → Abu Dhabi · seat 2H · First Comfort',type:'flight'},
-  {dt:'2026-06-23T21:00',label:'🚗 Transfer AUH Airport → Palm Jumeirah [not booked] ~1h 15m',type:'plan'},
+  {dt:'2026-06-23T21:00',label:'🚗 Pick up hire car at AUH Airport → drive to Atlantis The Royal ~1h 15m [not booked]',type:'plan'},
   {dt:'2026-06-23T22:30',label:'🏨 Check in — Atlantis The Royal · Palm Jumeirah, Dubai · Conf: 9063SG284693',type:'hotel'},
   {dt:'2026-06-26T12:00',label:'🏨 Checkout — Atlantis The Royal · noon · Conf: 9063SG284693',type:'hotel'},
-  {dt:'2026-06-26T13:00',label:'🚗 Transfer Dubai (Palm Jumeirah) → Yas Island Abu Dhabi [not booked] ~1h 30m',type:'plan'},
+  {dt:'2026-06-26T13:00',label:'🚗 Drive hire car Palm Jumeirah → Yas Island, Abu Dhabi ~1h 30m [not booked]',type:'plan'},
   {dt:'2026-06-26T15:00',label:'🏨 Check in — W Abu Dhabi · Yas Island · Conf: 95880679',type:'hotel'},
   {dt:'2026-06-29T07:30',label:'⚠️ Leave W Abu Dhabi by 07:30 — EY450 departs AUH 10:25!',type:'urgent'},
   {dt:'2026-06-29T12:00',label:'🏨 Checkout — W Abu Dhabi · Yas Island · noon · Conf: 95880679',type:'hotel'},
@@ -1583,7 +1583,7 @@ const EV_DATA = {
   '2026-06-29T10:25':{type:'flight',name:'EY450 — Abu Dhabi to Sydney',dur:840,
     details:{ref:'9UQF5C',class:'Business',seat:'8G',airline:'Etihad',
     from:'Abu Dhabi International (AUH)',to:'Sydney Kingsford Smith (SYD)',note:'🏠 Arrives SYD 06:10 Tue 30 Jun'},
-    travel:'🚗 Dubai to AUH is ~1h 15 min (not booked). Leave Dubai hotel by 07:30 latest. Online check-in opens 28 Jun.',
+    travel:'🚗 Already in Abu Dhabi at W Yas Island — ~20 min drive to AUH airport in hire car. Leave hotel by 07:30 for the 10:25 departure. Return hire car at AUH rental desks. Online check-in opens 28 Jun.',
     inclusions:['Business class cabin','Seat 8G (confirmed)','Full dining & bar service','Etihad Lounge AUH access']},
 
   // ── HOTELS ───────────────────────────────────────────────────────────────
@@ -2008,19 +2008,19 @@ const EV_DATA = {
     note:'Checkout by noon on 26 June. Then transfer to Abu Dhabi (~1h 15m). Expedia itinerary: 73465662209292.'},
     tips:['Pack the night before — checkout is noon and you need to transfer to Abu Dhabi','Ask hotel to store luggage if you want a last swim at Aquaventure before checkout','🚗 Transfer to Abu Dhabi from Palm Jumeirah — book in advance or use Careem/Uber (AED 250–350)']},
 
-  '2026-06-23T21:00':{type:'plan',name:'Transfer: AUH Airport → Dubai',dur:75,
-    details:{from:'Abu Dhabi International Airport (AUH)',to:'Dubai hotel',note:'[Not booked] ~1h 15m transfer after landing 19:35 — expect to depart airport ~21:00 after immigration and bags'},
-    tips:['Book a private transfer or use a taxi app (Careem/Uber) — metered taxis available at arrivals','Agree price upfront or use app — airport taxi to Dubai city typically AED 250–350 (~A$100–140)','Uber and Careem both operate from AUH — book in the arrivals hall']},
+  '2026-06-23T21:00':{type:'plan',name:'Pick up hire car at AUH Airport → Drive to Atlantis The Royal',dur:75,
+    details:{from:'Abu Dhabi International Airport (AUH)',to:'Atlantis The Royal, Palm Jumeirah, Dubai',note:'[Hire car — not yet booked] Pick up at AUH car rental desks on arrival after landing 19:35. Drive ~1h 15m via Sheikh Zayed Road (E11) to Palm Jumeirah. Exit at Palm Jumeirah Tunnel → follow signs to Atlantis.'},
+    tips:['🚗 Book hire car at AUH airport in advance — desks are in arrivals hall. Book online before travel for best rates.','🛣️ Route: AUH → Sheikh Zayed Road (E11) north → Palm Jumeirah Tunnel exit → follow signs to Atlantis The Royal. ~1h 15m.','🅿️ Atlantis The Royal has valet and self-parking','⛽ Note speed cameras are everywhere on UAE roads — keep to speed limits','📍 GPS/Google Maps: search Atlantis The Royal, Palm Jumeirah'},
 
-  '2026-06-26T09:00':{type:'plan',name:'Transfer: Dubai → Abu Dhabi',dur:75,
-    details:{from:'Dubai hotel',to:'Abu Dhabi',note:'[Not booked] ~1h 15m private transfer via E11 highway. Head to Abu Dhabi for your final 3 nights before the flight home.'},
-    tips:['Book a private transfer or use a taxi app (Careem/Uber) — no direct public transport between cities','Agree price upfront if using taxi — AED 250–350 typical rate','Allow extra time if travelling on a Friday morning (weekend traffic can be heavy)']},
+  '2026-06-26T09:00':{type:'plan',name:'Drive hire car: Palm Jumeirah → Yas Island, Abu Dhabi',dur:90,
+    details:{from:'Atlantis The Royal, Palm Jumeirah, Dubai',to:'W Abu Dhabi, Yas Island, Abu Dhabi',note:'[Hire car — not yet booked] Drive hire car ~1h 15–30m via Sheikh Zayed Road (E11) south toward Abu Dhabi, then take the Yas Island exit. Check out Atlantis by noon → drive to W Abu Dhabi (check-in from 15:00).'},
+    tips:['🛣️ Route: Atlantis Palm Jumeirah → E11 south toward Abu Dhabi → Yas Island exit (well signed) → follow signs to W Abu Dhabi. ~1h 15–30m.','⛽ Fill up fuel before leaving Dubai if needed — petrol stations along E11','🅿️ W Abu Dhabi has on-site parking','📍 GPS: search W Abu Dhabi - Yas Island','⚠️ Speed cameras throughout — keep to limits (120 km/h on E11 highway)'},
 
   '2026-06-28T12:00':{type:'tour',name:'Yas Island Self-Drive Speedboat Tour — Guided',dur:90,
     details:{loc:'Al Bandar Marina — gate next to Pacifico TIKKI Lounge, Al Bandar St, Al Rahah, Abu Dhabi',mapsQ:'Al+Bandar+Marina+Abu+Dhabi',
     cancelBy:'27 June 12:00 (full refund)',cost:'A$171.84',ref:'GYGZGZ2FAWQ9 · PIN: zsVMqrsq',
     provider:'Bayside Water Rides Abu Dhabi · +971 502 296 090'},
-    travel:'🚗 From W Abu Dhabi (Yas Island): Al Bandar Marina is just minutes away — take a taxi or short drive. Search "Al Bandar Marina" or "Bayside Water Rides" on Google Maps. Look for the three tall Al Naseem (Weave) Towers — walk toward the marina and find the gate next to Pacifico TIKKI Lounge. Arrive by 11:45 AM.',
+    travel:'🚗 From W Abu Dhabi (Yas Island): Drive hire car to Al Bandar Marina — only ~5 min. Search "Al Bandar Marina" or "Bayside Water Rides" on Google Maps. Look for the three tall Al Naseem (Weave) Towers — walk toward the marina and find the gate next to Pacifico TIKKI Lounge. Arrive by 11:45 AM.',
     inclusions:['12ft self-drive speedboat for 2 adults · 1.5 hours','Guided speedboat tour around Yas Island waters','Life jackets and safety briefing provided'],
     exclusions:['Alcohol and drugs not permitted on board'],
     tips:['⏰ Arrive 15 minutes early (11:45 AM) — you lose your slot if late','🚤 Price is per boat, not per person — no extra charge for 2 people','📍 Meeting point: the marina gate right next to Pacifico TIKKI Lounge at Al Bandar Marina','🗺️ From W Abu Dhabi: search "Bayside Water Rides" on Google Maps — it\'s only a few minutes from Yas Island','📞 Provider: Bayside Water Rides · +971 502 296 090','❌ Cancel before 26 June 12:00 for full refund via GetYourGuide']},
@@ -2144,7 +2144,7 @@ const EV_DATA = {
   '2026-06-20T09:30':{type:'tour',name:'Paris in A Day: Louvre, Eiffel Tower, Notre Dame & Seine Cruise',dur:300,
     details:{loc:'41 Blvd Marguerite de Rochechouart, Paris — near Anvers Metro exit (info kiosk "Paris Tourisme")',mapsQ:'41+Boulevard+Marguerite+de+Rochechouart+Paris',
     cancelBy:'19 June 9:30 AM (24h policy)',cost:'A$604.62',ref:'1402465441'},
-    travel:'🚇 From hotel (8 Rue Guénégaud, 6th): 5 min walk to Odéon Metro → Line 4 north (~9 stops) to Barbès-Rochechouart → 3 min walk to Anvers meeting point. Total ~20–25 min. Exit Anvers and look for the "Paris Tourisme" info kiosk — guide has a GREEN Walks sign. Arrive by 9:15 AM!',
+    travel:'🚇 From Snob Hotel (84 Rue Saint Denis, 1st): 5 min walk south to Châtelet-Les Halles Metro → Line 4 north (~10 stops) to Barbès-Rochechouart → 3 min walk to Anvers meeting point. Total ~20 min. Exit Anvers and look for the "Paris Tourisme" info kiosk — guide has a GREEN Walks sign. Arrive by 9:15 AM!',
     inclusions:['Expert guide for full-day walking tour','Eiffel Tower exterior visit','La Conciergerie exterior','Latin Quarter walk','Louvre area','Notre Dame exterior','Seine River Cruise flexible ticket (use on the day or at your leisure)'],
     exclusions:['Eiffel Tower entry ticket (exterior only included, summit not included)','Louvre entry ticket','Gratuities','Hotel pickup/drop-off'],
     tips:['⏰ Arrive 15 min early at the meeting point — tour leaves promptly and no refunds for latecomers','Bring valid ID — all guests must have ID','Large bags restricted at Sainte-Chapelle (max 55×35×20cm)','Wear very comfortable walking shoes — this is a full day on your feet','The Seine cruise ticket is flexible — use at the end of the tour or on another day/time','Not suitable for guests with mobility impairments or wheelchairs','Paris strikes can affect tours — check your email and WhatsApp the morning of']},
@@ -2152,7 +2152,7 @@ const EV_DATA = {
   '2026-06-21T09:00':{type:'tour',name:'Award-Winning Paris French Bakery Experience — Le Marais',dur:120,
     details:{loc:'Miss Manon Bakery, 87 Rue Saint-Antoine, 75004 Paris (Metro: Saint-Paul)',mapsQ:'Miss+Manon+Bakery+87+Rue+Saint+Antoine+Paris',
     cancelBy:'20 June 9:00 AM (24h policy)',cost:'A$313.88',ref:'1402468209'},
-    travel:'🚇 From hotel (8 Rue Guénégaud, 6th): 5 min walk to Odéon Metro → Line 4 north 3 stops to Châtelet → transfer Line 1 east 2 stops to Saint-Paul → 2 min walk to Miss Manon. Total ~15 min. Or enjoy a gorgeous 20 min walk along the Seine and through Île de la Cité! Go INSIDE the bakery and ask for the guide upon arrival.',
+    travel:'🚇 From Snob Hotel (84 Rue Saint Denis, 1st): 5 min walk to Châtelet Metro → Line 1 east 2 stops to Saint-Paul → 2 min walk to Miss Manon. Total ~10 min. Or enjoy a lovely 15 min walk east along the Seine! Go INSIDE the bakery and ask for the guide upon arrival.',
     inclusions:['Small-group hands-on baking class','Guided tour of a French bakery','Traditional French breakfast on arrival'],
     exclusions:['Hotel pickup/drop-off'],
     tips:['📍 DO NOT wait outside — go INSIDE the bakery and ask for the tour guide!','⚠️ Check your email the morning of the tour — the location occasionally changes; if no update, it\'s Miss Manon at 87 Rue Saint-Antoine','Dress code: smart casual','Bring your camera — this is very photogenic!','Contact (text only): +1 786 600 5956','Ends ~11:00 AM — perfect to then explore Le Marais neighbourhood, have a falafel at L\'As du Fallafel, and browse the boutiques!']},
@@ -2160,7 +2160,7 @@ const EV_DATA = {
   '2026-06-21T14:00':{type:'tour',name:'Paris Food Tour: Eat Like a Local — Notre Dame & Latin Quarter',dur:180,
     details:{loc:'Pont Marie Metro Station Line 7, 18 Rue de l\'Hôtel de Ville, Paris',mapsQ:'Pont+Marie+Metro+Paris',
     cancelBy:'20 June 2:00 PM (24h policy)',cost:'A$393.18',ref:'1402467103'},
-    travel:'🚇 From hotel (8 Rue Guénégaud, 6th): 5 min walk to Odéon → Line 4 north 2 stops to Châtelet → transfer Line 7 south 1 stop to Pont Marie. Total ~12 min. Or a lovely 15 min walk along the Seine — cross Pont Neuf and continue east. Guide is at the Pont Marie Metro entrance with an ORANGE UMBRELLA.',
+    travel:'🚇 From Snob Hotel (84 Rue Saint Denis, 1st): 5 min walk to Châtelet Metro → Line 7 south 1 stop to Pont Marie. Total ~8 min. Or a very pleasant 10 min walk east along the Seine — Pont Marie is right there! Guide is at the Pont Marie Metro entrance with an ORANGE UMBRELLA.',
     inclusions:['Expert local food guide','Multiple food tastings in the Latin Quarter and Notre Dame area','Truffled Ham Croque Monsieur paired with a glass of fine French wine'],
     exclusions:['Gratuities','Hotel pickup/drop-off'],
     tips:['🧡 Look for the ORANGE UMBRELLA at the Pont Marie metro entrance','Arrive 15 min early — guide cannot wait for latecomers','Dietary: Vegetarian can sometimes be arranged in advance. Vegan, gluten-free, dairy-free and nut allergies CANNOT be accommodated.','Ends in the Latin Quarter — explore Saint-Germain-des-Prés afterwards for evening drinks','Comfortable walking shoes essential — expect 3+ km on cobblestones','You have a big day: bakery 9–11 AM, then food tour 2–5 PM. Have a light mid-day snack and pace yourself!']},
@@ -2168,7 +2168,7 @@ const EV_DATA = {
   '2026-06-22T19:00':{type:'tour',name:'Eiffel Tower Guided Tour by Stairs with Summit by Lift',dur:120,
     details:{loc:'3 Rue Buenos-Ayres, 75007 Paris — outside, next to the café (faces Entrance 1 of Eiffel Tower)',mapsQ:'3+Rue+Buenos+Ayres+Paris',
     cancelBy:'21 June 7:00 PM (24h policy)',cost:'A$221.36',ref:'1402470915'},
-    travel:'🚇 From hotel (8 Rue Guénégaud, 6th): 3 min walk to Mabillon Metro → Line 10 west ~4 stops to La Motte-Picquet-Grenelle → 12 min walk to 3 Rue Buenos-Ayres. Total ~25 min. Or 🚖 taxi ~€10–12, ~10 min (both on the Left Bank — easy and quick!). DO NOT go to the Eiffel Tower entrance — meet at 3 Rue Buenos-Ayres (next to café, EPIC TOURS blue sign) first!',
+    travel:'🚇 From Snob Hotel (84 Rue Saint Denis, 1st): 5 min walk to Châtelet Metro → Line 14 south to Invalides (~8 min) → walk ~10 min south to 3 Rue Buenos-Ayres. Total ~25 min. Or 🚖 taxi direct from hotel ~€12–15, ~15 min. DO NOT go to the Eiffel Tower entrance — meet at 3 Rue Buenos-Ayres (next to café, EPIC TOURS blue sign) first!',
     inclusions:['Guided climb up to 2nd floor by stairs','Summit access by lift (included in "Guided Climb + Summit Access" option)','Expert guide with panoramic views commentary'],
     exclusions:['Food and drinks','Hotel pickup/drop-off'],
     tips:['⚠️ DO NOT go directly to the Eiffel Tower — meet at 3 Rue Buenos-Ayres FIRST (next to café, facing Entrance 1)','Look for EPIC TOURS blue sign','Arrive 15 minutes early for check-in','Evening at 7 PM = golden hour + sunset — one of the best times to visit! 🌅','The stairs section (to 2nd floor) is a great workout — wear comfortable shoes','Option booked: Guided Climb + Summit — you go all the way to the top!','Last full day in Paris before your early CDG departure tomorrow — finish with champagne at the top!']},
