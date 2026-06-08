@@ -330,6 +330,9 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   <div class="alert al-wrn" data-expires="2026-06-17T23:59"><span>🏨</span><div><strong>Snob Hotel Paris — free cancel until 17 June 23:59</strong> Expedia 73465735313669 · First night charge after that. Cancel via Expedia if needed.</div></div>
   <div class="alert al-wrn"><span>🎢</span><div><strong>Ferrari World — book tickets for 27 June!</strong> ferrariworldabudhabi.com · Yas Island, walking distance from W Abu Dhabi. Book in advance — popular attraction.</div></div>
   <div class="alert al-inf" data-expires="2026-06-12T23:59"><span>🏁</span><div><strong>12 June reminder: Check Yas Marina Circuit availability</strong> Book drive experiences for 26 & 28 June at yasmarinacircuit.com — slots fill up fast!</div></div>
+  <div class="alert al-wrn" data-expires="2026-06-09T17:35"><span>🚕</span><div><strong>No airport transfer booked — Rome FCO arrival 17:35 today!</strong> Options: Leonardo Express to Termini (€14, 32 min) then taxi ~€10 to hotel · OR official FCO taxi fixed rate ~€50 direct · OR pre-book private transfer via Viator/GYG.</div></div>
+  <div class="alert al-wrn" data-expires="2026-06-19T09:40"><span>🚕</span><div><strong>No airport transfer booked — Paris Orly arrival 09:40 on 19 June</strong> Orlybus to Denfert-Rochereau (~€12, 30 min) then Metro Line 4 to Châtelet → walk to Snob Hotel. Or taxi direct ~€30–40, ~30 min.</div></div>
+  <div class="alert al-wrn" data-expires="2026-06-23T07:30"><span>🚕</span><div><strong>No airport transfer booked — Snob Hotel → CDG on 23 June</strong> EY32 departs CDG 10:40 · Leave hotel by 07:30 · RER B from Châtelet/Les Halles to CDG T2 (~45 min, ~€12). Or taxi ~€55–70, ~45 min — book night before.</div></div>
   <div class="alert al-wrn" data-expires="2026-06-09T23:59"><span>💰</span><div><strong>GetYourGuide — 18% ShopBack cashback day on 9 June!</strong> Book any remaining GYG activities today to earn 18% back via ShopBack. Paris hotel, Abu Dhabi tours, or any other extras — do it now!</div></div>
   <div class="alert al-inf" data-expires="2026-06-12T09:00"><span>🚗</span><div><strong>Europcar — cancellation fee A$55 up to 12 June 09:00 · A$99 after</strong>Ref: 1203162255 · Pickup Rome Termini 14 Jun 09:00 · Cancel/modify at europcar.com.au</div></div>
   <div class="alert al-inf" data-expires="2026-06-23T11:00"><span>🚤</span><div><strong>Jet Ski Dubai — cancel by 23 June 11:00 for full refund</strong> Ref: GYGX7NFHWVKH · Arrive Umm Suqeim Harbour by 10:45 on 24 Jun · Bring passport</div></div>
@@ -1279,28 +1282,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
   if(alerts) alerts.insertBefore(el,alerts.firstChild);
 })();
 
-// ── SEAJETS PAROS→RAFINA CHECK-IN DYNAMIC ALERT ──
-(function(){
-  // Ferry departs 9 Jun 09:40 EEST (UTC+3) = 9 Jun 06:40 UTC
-  var WARN_START = Date.UTC(2026,5,5,6,40);  // 48h before CI_OPEN = 5 Jun 06:40 UTC
-  var CI_OPEN    = Date.UTC(2026,5,7,6,40);  // 7 Jun 09:40 EEST
-  var CI_CLOSE   = Date.UTC(2026,5,9,4,40);  // 9 Jun 07:40 EEST (2h before departure)
-  var now = Date.now();
-  if(now < WARN_START || now >= CI_CLOSE) return;
-  function fmt(ms){var h=Math.floor(ms/36e5),m=Math.floor((ms%36e5)/6e4);return h>0?h+'h '+m+'m':m+'m';}
-  var el=document.createElement('div');
-  if(now < CI_OPEN){
-    var left=CI_OPEN-now;
-    el.className='alert al-wrn';
-    el.innerHTML='<span>⛴️</span><div><strong>SeaJets Paros→Rafina check-in opens in '+fmt(left)+'</strong>Opens 7 Jun 09:40 (Greek time) · Ref 1112QWRPD · <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#744210">webcheckin.seajets.com</a></div>';
-  } else {
-    var left=CI_CLOSE-now;
-    el.className='alert al-urg';
-    el.innerHTML='<span>🚨</span><div><strong>SeaJets Paros→Rafina check-in is NOW OPEN — closes in '+fmt(left)+'</strong>Check in at <a href="https://webcheckin.seajets.com/" target="_blank" style="color:#742a2a">webcheckin.seajets.com</a> · Ref 1112QWRPD · Both Alex &amp; Demetra</div>';
-  }
-  var alerts=document.querySelector('.alerts');
-  if(alerts) alerts.insertBefore(el,alerts.firstChild);
-})();
+// ── PAROS→RAFINA SEAJETS REMOVED — replaced by Olympic Air A37069 ──
 
 // ── SHARED DAILY NOTES (Firebase Realtime Database) ──
 var _fbApp = firebase.initializeApp({ databaseURL: 'https://honeymoon-hub-default-rtdb.firebaseio.com/' });
