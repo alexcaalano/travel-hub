@@ -866,6 +866,7 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-urgent">⚡ EY32 departs CDG 10:40 — very early!</span>
             <span class="tag t-flight">✈️ First Comfort · seat 2H · arrives AUH 19:35 ✓</span>
             <span class="tag t-car">🚗 Tesla Model S Plaid — Octane meet AUH 20:00 ✓ → drive to Atlantis ~1h 15m</span>
+            <span class="tag t-plan">🏎️ Stop at Yas Marina Circuit — seat fitting + book Formula 3000 session</span>
             <span class="tag t-hotel">🏨 Atlantis The Royal — check-in anytime ✓ · Conf: 9063SG284693</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -1462,6 +1463,7 @@ const EVENTS=[
   {dt:'2026-06-23T08:00',label:'⚠️ Leave Paris hotel by 08:00 — EY32 departs CDG 10:40!',type:'urgent'},
   {dt:'2026-06-23T10:40',label:'✈️ EY32 departs Paris CDG → Abu Dhabi · seat 2H · First Comfort',type:'flight'},
   {dt:'2026-06-23T20:00',label:'🚗 Tesla Model S Plaid — Octane meet at AUH 20:00 ✓ · Drive to Atlantis The Royal, Palm Jumeirah · Ref: Octane',type:'car'},
+  {dt:'2026-06-23T21:00',label:'🏎️ Stop at Yas Marina Circuit — seat fitting + book Formula 3000 session · on route AUH→Dubai',type:'plan'},
   {dt:'2026-06-23T22:30',label:'🏨 Check in — Atlantis The Royal · Palm Jumeirah, Dubai · Conf: 9063SG284693',type:'hotel'},
   {dt:'2026-06-26T12:00',label:'🏨 Checkout — Atlantis The Royal · noon · Conf: 9063SG284693',type:'hotel'},
   {dt:'2026-06-26T13:00',label:'🚗 Drive Tesla — Atlantis Palm Jumeirah → W Abu Dhabi, Yas Island ~1h 30m ✓',type:'car'},
@@ -2045,6 +2047,12 @@ const EV_DATA = {
     ref:'Conf: 9063SG284693',
     note:'Checkout by noon on 26 June. Then transfer to Abu Dhabi (~1h 15m). Expedia itinerary: 73465662209292.'},
     tips:['Pack the night before — checkout is noon and you need to transfer to Abu Dhabi','Ask hotel to store luggage if you want a last swim at Aquaventure before checkout','🚗 Transfer to Abu Dhabi from Palm Jumeirah — book in advance or use Careem/Uber (AED 250–350)']},
+
+  '2026-06-23T21:00':{type:'plan',name:'Yas Marina Circuit — Seat Fitting + Book Formula 3000',dur:45,
+    details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
+    note:'Stop in on the way from AUH to Dubai (Yas Island is ~10 min from AUH, then ~1h 15m on to Atlantis). Visit the Yas Marina Circuit Experience Centre to do your seat fitting and book your Formula Yas 3000 session for a day during your Yas Island stay (26–28 Jun).'},
+    inclusions:['Seat fitting in F3000 single-seater cockpit','Book your Formula Yas 3000 drive session while at the circuit'],
+    tips:['📍 Yas Marina Circuit is right beside W Abu Dhabi — perfect timing to stop in on arrival night or during your Yas Island stay (26–28 Jun)','🏎️ Formula Yas 3000: single-seater F3000-style race car around the full Yas Marina Circuit — helmet and race suit provided','📞 Book online at yasmarinaCircuit.com or call +971 2 659 9800 — consider booking online before you land to guarantee your slot','⏱️ Experience lasts ~30 min total incl. briefing + drive — allow 1 hour for the visit','👟 Closed-toe shoes required · no loose clothing · medical form to sign on arrival','💳 Pay on the day — credit card accepted · approximate cost AED 690–900 per person','⚠️ Yas Marina Circuit Experience Centre hours: typically 10AM–10PM — arriving ~21:00 should be fine, but call ahead to confirm','🚗 From AUH: exit at Yas Island (well signed) → follow signs to Yas Marina Circuit. ~10–15 min from AUH. Then rejoin E11 north to Dubai (~1h 15m on to Atlantis)']},
 
   '2026-06-23T20:00':{type:'car',name:'Tesla Model S Plaid — Octane pickup at AUH',dur:90,
     details:{loc:'Abu Dhabi International Airport (AUH) — Arrivals Hall',mapsQ:'Abu+Dhabi+International+Airport',
