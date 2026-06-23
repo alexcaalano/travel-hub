@@ -865,7 +865,6 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-urgent">⚡ EY32 departs CDG 10:40 — very early!</span>
             <span class="tag t-flight">✈️ First Comfort · seat 2H · arrives AUH 19:35 ✓</span>
             <span class="tag t-car">🚗 Tesla Model S Plaid — Octane meet AUH 20:00 ✓ → drive to Atlantis ~1h 15m</span>
-            <span class="tag t-plan">🏎️ Stop at Yas Marina Circuit — seat fitting + book Formula 3000 session</span>
             <span class="tag t-hotel">🏨 Atlantis The Royal — check-in anytime ✓ · Conf: 9063SG284693</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -911,6 +910,9 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-car">🚗 Drive Tesla — Palm Jumeirah → W Abu Dhabi, Yas Island ~1h 30m ✓</span>
             <span class="tag t-hotel">🏨 W Abu Dhabi · Yas Island — check-in from 3PM ✓ · Conf: 95880679</span>
             <span class="tag t-free">💡 🌴 Last Dubai morning — Palm Jumeirah walk, Nakheel Mall, or beach club before checkout · 🕌 Sheikh Zayed Mosque now confirmed for 28 Jun at 3PM ✓</span>
+            <span class="tag t-tour">🏎️ VIP Venue Tour — Chevrolet Camaro SS 5:00 PM ✓ · Yas Marina Circuit · Ticket #731371</span>
+            <span class="tag t-tour">🌪️ Wolf Tornado Passenger Experience 6:55 PM ✓ · Yas Marina Circuit · × 2 pax · Tickets #731369/370</span>
+            <span class="tag t-urgent">⚠️ Wolf Tornado (18:55) clashes with Caterham arrival (18:40) — see plan notes</span>
             <span class="tag t-tour">🏁 Caterham Seven 360 Driving Experience 7:05 PM ✓ · Yas Marina Circuit · Res: 1092606130012</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -940,6 +942,9 @@ footer{text-align:center;font-size:10px;color:#a0aec0;padding:0 14px 20px}
             <span class="tag t-hotel">🏨 W Abu Dhabi · Yas Island ✓ · 🏖️ Beach access · 🍳 Breakfast incl.</span>
             <span class="tag t-tour">🚤 Self-Drive Speedboat 12:00 PM ✓ · Al Bandar Marina · Arrive 11:45 · Ref: GYGFWV68Z3NX</span>
             <span class="tag t-tour">🕌 Sheikh Zayed Grand Mosque 3:00 PM ✓ · Timed entry 15:00–15:30 · Access Pass T-2026-9754882/83</span>
+            <span class="tag t-urgent">⚠️ Mosque 15:00 + F1 Screening 16:00 — ~35 min drive, you'll arrive ~16:35 (race itself starts ~17:00 UAE)</span>
+            <span class="tag t-tour">🏁 F1 Austrian GP Live Screening 4:00 PM ✓ · Yas Sports Majlis · × 2 pax · Tickets #731367/368</span>
+            <span class="tag t-tour">🏎️ Formula Yas 3000 Driving Experience 8:00 PM ✓ · Briefing 20:00 · Ticket #731366 · Arrive 19:30</span>
             <span class="tag t-free">💡 🎨 Louvre Abu Dhabi morning (20 min drive, book: louvreabudhabi.ae) · or beach/pool at W · peaceful morning before the Speedboat &amp; Mosque</span>
           </div>
           <div class="tap-hint">Tap for full day plan</div>
@@ -1458,10 +1463,11 @@ const EVENTS=[
   {dt:'2026-06-23T08:00',label:'⚠️ Leave Paris hotel by 08:00 — EY32 departs CDG 10:40!',type:'urgent'},
   {dt:'2026-06-23T10:40',label:'✈️ EY32 departs Paris CDG → Abu Dhabi · seat 2H · First Comfort',type:'flight'},
   {dt:'2026-06-23T20:00',label:'🚗 Tesla Model S Plaid — Octane meet at AUH 20:00 ✓ · Drive to Atlantis The Royal, Palm Jumeirah · Ref: Octane',type:'car'},
-  {dt:'2026-06-23T21:00',label:'🏎️ Stop at Yas Marina Circuit — seat fitting + book Formula 3000 session · on route AUH→Dubai',type:'plan'},
   {dt:'2026-06-23T22:30',label:'🏨 Check in — Atlantis The Royal · Palm Jumeirah, Dubai · Conf: 9063SG284693',type:'hotel'},
   {dt:'2026-06-26T12:00',label:'🏨 Checkout — Atlantis The Royal · noon · Conf: 9063SG284693',type:'hotel'},
   {dt:'2026-06-26T13:00',label:'🚗 Drive Tesla — Atlantis Palm Jumeirah → W Abu Dhabi, Yas Island ~1h 30m ✓',type:'car'},
+  {dt:'2026-06-26T17:00',label:'🏎️ VIP Venue Tour — Chevrolet Camaro SS · Yas Marina Circuit · Ticket 731371 · Arrive 16:40',type:'tour'},
+  {dt:'2026-06-26T18:55',label:'🌪️ Wolf Tornado Passenger Experience × 2 · Yas Marina Circuit · Tickets 731369/370 · Arrive 18:35 · ⚠️ clashes with Caterham arrival 18:40',type:'tour'},
   {dt:'2026-06-26T19:05',label:'🏁 Caterham Seven 360 Driving Experience · Yas Marina Circuit North Handling Circuit · Res: 1092606130012 ✓ · Alex only · Arrive by 18:40',type:'tour'},
   {dt:'2026-06-26T15:00',label:'🏨 Check in — W Abu Dhabi · Yas Island · Conf: 95880679',type:'hotel'},
   {dt:'2026-06-29T07:30',label:'⚠️ Leave W Abu Dhabi by 07:30 — EY450 departs AUH 10:25!',type:'urgent'},
@@ -1469,6 +1475,8 @@ const EVENTS=[
   {dt:'2026-06-27T10:00',label:'🏎️ Ferrari World Abu Dhabi · General Admission · Arrive guest services lounge entrance · Ref: GYGN6B4Q499L',type:'tour'},
   {dt:'2026-06-28T12:00',label:'🚤 Self-Drive Speedboat · Al Bandar Marina, Abu Dhabi · Arrive 11:45 · Ref: GYGFWV68Z3NX',type:'tour'},
   {dt:'2026-06-28T15:00',label:'🕌 Sheikh Zayed Grand Mosque · Timed entry 15:00–15:30 · Scan QR codes at check-in gate · Access Pass T-2026-9754882 & 9754883',type:'tour'},
+  {dt:'2026-06-28T16:00',label:'🏁 F1 Austrian GP Live Screening · Yas Sports Majlis, Yas Marina Circuit · Tickets 731367/731368 · 2 pax · Arrive 16:00 (⚠️ ~35 min from Mosque)',type:'tour'},
+  {dt:'2026-06-28T20:00',label:'🏎️ Formula Yas 3000 Driving Experience · Yas Marina Circuit · Briefing 20:00 · Ticket 731366 · Arrive 19:30',type:'tour'},
   {dt:'2026-06-24T11:00',label:'🚤 Jet Ski to Burj Al Arab · Umm Suqeim Fishing Harbour · Arrive 10:45 · Ref: GYGMX4HWXA56',type:'tour'},
   {dt:'2026-06-24T18:00',label:'🏙️ Burj Khalifa Sky Level 148, 124 & 125 · Exchange voucher at Dubai Mall "At The Top" counter · Arrive 17:50 · Ref: GYGZGZZ7N6M9',type:'tour'},
   {dt:'2026-06-25T15:00',label:'🏜️ Dubai Desert Safari + Quad Bike + BBQ · Pickup ~14:15 from Atlantis The Royal · Ref: GYG32L52M76Z',type:'tour'},
@@ -2014,6 +2022,23 @@ const EV_DATA = {
     exclusions:['City tax & tourism fee — payable separately at property','Lunch and dinner not included','Parking (check with hotel)'],
     tips:['🏖️ FREE Aquaventure Waterpark passes included — one of Dubai\'s best attractions, make sure to use them!','🍳 Free breakfast included — start each Dubai day fuelled up','🌅 Atlantis The Royal is one of Dubai\'s most spectacular hotels — enjoy every moment!','🚗 Arriving from AUH airport ~22:30 — front desk open 24h, no issues checking in late','📞 Contact the hotel before arrival to flag your honeymoon stay — they may add special touches','💳 Pay at property in AED on checkout (AED 8,497 total). Exchange rate will apply.','⚠️ Free cancellation until 20 June 15:00 Dubai local time — full charge after that','🛍️ Palm Jumeirah location puts you close to Nakheel Mall, the Palm Monorail, and views of the Burj Al Arab']},
 
+  '2026-06-26T17:00':{type:'tour',name:'VIP Venue Tour — Chevrolet Camaro SS',dur:60,
+    details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
+    cancelBy:'Non-refundable',cost:'Paid ✓',ref:'Ticket ID: 731371 · Res: 1092606230038'},
+    provider:'Yas Marina Circuit · yasmarinacircuit.com',
+    travel:'W Abu Dhabi is right next to Yas Marina Circuit — 2 min drive or 10 min walk. Arrive by 16:40 (20 min before 17:00 start). Present government-issued photo ID.',
+    inclusions:['VIP guided venue tour of Yas Marina Circuit in a Chevrolet Camaro SS','Behind-the-scenes access to the circuit'],
+    tips:['🆔 Government-issued photo ID required — bring passport or Australian licence','⏰ Arrive 20 min before (16:40) — this is a dated non-reschedulable ticket','📱 Download Yas Marina Circuit app and access QR code before arrival','🌡️ It\'s June in Abu Dhabi — wear light, breathable clothing (covering arms and legs required)','👟 Closed-toe shoes required','🏎️ Then Wolf Tornado briefing at 18:55 — you\'re staying at the circuit for back-to-back experiences!']},
+
+  '2026-06-26T18:55':{type:'tour',name:'Wolf Tornado Passenger Experience × 2',dur:30,
+    details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
+    cancelBy:'Non-refundable',cost:'Paid ✓',ref:'Ticket IDs: 731369 + 731370 · Res: 1092606230038'},
+    provider:'Yas Marina Circuit · Drive Yas · yasmarinacircuit.com',
+    travel:'You\'re already at Yas Marina Circuit from the Camaro tour — briefing area is on-site. Arrive at briefing point by 18:35.',
+    inclusions:['3 laps as passenger in the Wolf Tornado (250 BHP, 0–100 in 3.0s)','North Corkscrew Circuit (2.29 km, 7 left + 3 right corners)','Helmet, balaclava, and gloves provided','Race suit provided (mandatory)','2 tickets — both Alex and Demetra'],
+    exclusions:['Photos/video (purchase on-site)'],
+    tips:['⚠️ TIMING CLASH: Caterham Seven check-in is also 18:40. Suggest Demetra does Wolf Tornado at 18:55 while Alex checks in for Caterham — or speak to Yas Marina staff on arrival to coordinate both bookings','🏎️ Passenger experience — a professional driver takes you around the circuit at speed. No driving licence needed!','👟 Closed-toe shoes · clothes covering arms and legs · race suit over the top (provided)','🔢 Height 150–190 cm · max 95kg','📱 Submit mandatory waiver via Yas Marina Circuit app BEFORE arrival to avoid delays','Download QR codes via the app in advance']},
+
   '2026-06-26T19:05':{type:'tour',name:'Caterham Seven 360 Driving Experience — Yas Marina Circuit',dur:60,
     details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
     cancelBy:'Non-refundable and non-reschedulable — just show up!',cost:'AED 950 (~A$390) · Res: 1092606130012 · Ticket ID: 730621'},
@@ -2042,12 +2067,6 @@ const EV_DATA = {
     ref:'Conf: 9063SG284693',
     note:'Checkout by noon on 26 June. Then transfer to Abu Dhabi (~1h 15m). Expedia itinerary: 73465662209292.'},
     tips:['Pack the night before — checkout is noon and you need to transfer to Abu Dhabi','Ask hotel to store luggage if you want a last swim at Aquaventure before checkout','🚗 Transfer to Abu Dhabi from Palm Jumeirah — book in advance or use Careem/Uber (AED 250–350)']},
-
-  '2026-06-23T21:00':{type:'plan',name:'Yas Marina Circuit — Seat Fitting + Book Formula 3000',dur:45,
-    details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
-    note:'Stop in on the way from AUH to Dubai (Yas Island is ~10 min from AUH, then ~1h 15m on to Atlantis). Visit the Yas Marina Circuit Experience Centre to do your seat fitting and book your Formula Yas 3000 session for a day during your Yas Island stay (26–28 Jun).'},
-    inclusions:['Seat fitting in F3000 single-seater cockpit','Book your Formula Yas 3000 drive session while at the circuit'],
-    tips:['📍 Yas Marina Circuit is right beside W Abu Dhabi — perfect timing to stop in on arrival night or during your Yas Island stay (26–28 Jun)','🏎️ Formula Yas 3000: single-seater F3000-style race car around the full Yas Marina Circuit — helmet and race suit provided','📞 Book online at yasmarinaCircuit.com or call +971 2 659 9800 — consider booking online before you land to guarantee your slot','⏱️ Experience lasts ~30 min total incl. briefing + drive — allow 1 hour for the visit','👟 Closed-toe shoes required · no loose clothing · medical form to sign on arrival','💳 Pay on the day — credit card accepted · approximate cost AED 690–900 per person','⚠️ Yas Marina Circuit Experience Centre hours: typically 10AM–10PM — arriving ~21:00 should be fine, but call ahead to confirm','🚗 From AUH: exit at Yas Island (well signed) → follow signs to Yas Marina Circuit. ~10–15 min from AUH. Then rejoin E11 north to Dubai (~1h 15m on to Atlantis)']},
 
   '2026-06-23T20:00':{type:'car',name:'Tesla Model S Plaid — Octane pickup at AUH',dur:90,
     details:{loc:'Abu Dhabi International Airport (AUH) — Arrivals Hall',mapsQ:'Abu+Dhabi+International+Airport',
@@ -2096,6 +2115,24 @@ const EV_DATA = {
     inclusions:['Hotel pickup & drop-off at Atlantis The Royal','7-hour desert safari','35 min Quad Bike ride','BBQ Dinner at Al Khayma Camp','Dune bashing','Camel ride','Falcon & Horse show','Sandboarding','Henna painting','Fire show','Stargazing session','Unlimited water & soft drinks'],
     exclusions:['Tipping (customary)','Any other personal expenses','Alcohol and large bags not permitted'],
     tips:['📱 WhatsApp OceanAir Travels (+971 45840404) on 24 June to confirm your exact pickup time — they will contact you 1–2 days before','🚗 Be in Atlantis The Royal lobby by 14:15 (45 min before 15:00 start)','👗 Wear casual, loose-fitting clothing — desert is extremely hot in June. Bring sunscreen, sunglasses, and a sun hat.','🥾 Comfortable closed shoes for quad biking and dune bashing — no thongs/sandals','🏍️ Quad biking recommended age 16–50 · Camel ride 12–50','❌ Cancel before 24 June 15:00 for full refund via GetYourGuide','🌅 Evening tour — spectacular sunset, fire show, and stargazing under the desert sky!']},
+  '2026-06-28T16:00':{type:'tour',name:'F1 Austrian GP Live Screening — Yas Sports Majlis',dur:120,
+    details:{loc:'Yas Sports Majlis, Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
+    cancelBy:'Non-refundable',cost:'Paid ✓',ref:'Ticket IDs: 731367 + 731368 · Res: 1092606230038'},
+    provider:'Yas Marina Circuit · Yas Sports Majlis',
+    travel:'From Sheikh Zayed Grand Mosque: ~35 min drive to Yas Marina Circuit (Sheikh Zayed Mosque → Maqta Bridge → Yas Island exit → follow signs to Yas Marina). ⚠️ Mosque 15:00 — aiming to arrive by 16:30–35 means you\'ll miss pre-race coverage but should catch the race start (~17:00 UAE).',
+    inclusions:['Guaranteed front-row seating at Yas Sports Majlis','F1 Austrian Grand Prix live big-screen screening','Free parking at venue','2 × premium viewing tickets (Alex + Demetra)'],
+    exclusions:['Food & beverage (available to purchase on-site)'],
+    tips:['📱 Present ticket on the Yas Marina Circuit app upon arrival at reception — download QR code in advance','🏎️ Austrian GP race start is typically ~17:00 UAE time — even arriving at 16:30 means you catch the race!','🍺 F&B available to purchase at Yas Sports Majlis','🅿️ Free parking at Yas Marina Circuit','🏎️ Formula Yas 3000 is SAME VENUE at 20:00 — make a full evening of it at Yas Marina!','⚠️ Non-reschedulable/non-refundable — dated ticket']},
+
+  '2026-06-28T20:00':{type:'tour',name:'Formula Yas 3000 Driving Experience',dur:60,
+    details:{loc:'Yas Marina Circuit, Yas Island, Abu Dhabi',mapsQ:'Yas+Marina+Circuit+Abu+Dhabi',
+    cancelBy:'Non-refundable',cost:'Paid ✓',ref:'Ticket ID: 731366 · Res: 1092606230038'},
+    provider:'Yas Marina Circuit · Drive Yas · yasmarinacircuit.com',
+    travel:'You\'re already at Yas Marina Circuit from the F1 screening — make your way to the Drive Yas Experience Centre by 19:30 (30 min before briefing at 20:00).',
+    inclusions:['Single-seater Formula Yas 3000 drive (260 BHP, 0–100 in 2.8s)','Full North Circuit (3 km, 6 left + 2 right corners)','15 minutes of driving on track','Helmet, balaclava, and gloves provided','Race suit provided (mandatory)','Full experience (arrival, registration, briefing, kit-up, drive, departure) = 60 min'],
+    exclusions:['Photo/video package (purchase on-site)'],
+    tips:['🆔 Permanent Australian driving licence required — bring your physical card (not digital)','⏰ Arrive 30 min before briefing (19:30) — allow time for registration and kit-up','📏 Height 160–190 cm · max weight 105 kg','👟 Closed-toe shoes · arms and legs covered · race suit provided over the top','📱 Submit mandatory digital waiver via Yas Marina Circuit app BEFORE arrival','🔑 You\'ve already been on-site all afternoon for F1 screening — you know the venue!','⚡ 260 BHP single-seater, 0–100 in 2.8 seconds — holds on!','🏁 Full North Circuit: 3 km, professional race layout of the Abu Dhabi F1 Grand Prix circuit']},
+
   '2026-06-28T15:00':{type:'tour',name:'Sheikh Zayed Grand Mosque — Timed Entry Visit',dur:30,
     details:{loc:'Sheikh Zayed Grand Mosque, Abu Dhabi',mapsQ:'Sheikh+Zayed+Grand+Mosque+Abu+Dhabi',
     cancelBy:'Non-refundable access pass — just show up!',cost:'AED 50 (~A$21) · Ref: T-2026-9754882 & T-2026-9754883'},
